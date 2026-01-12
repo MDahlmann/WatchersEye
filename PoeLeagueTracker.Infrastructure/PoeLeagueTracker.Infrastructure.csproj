@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Refit" Version="9.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\PoeLeagueTracker.Application\PoeLeagueTracker.Application.csproj" />
   </ItemGroup>
 
