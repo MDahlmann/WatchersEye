@@ -1,0 +1,32 @@
+﻿namespace PoeLeagueTracker.Domain.Characters
+{
+    public enum ClassName
+    {
+        Marauder,
+        Juggernaut,
+        Berserker,
+        Chieftain,
+        Duelist,
+        Slayer,
+        Gladiator,
+        Champion,
+        Ranger,
+        Deadeye,
+        Raider,
+        Pathfinder,
+        Shadow,
+        Assassin,
+        Saboteur,
+        Trickster,
+        Witch,
+        Necromancer,
+        Occultist,
+        Elementalist,
+        Templar,
+        Inquisitor,
+        Hierophant,
+        Guardian,
+        Scion,
+        Ascendant
+    }
+}
