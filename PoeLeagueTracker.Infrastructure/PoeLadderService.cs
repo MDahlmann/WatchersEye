@@ -1,64 +1,52 @@
 ﻿using PoeLeagueTracker.Application;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
-using PoeLeagueTracker.Infrastructure.ApiModels;
 
 namespace PoeLeagueTracker.Infrastructure
 {
     public class PoeLadderService(IGggApi gggApi) : IPoeLadderService
     {
         private readonly IGggApi _gggApi = gggApi;
-        private GggLadderResponse? _ladderResponse;
 
-        async Task IPoeLadderService.GetResponseData(string leagueId)
+        async Task<IEnumerable<Account>> IPoeLadderService.GetLadderData(string leagueId)
         {
-            _ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
-        }
+            var ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
 
-        async Task<IEnumerable<Account>> IPoeLadderService.GetLadderAccountsAsync()
-        {
+            if (ladderResponse.GggLadderEntries == null) return [];
+
+            var ladderEntries = ladderResponse.GggLadderEntries.GroupBy(le => le.GggAccount.Name);
+
             List<Account> accounts = [];
 
-            if (_ladderResponse == null) throw new NullReferenceException();
-
-            foreach (var GggLadderEntry in _ladderResponse.GggLadderEntries)
+            foreach (var accountGroup in ladderEntries)
             {
-                if (!accounts.Any(a => a.AccountName == GggLadderEntry.GggAccount.Name))
+                List<Character> characters = [];
+
+                foreach (var ladderEntry in accountGroup)
                 {
-                    accounts.Add(Account.CreateAccount(
-                        GggLadderEntry.GggAccount.Name,
-                        GggLadderEntry.GggAccount.IsTwitchLinked,
-                        GggLadderEntry.GggAccount.GggTwitch.TwitchUsername,
-                        GggLadderEntry.GggAccount.GggChallenges.Completed));
+                    characters.Add(Character.CreateCharacter(
+                    ladderEntry.GggCharacter.Id,
+                    ladderEntry.GggCharacter.Name,
+                    ladderEntry.GggCharacter.Level,
+                    ladderEntry.GggCharacter.ClassName.ToEnum<ClassName>(),
+                    ladderEntry.GggCharacter.Experience,
+                    ladderEntry.GggAccount.Name,
+                    ladderEntry.Rank,
+                    ladderEntry.Dead,
+                    ladderEntry.Retired,
+                    ladderEntry.IsPublic,
+                    ladderEntry.GggCharacter.GggDepth.DefaultDepth));
                 }
+
+                accounts.Add(Account.CreateAccount(
+                    accountGroup.Key,
+                    characters,
+                    accountGroup.First().GggAccount.IsTwitchLinked,
+                    accountGroup.First().GggAccount.GggTwitch.TwitchUsername,
+                    accountGroup.First().GggAccount.GggChallenges.Completed));
             }
 
             return accounts;
-        }
-
-        async Task<IEnumerable<Character>> IPoeLadderService.GetLadderCharactersAsync()
-        {
-            List<Character> characters = [];
-
-            if (_ladderResponse == null) throw new NullReferenceException();
-
-            foreach (var GggLadderEntry in _ladderResponse.GggLadderEntries)
-            {
-                characters.Add(Character.CreateCharacter(
-                    GggLadderEntry.GggCharacter.Id,
-                    GggLadderEntry.GggCharacter.Name,
-                    GggLadderEntry.GggCharacter.Level,
-                    GggLadderEntry.GggCharacter.ClassName.ToEnum<ClassName>(),
-                    GggLadderEntry.GggCharacter.Experience,
-                    GggLadderEntry.GggAccount.Name,
-                    GggLadderEntry.Rank,
-                    GggLadderEntry.Dead,
-                    GggLadderEntry.Retired,
-                    GggLadderEntry.IsPublic,
-                    GggLadderEntry.GggCharacter.GggDepth.DefaultDepth));
-            }
-
-            return characters;
         }
     }
 }
