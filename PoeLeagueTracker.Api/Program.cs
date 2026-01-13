@@ -11,6 +11,8 @@ namespace PoeLeagueTracker.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            DotNetEnv.Env.TraversePath().Load();
+
             // Add services to the container.
             builder.Services
                 .AddRefitClient<IGggApi>()
@@ -20,8 +22,17 @@ namespace PoeLeagueTracker.Api
                     c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
                 });
 
+            var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
+            var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
+            var dbName = Environment.GetEnvironmentVariable("DB_NAME");
+            var dbUser = Environment.GetEnvironmentVariable("DB_USER");
+            var dbPass = Environment.GetEnvironmentVariable("DB_PASS");
+
+            var connectionString =
+                $"Host={dbHost};Port={dbPort};Database={dbName};Username={dbUser};Password={dbPass}";
+
             builder.Services.AddDbContext<PoeTrackerDbContext>(options =>
-                options.UseNpgsql(builder.Configuration.GetConnectionString("PoeLeagueTrackerDb"))
+                options.UseNpgsql(connectionString)
             );
 
             builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();

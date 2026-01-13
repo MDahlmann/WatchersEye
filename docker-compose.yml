@@ -1,0 +1,27 @@
+﻿services:
+  # Navnet på servicen. Vi kalder den bare 'db'
+  db:
+    # Vi bruger det officielle Postgres image, version 16 (Alpine er en ultra-lille linux version)
+    image: postgres:16-alpine
+    # Navnet containeren får i Docker, så den er nem at finde
+    container_name: poe-tracker-db
+    # Hvis containeren crasher eller du genstarter PC'en, så starter den selv igen
+    restart: always
+    # Environment variables (Her sætter vi passwordet)
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    # Ports mapping: "MinPC:Containeren"
+    # Vi åbner port 5432 på din PC og sender trafikken ind til port 5432 i containeren
+    ports:
+      - "${EXTERNAL_DB_PORT}:5432"
+    # Volumes: Dette er VIGTIGT!
+    # Uden dette mister du al data, hvis du sletter containeren.
+    # Vi mapper en mappe inde i containeren ud til en "Docker Volume" på din PC.
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+# Her definerer vi, at 'postgres_data' er en volume, Docker skal passe på
+volumes:
+  postgres_data:

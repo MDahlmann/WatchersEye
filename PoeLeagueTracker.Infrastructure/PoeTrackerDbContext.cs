@@ -8,5 +8,16 @@ namespace PoeLeagueTracker.Infrastructure
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Character> Characters { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+
+            modelBuilder.Entity<Account>()
+                .HasKey(a => a.AccountName);
+
+            modelBuilder.Entity<Character>()
+                .HasKey(c => c.Id);
+        }
     }
 }
