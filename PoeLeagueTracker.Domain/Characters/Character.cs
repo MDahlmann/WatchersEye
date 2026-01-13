@@ -12,12 +12,12 @@
         public bool Dead { get; private set; }
         public bool Retired { get; private set; }
         public bool IsPublic { get; private set; }
-        public int Depth { get; private set; }
+        public int? Depth { get; private set; }
 
         // Parameterless constructor for EF purposes
         public Character() { }
 
-        private Character(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int depth)
+        private Character(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int? depth)
         {
             Id = id;
             Name = name;
@@ -32,7 +32,7 @@
             Depth = depth;
         }
 
-        public static Character CreateCharacter(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int depth)
+        public static Character CreateCharacter(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int? depth)
         {
             return new Character(id, name, level, className, experience, account, rank, dead, retired, isPublic, depth);
         }

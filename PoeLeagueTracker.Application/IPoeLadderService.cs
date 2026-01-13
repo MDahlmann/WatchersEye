@@ -4,6 +4,6 @@ namespace PoeLeagueTracker.Application
 {
     public interface IPoeLadderService
     {
-        Task<IEnumerable<Account>> GetLadderData(string leagueId);
+        Task<IEnumerable<Account>> GetLadderDataAsync(string leagueId);
     }
 }

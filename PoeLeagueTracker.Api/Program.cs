@@ -1,7 +1,22 @@
+using PoeLeagueTracker.Application;
+using PoeLeagueTracker.Infrastructure;
+using Refit;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+
+builder.Services
+    .AddRefitClient<IGggApi>()
+    .ConfigureHttpClient(c =>
+    {
+        c.BaseAddress = new Uri("https://api.pathofexile.com");
+        c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
+    });
+
+builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
+
 builder.Services.AddOpenApi();
 
 var app = builder.Build();
@@ -14,28 +29,10 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-var summaries = new[]
+app.MapGet("/ladder/{leagueId}", async (IPoeLadderService ladderService, string leagueId) =>
 {
-    "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-};
-
-app.MapGet("/weatherforecast", () =>
-{
-    var forecast =  Enumerable.Range(1, 5).Select(index =>
-        new WeatherForecast
-        (
-            DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
-            Random.Shared.Next(-20, 55),
-            summaries[Random.Shared.Next(summaries.Length)]
-        ))
-        .ToArray();
-    return forecast;
-})
-.WithName("GetWeatherForecast");
+    var accounts = await ladderService.GetLadderDataAsync(leagueId);
+    return Results.Ok(accounts);
+});
 
 app.Run();
-
-record WeatherForecast(DateOnly Date, int TemperatureC, string? Summary)
-{
-    public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-}

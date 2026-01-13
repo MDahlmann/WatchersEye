@@ -8,7 +8,7 @@ namespace PoeLeagueTracker.Infrastructure
     {
         private readonly IGggApi _gggApi = gggApi;
 
-        async Task<IEnumerable<Account>> IPoeLadderService.GetLadderData(string leagueId)
+        async Task<IEnumerable<Account>> IPoeLadderService.GetLadderDataAsync(string leagueId)
         {
             var ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
 
@@ -35,14 +35,14 @@ namespace PoeLeagueTracker.Infrastructure
                     ladderEntry.Dead,
                     ladderEntry.Retired,
                     ladderEntry.IsPublic,
-                    ladderEntry.GggCharacter.GggDepth.DefaultDepth));
+                    ladderEntry.GggCharacter.GggDepth?.DefaultDepth ?? null));
                 }
 
                 accounts.Add(Account.CreateAccount(
                     accountGroup.Key,
                     characters,
                     accountGroup.First().GggAccount.IsTwitchLinked,
-                    accountGroup.First().GggAccount.GggTwitch.TwitchUsername,
+                    accountGroup.First().GggAccount.GggTwitch?.TwitchUsername ?? null,
                     accountGroup.First().GggAccount.GggChallenges.Completed));
             }
 
