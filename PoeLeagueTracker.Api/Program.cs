@@ -1,38 +1,50 @@
+using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Application;
 using PoeLeagueTracker.Infrastructure;
 using Refit;
 
-var builder = WebApplication.CreateBuilder(args);
-
-// Add services to the container.
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
-
-builder.Services
-    .AddRefitClient<IGggApi>()
-    .ConfigureHttpClient(c =>
+namespace PoeLeagueTracker.Api
+{
+    public class Program
     {
-        c.BaseAddress = new Uri("https://api.pathofexile.com");
-        c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
-    });
+        public static void Main(string[] args)
+        {
+            var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
+            // Add services to the container.
+            builder.Services
+                .AddRefitClient<IGggApi>()
+                .ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri("https://api.pathofexile.com");
+                    c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
+                });
 
-builder.Services.AddOpenApi();
+            builder.Services.AddDbContext<PoeTrackerDbContext>(options =>
+                options.UseNpgsql(builder.Configuration.GetConnectionString("PoeLeagueTrackerDb"))
+            );
 
-var app = builder.Build();
+            builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment())
-{
-    app.MapOpenApi();
+            builder.Services.AddOpenApi();
+
+            var app = builder.Build();
+
+            // Configure the HTTP request pipeline.
+            if (app.Environment.IsDevelopment())
+            {
+                app.MapOpenApi();
+            }
+
+            app.UseHttpsRedirection();
+
+            app.MapGet("/ladder/{leagueId}", async (IPoeLadderService ladderService, string leagueId) =>
+            {
+                var accounts = await ladderService.GetLadderDataAsync(leagueId);
+                return Results.Ok(accounts);
+            });
+
+            app.Run();
+        }
+    }
 }
-
-app.UseHttpsRedirection();
-
-app.MapGet("/ladder/{leagueId}", async (IPoeLadderService ladderService, string leagueId) =>
-{
-    var accounts = await ladderService.GetLadderDataAsync(leagueId);
-    return Results.Ok(accounts);
-});
-
-app.Run();
