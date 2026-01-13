@@ -10,6 +10,9 @@ namespace PoeLeagueTracker.Infrastructure.ApiModels
         [JsonPropertyName("dead")]
         public bool Dead { get; set; }
 
+        [JsonPropertyName("retired")]
+        public bool Retired { get; set; }
+
         [JsonPropertyName("public")]
         public bool IsPublic { get; set; }
 
@@ -19,10 +22,11 @@ namespace PoeLeagueTracker.Infrastructure.ApiModels
         [JsonPropertyName("account")]
         public GggAccount GggAccount { get; set; }
 
-        public GggLadderEntry(int rank, bool dead, bool isPublic, GggCharacter gggCharacter, GggAccount gggAccount)
+        public GggLadderEntry(int rank, bool dead, bool retired, bool isPublic, GggCharacter gggCharacter, GggAccount gggAccount)
         {
             Rank = rank;
             Dead = dead;
+            Retired = retired;
             IsPublic = isPublic;
             GggCharacter = gggCharacter;
             GggAccount = gggAccount;

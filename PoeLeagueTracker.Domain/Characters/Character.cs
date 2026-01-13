@@ -7,6 +7,7 @@
         public int Level { get; private set; }
         public ClassName ClassName { get; private set; }
         public long Experience { get; private set; }
+        public string Account { get; private set; }
         public int Rank { get; private set; }
         public bool Dead { get; private set; }
         public bool Retired { get; private set; }
@@ -16,13 +17,14 @@
         // Parameterless constructor for EF purposes
         public Character() { }
 
-        private Character(string id, string name, int level, ClassName className, long experience, int rank, bool dead, bool retired, bool isPublic, int depth)
+        private Character(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int depth)
         {
             Id = id;
             Name = name;
             Level = level;
             ClassName = className;
             Experience = experience;
+            Account = account;
             Rank = rank;
             Dead = dead;
             Retired = retired;
@@ -30,9 +32,9 @@
             Depth = depth;
         }
 
-        public static Character CreateCharacter(string id, string name, int level, ClassName className, long experience, int rank, bool dead, bool retired, bool isPublic, int depth)
+        public static Character CreateCharacter(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int depth)
         {
-            return new Character(id, name, level, className, experience, rank, dead, retired, isPublic, depth);
+            return new Character(id, name, level, className, experience, account, rank, dead, retired, isPublic, depth);
         }
     }
 }

@@ -2,6 +2,7 @@
 {
     public enum ClassName
     {
+        None,
         Marauder,
         Juggernaut,
         Berserker,
@@ -28,5 +29,17 @@
         Guardian,
         Scion,
         Ascendant
+    }
+
+    public static class EnumExtensions
+    {
+        public static T ToEnum<T>(this string value, T defaultValue = default) where T : struct, Enum
+        {
+            if (Enum.TryParse<T>(value, true, out var result))
+            {
+                return result;
+            }
+            return defaultValue;
+        }
     }
 }
