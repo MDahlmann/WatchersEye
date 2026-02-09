@@ -52,8 +52,8 @@ namespace PoeLeagueTracker.Api
 
             app.MapGet("/ladder/{leagueId}", async (IPoeLadderService ladderService, string leagueId) =>
             {
-                var accounts = await ladderService.GetLadderDataAsync(leagueId);
-                return Results.Ok(accounts);
+                var league = await ladderService.GetLeagueAsync(leagueId);
+                return Results.Ok(league);
             });
 
             app.Run();

@@ -1,32 +1,33 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Application.Interfaces;
-using PoeLeagueTracker.Domain.Accounts;
+using PoeLeagueTracker.Domain.Leagues;
 
 namespace PoeLeagueTracker.Infrastructure
 {
-    public class LadderRepository : ILadderRepository
+    public class LadderRepository : ILeagueRepository
     {
         private readonly PoeTrackerDbContext _db;
 
         public LadderRepository(PoeTrackerDbContext db) => _db = db;
 
-        async Task ILadderRepository.AddAccountsAsync(IEnumerable<Account> accounts)
+        async Task ILeagueRepository.AddLeagueAsync(League league)
         {
-            await _db.Accounts.AddRangeAsync(accounts);
+            await _db.Leagues.AddAsync(league);
         }
 
-        async Task<IEnumerable<Account>> ILadderRepository.GetAllAccountsAsync()
+        async Task<League> ILeagueRepository.GetLeagueAsync(string leagueName)
         {
-            List<Account> accounts = [];
+            var league = await _db.Leagues
+                    .AsSplitQuery()
+                    .Where(l => l.LeagueName == leagueName)
+                    .Include(l => l.Accounts)
+                    .ThenInclude(a => a.Characters)
+                    .SingleOrDefaultAsync();
 
-            accounts = await _db.Accounts
-                .Include(account => account.Characters)
-                .ToListAsync();
-
-            return accounts;
+            return league;
         }
 
-        async Task ILadderRepository.SaveChangesAsync()
+        async Task ILeagueRepository.SaveChangesAsync()
         {
             await _db.SaveChangesAsync();
         }

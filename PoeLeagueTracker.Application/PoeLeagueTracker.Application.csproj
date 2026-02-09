@@ -10,8 +10,4 @@
     <ProjectReference Include="..\PoeLeagueTracker.Domain\PoeLeagueTracker.Domain.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Ladder\" />
-  </ItemGroup>
-
 </Project>

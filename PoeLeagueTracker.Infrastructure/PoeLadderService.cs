@@ -1,6 +1,7 @@
 ﻿using PoeLeagueTracker.Application.Interfaces;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
+using PoeLeagueTracker.Domain.Leagues;
 
 namespace PoeLeagueTracker.Infrastructure
 {
@@ -8,11 +9,11 @@ namespace PoeLeagueTracker.Infrastructure
     {
         private readonly IGggApi _gggApi = gggApi;
 
-        async Task<IEnumerable<Account>> IPoeLadderService.GetLadderDataAsync(string leagueId)
+        async Task<League> IPoeLadderService.GetLeagueAsync(string leagueId)
         {
             var ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
 
-            if (ladderResponse.GggLadderEntries == null) return [];
+            if (ladderResponse.GggLadderEntries == null) return null;
 
             var ladderEntries = ladderResponse.GggLadderEntries.GroupBy(le => le.GggAccount.Name);
 
@@ -46,7 +47,7 @@ namespace PoeLeagueTracker.Infrastructure
                     accountGroup.First().GggAccount.GggChallenges.Completed));
             }
 
-            return accounts;
+            return League.CreateLeague(leagueId, accounts);
         }
     }
 }

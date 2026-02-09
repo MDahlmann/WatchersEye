@@ -1,6 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
+using PoeLeagueTracker.Domain.Leagues;
 
 namespace PoeLeagueTracker.Infrastructure
 {
@@ -8,6 +9,7 @@ namespace PoeLeagueTracker.Infrastructure
     {
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Character> Characters { get; set; }
+        public DbSet<League> Leagues { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -18,6 +20,9 @@ namespace PoeLeagueTracker.Infrastructure
 
             modelBuilder.Entity<Character>()
                 .HasKey(c => c.Id);
+
+            modelBuilder.Entity<League>()
+                .HasKey(l => l.LeagueName);
         }
     }
 }
