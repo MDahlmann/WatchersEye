@@ -1,6 +1,6 @@
 ﻿using PoeLeagueTracker.Domain.Accounts;
 
-namespace PoeLeagueTracker.Application
+namespace PoeLeagueTracker.Application.Interfaces
 {
     public interface ILadderRepository
     {

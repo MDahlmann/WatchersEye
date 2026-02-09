@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PoeLeagueTracker.Application;
+using PoeLeagueTracker.Application.Interfaces;
 using PoeLeagueTracker.Domain.Accounts;
 
 namespace PoeLeagueTracker.Infrastructure

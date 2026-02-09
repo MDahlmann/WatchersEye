@@ -1,4 +1,4 @@
-﻿using PoeLeagueTracker.Application;
+﻿using PoeLeagueTracker.Application.Interfaces;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
 
