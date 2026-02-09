@@ -4,18 +4,18 @@ using PoeLeagueTracker.Domain.Leagues;
 
 namespace PoeLeagueTracker.Infrastructure
 {
-    public class LadderRepository : ILeagueRepository
+    public class LeagueRepository : ILeagueRepository
     {
         private readonly PoeTrackerDbContext _db;
 
-        public LadderRepository(PoeTrackerDbContext db) => _db = db;
+        public LeagueRepository(PoeTrackerDbContext db) => _db = db;
 
         async Task ILeagueRepository.AddLeagueAsync(League league)
         {
             await _db.Leagues.AddAsync(league);
         }
 
-        async Task<League> ILeagueRepository.GetLeagueAsync(string leagueName)
+        async Task<League?> ILeagueRepository.GetLeagueAsync(string leagueName)
         {
             var league = await _db.Leagues
                     .AsSplitQuery()

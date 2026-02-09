@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Application.Interfaces;
+using PoeLeagueTracker.Application.Leagues.UpsertLeague;
 using PoeLeagueTracker.Infrastructure;
 using Refit;
 
@@ -37,6 +38,8 @@ namespace PoeLeagueTracker.Api
             );
 
             builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
+            builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
+            builder.Services.AddScoped<ICommandHandler<UpsertLeagueCommand>, UpsertLeagueHandler>();
 
             builder.Services.AddOpenApi();
 

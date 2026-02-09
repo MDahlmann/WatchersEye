@@ -3,7 +3,7 @@
     public class Character
     {
         public string Id { get; private init; }
-        public string Name { get; private init; }
+        public string Name { get; private set; }
         public int Level { get; private set; }
         public ClassName ClassName { get; private set; }
         public long Experience { get; private set; }
@@ -35,6 +35,19 @@
         public static Character CreateCharacter(string id, string name, int level, ClassName className, long experience, string account, int rank, bool dead, bool retired, bool isPublic, int? depth)
         {
             return new Character(id, name, level, className, experience, account, rank, dead, retired, isPublic, depth);
+        }
+
+        public void Update(string name, int level, ClassName classname, long experience, int rank, bool dead, bool retired, bool isPublic, int? depth)
+        {
+            Name = name;
+            Level = level;
+            ClassName = classname;
+            Experience = experience;
+            Rank = rank;
+            Dead = dead;
+            Retired = retired;
+            IsPublic = isPublic;
+            Depth = depth;
         }
     }
 }

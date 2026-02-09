@@ -9,7 +9,7 @@ namespace PoeLeagueTracker.Infrastructure
     {
         private readonly IGggApi _gggApi = gggApi;
 
-        async Task<League> IPoeLadderService.GetLeagueAsync(string leagueId)
+        async Task<League?> IPoeLadderService.GetLeagueAsync(string leagueId)
         {
             var ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
 
