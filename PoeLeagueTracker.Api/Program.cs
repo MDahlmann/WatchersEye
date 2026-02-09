@@ -11,6 +11,7 @@ namespace PoeLeagueTracker.Api
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            // DotNetEnv-libary allows .NET to read the local .env file
             DotNetEnv.Env.TraversePath().Load();
 
             // Add services to the container.
