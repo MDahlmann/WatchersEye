@@ -1,8 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Interfaces;
+using PoeLeagueTracker.Application.Leagues.GetLeague;
 using PoeLeagueTracker.Application.Leagues.SyncLeague;
 using PoeLeagueTracker.Infrastructure;
+using PoeLeagueTracker.Shared.DTOs;
 using Refit;
 
 namespace PoeLeagueTracker.Api
@@ -41,6 +43,8 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
             builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
+            builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto>, GetLeagueQueryHandler>();
+
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
             builder.Services.AddOpenApi();
@@ -55,11 +59,10 @@ namespace PoeLeagueTracker.Api
 
             app.UseHttpsRedirection();
 
-            app.MapGet("/ladder/{leagueId}", async (IPoeLadderService ladderService,
-                                                    string leagueId) =>
+            app.MapGet("/ladder/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto> queryHandler, string leagueId) =>
             {
-                var league = await ladderService.GetLeagueAsync(leagueId);
-                return Results.Ok(league);
+                var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
+                return league;
             });
 
             app.Run();

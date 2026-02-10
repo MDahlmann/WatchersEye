@@ -7,7 +7,8 @@ namespace PoeLeagueTracker.Api.Workers
     public class SyncLeagueWorker : BackgroundService
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private const string _leagueToUpdate = "FizzministersAndTheFlaming%20COCKS%20(PL75337)";
+        //private const string _leagueToUpdate = "FizzministersAndTheFlaming COCKS (PL75337)";
+        private const string _leagueToUpdate = "Secrets Of The COCK (PL71449)";
 
         public SyncLeagueWorker(IServiceScopeFactory serviceScopeFactory)
         {

@@ -2,6 +2,7 @@
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
 using PoeLeagueTracker.Domain.Leagues;
+using System.Net;
 
 namespace PoeLeagueTracker.Infrastructure
 {
@@ -11,7 +12,8 @@ namespace PoeLeagueTracker.Infrastructure
 
         async Task<League?> IPoeLadderService.GetLeagueAsync(string leagueId)
         {
-            var ladderResponse = await _gggApi.GetGggResponseAsync(leagueId);
+            var urlEncodedLeagueId = WebUtility.UrlEncode(leagueId);
+            var ladderResponse = await _gggApi.GetGggResponseAsync(urlEncodedLeagueId);
 
             if (ladderResponse.GggLadderEntries == null) return null;
 
