@@ -1,19 +1,19 @@
 ﻿using PoeLeagueTracker.Application.Interfaces;
 
-namespace PoeLeagueTracker.Application.Leagues.UpsertLeague
+namespace PoeLeagueTracker.Application.Leagues.SyncLeague
 {
-    public class UpsertLeagueHandler : ICommandHandler<UpsertLeagueCommand>
+    public class SyncLeagueHandler : ICommandHandler<SyncLeagueCommand>
     {
         private readonly ILeagueRepository _ladderRepo;
         private readonly IPoeLadderService _poeLadderService;
 
-        public UpsertLeagueHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService)
+        public SyncLeagueHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService)
         {
             _ladderRepo = leagueRepo;
             _poeLadderService = poeLadderService;
         }
 
-        async Task ICommandHandler<UpsertLeagueCommand>.HandleAsync(UpsertLeagueCommand command)
+        async Task ICommandHandler<SyncLeagueCommand>.HandleAsync(SyncLeagueCommand command)
         {
             var apiLeague = await _poeLadderService.GetLeagueAsync(command.LeagueName);
             var dbLeague = await _ladderRepo.GetLeagueAsync(command.LeagueName);
@@ -26,13 +26,11 @@ namespace PoeLeagueTracker.Application.Leagues.UpsertLeague
             }
             else
             {
+                var accountDictionary = dbLeague.Accounts.ToDictionary(a => a.AccountName);
+
                 foreach (var apiAccount in apiLeague.Accounts)
                 {
-                    var dbAccount = dbLeague
-                        .Accounts
-                        .FirstOrDefault(a => a.AccountName == apiAccount.AccountName);
-
-                    if (dbAccount == null)
+                    if (!accountDictionary.TryGetValue(apiAccount.AccountName, out var dbAccount))
                     {
                         dbLeague.Accounts.Add(apiAccount);
                     }
@@ -42,12 +40,11 @@ namespace PoeLeagueTracker.Application.Leagues.UpsertLeague
                                                           apiAccount.TwitchUsername,
                                                           apiAccount.CompletedChallenges);
 
+                        var characterDictionary = dbAccount.Characters.ToDictionary(c => c.Id);
+
                         foreach (var apiCharacter in apiAccount.Characters)
                         {
-                            var dbCharacter = dbAccount.Characters
-                                .FirstOrDefault(c => c.Id == apiCharacter.Id);
-
-                            if (dbCharacter == null)
+                            if (!characterDictionary.TryGetValue(apiCharacter.Id, out var dbCharacter))
                             {
                                 dbAccount.Characters.Add(apiCharacter);
                             }
