@@ -8,6 +8,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\PoeLeagueTracker.Domain\PoeLeagueTracker.Domain.csproj" />
+    <ProjectReference Include="..\PoeLeagueTracker.Shared\PoeLeagueTracker.Shared.csproj" />
   </ItemGroup>
 
 </Project>

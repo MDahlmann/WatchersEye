@@ -2,12 +2,12 @@
 
 namespace PoeLeagueTracker.Application.Leagues.SyncLeague
 {
-    public class SyncLeagueHandler : ICommandHandler<SyncLeagueCommand>
+    public class SyncLeagueCommandHandler : ICommandHandler<SyncLeagueCommand>
     {
         private readonly ILeagueRepository _ladderRepo;
         private readonly IPoeLadderService _poeLadderService;
 
-        public SyncLeagueHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService)
+        public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService)
         {
             _ladderRepo = leagueRepo;
             _poeLadderService = poeLadderService;
@@ -16,7 +16,7 @@ namespace PoeLeagueTracker.Application.Leagues.SyncLeague
         async Task ICommandHandler<SyncLeagueCommand>.HandleAsync(SyncLeagueCommand command)
         {
             var apiLeague = await _poeLadderService.GetLeagueAsync(command.LeagueName);
-            var dbLeague = await _ladderRepo.GetLeagueAsync(command.LeagueName);
+            var dbLeague = await _ladderRepo.GetLeagueTrackedAsync(command.LeagueName);
 
             if (apiLeague == null) throw new ArgumentException($"{command.LeagueName} doesn't exist.");
 
