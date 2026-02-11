@@ -17,39 +17,36 @@ namespace PoeLeagueTracker.Infrastructure
 
             if (ladderResponse.GggLadderEntries == null) return null;
 
-            var ladderEntries = ladderResponse.GggLadderEntries.GroupBy(le => le.GggAccount.Name);
+            var league = League.CreateLeague(leagueId);
 
-            List<Account> accounts = [];
+            var responseAccDict = new Dictionary<string, Account>();
 
-            foreach (var accountGroup in ladderEntries)
+            foreach (var ladderEntry in ladderResponse.GggLadderEntries)
             {
-                List<Character> characters = [];
-
-                foreach (var ladderEntry in accountGroup)
+                if (!responseAccDict.TryGetValue(ladderEntry.GggAccount.Name, out var account))
                 {
-                    characters.Add(Character.CreateCharacter(
-                    ladderEntry.GggCharacter.Id,
-                    ladderEntry.GggCharacter.Name,
-                    ladderEntry.GggCharacter.Level,
-                    ladderEntry.GggCharacter.ClassName.ToEnum<ClassName>(),
-                    ladderEntry.GggCharacter.Experience,
-                    ladderEntry.GggAccount.Name,
-                    ladderEntry.Rank,
-                    ladderEntry.Dead,
-                    ladderEntry.Retired,
-                    ladderEntry.IsPublic,
-                    ladderEntry.GggCharacter.GggDepth?.DefaultDepth ?? null));
+                    account = Account.CreateAccount(ladderEntry.GggAccount.Name);
+                    responseAccDict.Add(account.AccountName, account);
                 }
 
-                accounts.Add(Account.CreateAccount(
-                    accountGroup.Key,
-                    characters,
-                    accountGroup.First().GggAccount.IsTwitchLinked,
-                    accountGroup.First().GggAccount.GggTwitch?.TwitchUsername ?? null,
-                    accountGroup.First().GggAccount.GggChallenges.Completed));
+                league.Characters.Add(Character.CreateCharacter(
+                ladderEntry.GggCharacter.Id,
+                ladderEntry.GggCharacter.Name,
+                ladderEntry.GggCharacter.Level,
+                ladderEntry.GggCharacter.ClassName.ToEnum<ClassName>(),
+                ladderEntry.GggCharacter.Experience,
+                ladderEntry.Rank,
+                ladderEntry.Dead,
+                ladderEntry.Retired,
+                ladderEntry.GggCharacter.GggDepth?.DefaultDepth ?? null,
+                ladderEntry.GggAccount.GggChallenges.Completed,
+                leagueId,
+                account.AccountName,
+                league,
+                account));
             }
 
-            return League.CreateLeague(leagueId, accounts);
+            return league;
         }
     }
 }

@@ -11,7 +11,7 @@ using PoeLeagueTracker.Infrastructure;
 namespace PoeLeagueTracker.Infrastructure.Migrations
 {
     [DbContext(typeof(PoeTrackerDbContext))]
-    [Migration("20260113225933_Setup")]
+    [Migration("20260211140509_Setup")]
     partial class Setup
     {
         /// <inheritdoc />
@@ -29,15 +29,6 @@ namespace PoeLeagueTracker.Infrastructure.Migrations
                     b.Property<string>("AccountName")
                         .HasColumnType("text");
 
-                    b.Property<int>("CompletedChallenges")
-                        .HasColumnType("integer");
-
-                    b.Property<bool>("IsTwitchLinked")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("TwitchUsername")
-                        .HasColumnType("text");
-
                     b.HasKey("AccountName");
 
                     b.ToTable("Accounts");
@@ -48,12 +39,12 @@ namespace PoeLeagueTracker.Infrastructure.Migrations
                     b.Property<string>("Id")
                         .HasColumnType("text");
 
-                    b.Property<string>("Account")
+                    b.Property<string>("AccountName")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<string>("AccountName")
-                        .HasColumnType("text");
+                    b.Property<int>("Challenges")
+                        .HasColumnType("integer");
 
                     b.Property<int>("ClassName")
                         .HasColumnType("integer");
@@ -67,8 +58,9 @@ namespace PoeLeagueTracker.Infrastructure.Migrations
                     b.Property<long>("Experience")
                         .HasColumnType("bigint");
 
-                    b.Property<bool>("IsPublic")
-                        .HasColumnType("boolean");
+                    b.Property<string>("LeagueName")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<int>("Level")
                         .HasColumnType("integer");
@@ -87,17 +79,46 @@ namespace PoeLeagueTracker.Infrastructure.Migrations
 
                     b.HasIndex("AccountName");
 
+                    b.HasIndex("LeagueName");
+
                     b.ToTable("Characters");
+                });
+
+            modelBuilder.Entity("PoeLeagueTracker.Domain.Leagues.League", b =>
+                {
+                    b.Property<string>("LeagueName")
+                        .HasColumnType("text");
+
+                    b.HasKey("LeagueName");
+
+                    b.ToTable("Leagues");
                 });
 
             modelBuilder.Entity("PoeLeagueTracker.Domain.Characters.Character", b =>
                 {
-                    b.HasOne("PoeLeagueTracker.Domain.Accounts.Account", null)
+                    b.HasOne("PoeLeagueTracker.Domain.Accounts.Account", "Account")
                         .WithMany("Characters")
-                        .HasForeignKey("AccountName");
+                        .HasForeignKey("AccountName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("PoeLeagueTracker.Domain.Leagues.League", "League")
+                        .WithMany("Characters")
+                        .HasForeignKey("LeagueName")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Account");
+
+                    b.Navigation("League");
                 });
 
             modelBuilder.Entity("PoeLeagueTracker.Domain.Accounts.Account", b =>
+                {
+                    b.Navigation("Characters");
+                });
+
+            modelBuilder.Entity("PoeLeagueTracker.Domain.Leagues.League", b =>
                 {
                     b.Navigation("Characters");
                 });

@@ -19,13 +19,12 @@ namespace PoeLeagueTracker.Infrastructure
         async Task<LeagueDto?> ILeagueRepository.GetLeagueDtoAsync(string leagueName)
         {
             var leagueDto = await _db.Leagues
-                .Where(l => l.LeagueName == leagueName)
-                .Select(l => new LeagueDto(
-                    l.LeagueName,
-                    l.Accounts.Select(a => new AccountDto(
-                        a.AccountName,
-                        a.CompletedChallenges,
-                        a.Characters.Select(c => new CharacterDto(
+                .Where(league => league.LeagueName == leagueName)
+                .Select(league => new LeagueDto(
+                    league.LeagueName,
+                    league.Characters
+                        .OrderBy(c => c.Rank)
+                        .Select(c => new CharacterDto(
                             c.Id,
                             c.Name,
                             c.Level,
@@ -34,10 +33,11 @@ namespace PoeLeagueTracker.Infrastructure
                             c.Rank,
                             c.Dead,
                             c.Retired,
-                            c.Depth
-                        ))
-                    ))
-                )).FirstOrDefaultAsync();
+                            c.Depth,
+                            c.Challenges,
+                            c.LeagueName,
+                            c.AccountName
+                    )))).FirstOrDefaultAsync();
 
             return leagueDto;
         }
@@ -47,8 +47,8 @@ namespace PoeLeagueTracker.Infrastructure
             var league = await _db.Leagues
                     .AsSplitQuery()
                     .Where(l => l.LeagueName == leagueName)
-                    .Include(l => l.Accounts)
-                    .ThenInclude(a => a.Characters)
+                    .Include(l => l.Characters)
+                    .ThenInclude(c => c.Account)
                     .SingleOrDefaultAsync();
 
             return league;

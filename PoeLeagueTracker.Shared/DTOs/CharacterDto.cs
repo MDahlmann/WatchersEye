@@ -9,5 +9,8 @@
         int Rank,
         bool Dead,
         bool Retired,
-        int? Depth);
+        int? Depth,
+        int CompletedChallenges,
+        string LeagueName,
+        string AccountName);
 }

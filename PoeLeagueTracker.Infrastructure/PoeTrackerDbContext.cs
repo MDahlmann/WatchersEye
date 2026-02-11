@@ -23,6 +23,16 @@ namespace PoeLeagueTracker.Infrastructure
 
             modelBuilder.Entity<League>()
                 .HasKey(l => l.LeagueName);
+
+            modelBuilder.Entity<Character>()
+                .HasOne(c => c.Account)
+                .WithMany(a => a.Characters)
+                .HasForeignKey(c => c.AccountName);
+
+            modelBuilder.Entity<Character>()
+                .HasOne(c => c.League)
+                .WithMany(l => l.Characters)
+                .HasForeignKey(c => c.LeagueName);
         }
     }
 }

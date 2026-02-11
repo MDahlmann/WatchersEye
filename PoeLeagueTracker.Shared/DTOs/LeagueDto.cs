@@ -2,5 +2,5 @@
 {
     public record LeagueDto(
         string LeagueName,
-        IEnumerable<AccountDto> Accounts);
+        IEnumerable<CharacterDto> Characters);
 }

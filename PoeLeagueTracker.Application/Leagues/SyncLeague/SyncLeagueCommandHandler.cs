@@ -1,4 +1,7 @@
 ﻿using PoeLeagueTracker.Application.Interfaces;
+using PoeLeagueTracker.Domain.Accounts;
+using PoeLeagueTracker.Domain.Characters;
+using PoeLeagueTracker.Domain.Leagues;
 
 namespace PoeLeagueTracker.Application.Leagues.SyncLeague
 {
@@ -6,64 +9,78 @@ namespace PoeLeagueTracker.Application.Leagues.SyncLeague
     {
         private readonly ILeagueRepository _ladderRepo;
         private readonly IPoeLadderService _poeLadderService;
+        private readonly IAccountRepository _accountRepository;
 
-        public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService)
+        public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService, IAccountRepository accountRepository)
         {
             _ladderRepo = leagueRepo;
             _poeLadderService = poeLadderService;
+            _accountRepository = accountRepository;
         }
 
         async Task ICommandHandler<SyncLeagueCommand>.HandleAsync(SyncLeagueCommand command)
         {
-            var apiLeague = await _poeLadderService.GetLeagueAsync(command.LeagueName);
-            var dbLeague = await _ladderRepo.GetLeagueTrackedAsync(command.LeagueName);
+            var apiLeague = await _poeLadderService.GetLeagueAsync(command.LeagueName)
+                ?? throw new ArgumentException($"{command.LeagueName} doesn't exist.");
 
-            if (apiLeague == null) throw new ArgumentException($"{command.LeagueName} doesn't exist.");
+            var apiAccountNames = apiLeague.Characters.Select(c => c.AccountName)
+                                                      .Distinct()
+                                                      .ToList();
+
+            var dbLeague = await _ladderRepo.GetLeagueTrackedAsync(command.LeagueName);
+            var dbAccounts = await _accountRepository.GetAccountsByNameAsync(apiAccountNames);
+            var dbAccDict = dbAccounts.ToDictionary(a => a.AccountName);
 
             if (dbLeague == null)
             {
-                await _ladderRepo.AddLeagueAsync(apiLeague);
+                dbLeague = League.CreateLeague(apiLeague.LeagueName);
+                await _ladderRepo.AddLeagueAsync(dbLeague);
             }
-            else
+
+            var dbCharDict = dbLeague.Characters.ToDictionary(c => c.Id);
+
+            foreach (var character in apiLeague.Characters)
             {
-                var accountDictionary = dbLeague.Accounts.ToDictionary(a => a.AccountName);
-
-                foreach (var apiAccount in apiLeague.Accounts)
+                if (!dbAccDict.TryGetValue(character.AccountName, out var account))
                 {
-                    if (!accountDictionary.TryGetValue(apiAccount.AccountName, out var dbAccount))
-                    {
-                        dbLeague.Accounts.Add(apiAccount);
-                    }
-                    else
-                    {
-                        dbAccount.UpdateWithoutCharacters(apiAccount.IsTwitchLinked,
-                                                          apiAccount.TwitchUsername,
-                                                          apiAccount.CompletedChallenges);
+                    account = Account.CreateAccount(character.AccountName);
+                    dbAccDict.Add(account.AccountName, account);
+                }
 
-                        var characterDictionary = dbAccount.Characters.ToDictionary(c => c.Id);
-
-                        foreach (var apiCharacter in apiAccount.Characters)
-                        {
-                            if (!characterDictionary.TryGetValue(apiCharacter.Id, out var dbCharacter))
-                            {
-                                dbAccount.Characters.Add(apiCharacter);
-                            }
-                            else
-                            {
-                                dbCharacter.Update(apiCharacter.Name,
-                                                   apiCharacter.Level,
-                                                   apiCharacter.ClassName,
-                                                   apiCharacter.Experience,
-                                                   apiCharacter.Rank,
-                                                   apiCharacter.Dead,
-                                                   apiCharacter.Retired,
-                                                   apiCharacter.IsPublic,
-                                                   apiCharacter.Depth);
-                            }
-                        }
-                    }
+                if (!dbCharDict.TryGetValue(character.Id, out var dbCharacter))
+                {
+                    dbLeague.Characters.Add(Character.CreateCharacter(
+                        character.Id,
+                        character.Name,
+                        character.Level,
+                        character.ClassName,
+                        character.Experience,
+                        character.Rank,
+                        character.Dead,
+                        character.Retired,
+                        character.Depth,
+                        character.Challenges,
+                        character.LeagueName,
+                        character.AccountName,
+                        dbLeague,
+                        account
+                        ));
+                }
+                else
+                {
+                    dbCharacter.Update(
+                        character.Name,
+                        character.Level,
+                        character.ClassName,
+                        character.Experience,
+                        character.Rank,
+                        character.Dead,
+                        character.Retired,
+                        character.Depth,
+                        character.Challenges);
                 }
             }
+
             await _ladderRepo.SaveChangesAsync();
         }
     }
