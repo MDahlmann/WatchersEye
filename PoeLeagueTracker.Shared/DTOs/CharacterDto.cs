@@ -12,5 +12,13 @@
         int? Depth,
         int CompletedChallenges,
         string LeagueName,
-        string AccountName);
+        string AccountName)
+    {
+        public string Status => this switch
+        {
+            { Dead: true } => "Dead",
+            { Retired: true } => "Retired",
+            _ => "Alive"
+        };
+    }
 }

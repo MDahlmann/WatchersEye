@@ -1,4 +1,3 @@
-using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Interfaces;
@@ -45,18 +44,18 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
-            builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto>, GetLeagueQueryHandler>();
+            builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
             builder.Services.AddOpenApi();
 
-            var policy = new CorsPolicy();
-            policy.Origins.Add("https://localhost:7046");
-            policy.Methods.Add("GET");
-            policy.Headers.Add("Content-Type");
-
-            builder.Services.AddCors(options => options.AddPolicy("CustomPolicy", policy));
+            builder.Services.AddCors(options => options.AddPolicy("CustomPolicy", builder =>
+            {
+                builder.WithOrigins("https://localhost:7046");
+                builder.WithMethods("GET");
+                builder.WithHeaders("Content-Type");
+            }));
 
             var app = builder.Build();
 
@@ -69,7 +68,7 @@ namespace PoeLeagueTracker.Api
             app.UseHttpsRedirection();
             app.UseCors("CustomPolicy");
 
-            app.MapGet("/ladder/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
+            app.MapGet("/league/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
             {
                 var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
 

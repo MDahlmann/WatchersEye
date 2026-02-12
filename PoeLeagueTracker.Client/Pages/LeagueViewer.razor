@@ -1,34 +1,53 @@
-﻿@page "/league/"
+﻿@page "/league/{LeagueName}"
 
 @using PoeLeagueTracker.Shared.DTOs;
 
 @inject HttpClient PoeTrackerApi;
 
-<h3>@League?.LeagueName</h3>
-@foreach (var character in Characters!)
+@if (leagueNotFound)
 {
-    string status = "Active";
-
-    if (character.Dead) status = "Dead";
-    if (character.Retired) status = "Retired";
-
-    <h4>Rank @character.Rank: @character.Name - Level @character.Level (@status)</h4>
+    <h3>No league by the name of @LeagueName was found on the server.</h3>
+}
+else if (League == null)
+{
+    <h3>Loading...</h3>
+}
+else
+{    
+    <h3>@League.LeagueName</h3>
+    @foreach (var character in Characters)
+    {
+        <h4>Rank @character.Rank: @character.Name - Level @character.Level (@character.Status)</h4>
+    }
 }
 
 @code {
-    //public string LeagueName = "Secrets%20Of%20The%20COCK%20(PL71449)";
-    public string LeagueName = "FizzministersAndTheFlaming%20COCKS%20(PL75337)";
+    [Parameter]
+    public string? LeagueName { get; set; }
 
     private LeagueDto? League { get; set; }
-    private List<CharacterDto>? Characters = [];
-    private CharacterDto? rankOne;
+    private List<CharacterDto> Characters = [];
+    private bool leagueNotFound = false;
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
-        League = await PoeTrackerApi.GetFromJsonAsync<LeagueDto>($"/ladder/{LeagueName}");
+        await FetchLeague();
+    }
 
-        Characters = League?.Characters.ToList();
+    private async Task FetchLeague()
+    {
+        var response = await PoeTrackerApi.GetAsync($"/league/{LeagueName}");
+
+        if (response.StatusCode == System.Net.HttpStatusCode.NotFound)
+        {
+            leagueNotFound = true;
+        }
+        else if (response.IsSuccessStatusCode)
+        {
+            League = await response.Content.ReadFromJsonAsync<LeagueDto>();
+            Characters = League!.Characters.ToList();
+        }
     }
 }

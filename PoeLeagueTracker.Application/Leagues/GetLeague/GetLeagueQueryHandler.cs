@@ -3,7 +3,7 @@ using PoeLeagueTracker.Shared.DTOs;
 
 namespace PoeLeagueTracker.Application.Leagues.GetLeague
 {
-    public class GetLeagueQueryHandler : IQueryHandler<GetLeagueQuery, LeagueDto>
+    public class GetLeagueQueryHandler : IQueryHandler<GetLeagueQuery, LeagueDto?>
     {
         private readonly ILeagueRepository _repository;
 
@@ -12,7 +12,7 @@ namespace PoeLeagueTracker.Application.Leagues.GetLeague
             _repository = repository;
         }
 
-        async Task<LeagueDto?> IQueryHandler<GetLeagueQuery, LeagueDto>.HandleAsync(GetLeagueQuery query)
+        async Task<LeagueDto?> IQueryHandler<GetLeagueQuery, LeagueDto?>.HandleAsync(GetLeagueQuery query)
         {
             return await _repository.GetLeagueDtoAsync(query.leagueName);
         }
