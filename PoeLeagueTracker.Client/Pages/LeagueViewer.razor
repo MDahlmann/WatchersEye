@@ -1,0 +1,34 @@
+﻿@page "/league/"
+
+@using PoeLeagueTracker.Shared.DTOs;
+
+@inject HttpClient PoeTrackerApi;
+
+<h3>@League?.LeagueName</h3>
+@foreach (var character in Characters!)
+{
+    string status = "Active";
+
+    if (character.Dead) status = "Dead";
+    if (character.Retired) status = "Retired";
+
+    <h4>Rank @character.Rank: @character.Name - Level @character.Level (@status)</h4>
+}
+
+@code {
+    //public string LeagueName = "Secrets%20Of%20The%20COCK%20(PL71449)";
+    public string LeagueName = "FizzministersAndTheFlaming%20COCKS%20(PL75337)";
+
+    private LeagueDto? League { get; set; }
+    private List<CharacterDto>? Characters = [];
+    private CharacterDto? rankOne;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        League = await PoeTrackerApi.GetFromJsonAsync<LeagueDto>($"/ladder/{LeagueName}");
+
+        Characters = League?.Characters.ToList();
+    }
+}

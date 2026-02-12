@@ -6,6 +6,13 @@ var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
 builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
+var apiUrl = builder.Configuration["BackendApiUrl"];
+
+builder.Services.AddHttpClient("PoeTrackerApi", client =>
+{
+    client.BaseAddress = new Uri(apiUrl!);
+});
+
+builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));
 
 await builder.Build().RunAsync();

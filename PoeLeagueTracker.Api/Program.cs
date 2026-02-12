@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Cors.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Interfaces;
@@ -50,6 +51,13 @@ namespace PoeLeagueTracker.Api
 
             builder.Services.AddOpenApi();
 
+            var policy = new CorsPolicy();
+            policy.Origins.Add("https://localhost:7046");
+            policy.Methods.Add("GET");
+            policy.Headers.Add("Content-Type");
+
+            builder.Services.AddCors(options => options.AddPolicy("CustomPolicy", policy));
+
             var app = builder.Build();
 
             // Configure the HTTP request pipeline.
@@ -59,6 +67,7 @@ namespace PoeLeagueTracker.Api
             }
 
             app.UseHttpsRedirection();
+            app.UseCors("CustomPolicy");
 
             app.MapGet("/ladder/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
             {
