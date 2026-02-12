@@ -60,10 +60,16 @@ namespace PoeLeagueTracker.Api
 
             app.UseHttpsRedirection();
 
-            app.MapGet("/ladder/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto> queryHandler, string leagueId) =>
+            app.MapGet("/ladder/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
             {
                 var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
-                return league;
+
+                if (league is null)
+                {
+                    return Results.NotFound();
+                }
+
+                return Results.Ok(league);
             });
 
             app.Run();
