@@ -50,9 +50,10 @@ namespace PoeLeagueTracker.Api
 
             builder.Services.AddOpenApi();
 
+            var originApiUrl = builder.Configuration["OriginApiUrl"];
             builder.Services.AddCors(options => options.AddPolicy("CustomPolicy", builder =>
             {
-                builder.WithOrigins("https://localhost:7046");
+                builder.WithOrigins(originApiUrl!);
                 builder.WithMethods("GET");
                 builder.WithHeaders("Content-Type");
             }));
