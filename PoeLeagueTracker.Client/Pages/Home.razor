@@ -1,7 +1,26 @@
 ﻿@page "/"
+@inject NotificationService NotificationService
 
-<PageTitle>Home</PageTitle>
+<PageTitle>Radzen Test</PageTitle>
 
-<h1>Hello, world!</h1>
+<RadzenStack AlignItems="AlignItems.Center" Gap="2rem" Class="rz-p-12">
+    <RadzenText TextStyle="TextStyle.H3">Radzen is Installed!</RadzenText>
 
-Welcome to your new app.
+    <RadzenButton Text="Click Me for a Toast"
+                  Icon="check_circle"
+                  ButtonStyle="ButtonStyle.Success"
+                  Click="@ShowNotification" />
+</RadzenStack>
+
+@code {
+    void ShowNotification()
+    {
+        NotificationService.Notify(new NotificationMessage
+        {
+            Severity = NotificationSeverity.Success,
+            Summary = "Success!",
+            Detail = "Radzen is working perfectly.",
+            Duration = 4000
+        });
+    }
+}
