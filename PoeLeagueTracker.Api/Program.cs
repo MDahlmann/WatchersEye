@@ -1,5 +1,4 @@
 using Microsoft.EntityFrameworkCore;
-using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Interfaces;
 using PoeLeagueTracker.Application.Leagues.GetLeague;
 using PoeLeagueTracker.Application.Leagues.SyncLeague;
@@ -46,7 +45,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
 
-            builder.Services.AddHostedService<SyncLeagueWorker>();
+            //builder.Services.AddHostedService<SyncLeagueWorker>();
 
             builder.Services.AddOpenApi();
 

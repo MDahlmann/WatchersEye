@@ -1,50 +1,57 @@
 ﻿@using System.Linq
 @using PoeLeagueTracker.Shared.DTOs
+@using Radzen
+@using Radzen.Blazor
 
-@inject DialogService DialogService
+@* @inject DialogService DialogService *@
 
-<RadzenDataGrid @ref="ordersGrid" AllowFiltering="true" FilterPopupRenderMode="PopupRenderMode.OnDemand" AllowPaging="true" PageSize="5" AllowSorting="true"
-                Data="@orders" TItem="Order">
+<RadzenDataGrid @ref="charactersGrid" AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" AllowPaging="true" PageSize="20" AllowSorting="false"
+                Data="@characters" TItem="CharacterDto" CellRender="@CellRender">
     <Columns>
-        <RadzenDataGridColumn Width="50px" Title="#" Filterable="false" Sortable="false" TextAlign="TextAlign.Center">
-            <Template Context="data">
-                @(orders.IndexOf(data) + 1)
+        <RadzenDataGridColumn Width="50px" Title="#" TextAlign="TextAlign.Center">
+            <Template Context="character">
+                @(character.Rank)
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn Property="Employee.LastName" Title="Employee">
-            <Template Context="order">
+        <RadzenDataGridColumn Property="Character.Name" Title="Character"> 
+            <Template Context="Character">
                 <RadzenStack Orientation="Orientation.Horizontal" Gap="0.5rem" AlignItems="AlignItems.Center">
-                    <RadzenImage Path="@order.Employee?.Photo" Style="width: 40px; height: 40px;" class="rz-border-radius-2" AlternateText="@(order.Employee?.FirstName + " " + order.Employee?.LastName)" />
                     <RadzenStack Gap="0">
-                        <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-mb-0">@order.Employee?.FirstName @order.Employee?.LastName</RadzenText>
-                        <RadzenText TextStyle="TextStyle.Caption" class="rz-mb-0">@order.Customer?.CompanyName</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Subtitle2" class="rz-mb-0">@Character.Name</RadzenText>
+                        <RadzenText TextStyle="TextStyle.Caption" class="rz-mb-0">@Character.AccountName</RadzenText>
                     </RadzenStack>
                 </RadzenStack>
             </Template>
         </RadzenDataGridColumn>
-        <RadzenDataGridColumn Property="@nameof(Order.OrderDate)" Title="Order Date" FormatString="{0:d}" />
-        <RadzenDataGridColumn Property="@nameof(Order.Freight)" Title="Freight">
-            <Template Context="order">
-                @String.Format(new System.Globalization.CultureInfo("en-US"), "{0:C}", order.Freight)
-            </Template>
-        </RadzenDataGridColumn>
-        <RadzenDataGridColumn Property="@nameof(Order.ShipCountry)" Title="ShipCountry" />
-        <RadzenDataGridColumn Width="160px" Property="OrderID" Title="Order Details">
-            <Template Context="data">
-                <RadzenButton ButtonStyle="ButtonStyle.Info" Variant="Variant.Flat" Shade="Shade.Lighter" Icon="info" class="rz-m-1" Click=@(() => OpenOrder(data.OrderID)) Text="@data.OrderID.ToString()" />
-            </Template>
-        </RadzenDataGridColumn>
+        <RadzenDataGridColumn Property="@nameof(CharacterDto.Level)" Title="Level" Width="60px"/>
+        <RadzenDataGridColumn Property="@nameof(CharacterDto.ClassName)" Title="Class" />
+        <RadzenDataGridColumn Property="@nameof(CharacterDto.CompletedChallenges)" Title="Challenges" />
+        <RadzenDataGridColumn Property="@nameof(CharacterDto.Experience)" Title="Experience" />
+        <RadzenDataGridColumn Property="@nameof(CharacterDto.Depth)" Title="Delve" />
     </Columns>
 </RadzenDataGrid>
 
 @code {
-    RadzenDataGrid<CharacterDto> charactersGrid;
-    
-    [Parameter]
-    IList<CharacterDto> characters;
+    RadzenDataGrid<CharacterDto>? charactersGrid;
+
+    [Parameter, EditorRequired]
+    public required List<CharacterDto> characters { get; set; }
 
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+    }
+
+    void CellRender(RowRenderEventArgs<CharacterDto> args)
+    {
+        if (args.Data!.Dead == true)
+        {
+            args.Attributes.Add("style", $"background-color: salmon;");
+        }
+        
+        if (args.Data!.Retired == true)
+        {
+            args.Attributes.Add("style", $"background-color: lightgrey;");
+        }
     }
 }

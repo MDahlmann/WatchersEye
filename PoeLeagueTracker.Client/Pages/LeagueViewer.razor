@@ -1,10 +1,11 @@
 ﻿@page "/league/{LeagueName}"
 
+@using PoeLeagueTracker.Client.Shared
 @using PoeLeagueTracker.Shared.DTOs;
 
 @inject HttpClient PoeTrackerApi;
 
-@if (leagueNotFound)
+@* @if (leagueNotFound)
 {
     <h3>No league by the name of @LeagueName was found on the server.</h3>
 }
@@ -19,7 +20,9 @@ else
     {
         <h4>Rank @character.Rank: @character.Name - Level @character.Level (@character.Status)</h4>
     }
-}
+} *@
+
+<CharacterGrid characters=@Characters></CharacterGrid>
 
 @code {
     [Parameter]
