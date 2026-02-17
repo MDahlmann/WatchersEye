@@ -6,7 +6,7 @@
 @* @inject DialogService DialogService *@
 
 <RadzenDataGrid @ref="charactersGrid" AllowFiltering="false" FilterPopupRenderMode="PopupRenderMode.OnDemand" AllowPaging="true" PageSize="20" AllowSorting="false"
-                Data="@characters" TItem="CharacterDto" CellRender="@CellRender">
+                Data="@characters" TItem="CharacterDto">
     <Columns>
         <RadzenDataGridColumn Width="50px" Title="#" TextAlign="TextAlign.Center">
             <Template Context="character">
@@ -42,16 +42,24 @@
         await base.OnInitializedAsync();
     }
 
-    void CellRender(RowRenderEventArgs<CharacterDto> args)
-    {
-        if (args.Data!.Dead == true)
-        {
-            args.Attributes.Add("style", $"background-color: salmon;");
-        }
-        
-        if (args.Data!.Retired == true)
-        {
-            args.Attributes.Add("style", $"background-color: lightgrey;");
-        }
-    }
+    // void CellRender(RowRenderEventArgs<CharacterDto> args)
+    // {
+    //     // if (args.Data!.Dead == true)
+    //     // {
+    //     //     args.Attributes.Add("style", $"background-color: salmon;");
+    //     // }
+
+    //     // if (args.Data!.Retired == true)
+    //     // {
+    //     //     args.Attributes.Add("style", $"background-color: lightgrey;");
+    //     // }
+    // }
+
+    // void RowRender(RowRenderEventArgs<CharacterDto> args)
+    // {
+    //     if (args.Data!.Dead == true)
+    //     {
+    //         args.Attributes.Add("style", $"color: red;");
+    //     }
+    // }
 }
