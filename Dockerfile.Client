@@ -1,0 +1,34 @@
+# TRIN 1: Den store byggemaskine (.NET 10 SDK)
+# Vi kalder denne maskine for "build"
+FROM mcr.microsoft.com/dotnet/sdk:10.0 AS build
+WORKDIR /src
+
+# Kopier kun projektfilerne først for at udnytte Docker caching
+# Bemærk: Client har brug for Shared-projektet for at kunne bygge!
+COPY ["PoeLeagueTracker.Client/PoeLeagueTracker.Client.csproj", "PoeLeagueTracker.Client/"]
+COPY ["PoeLeagueTracker.Shared/PoeLeagueTracker.Shared.csproj", "PoeLeagueTracker.Shared/"]
+RUN dotnet restore "PoeLeagueTracker.Client/PoeLeagueTracker.Client.csproj"
+
+# Kopier resten af kildekoden ind på maskinen
+COPY . .
+
+# Gå ind i Client-mappen og byg koden til produktion (Release)
+WORKDIR "/src/PoeLeagueTracker.Client"
+RUN dotnet publish "PoeLeagueTracker.Client.csproj" -c Release -o /app/publish
+
+# TRIN 2: Den lille, lynhurtige webserver (Nginx)
+# Vi kasserer nu byggemaskinen og starter en ny op
+FROM nginx:alpine AS final
+WORKDIR /usr/share/nginx/html
+
+# Vi sletter standard Nginx forsiden
+RUN rm -rf ./*
+
+# Vi kopierer de færdigbyggede filer (/wwwroot) fra "build"-maskinen over til Nginx
+COPY --from=build /app/publish/wwwroot .
+
+# Vi kopierer en speciel Nginx-konfiguration ind (forklares nedenfor)
+COPY nginx.conf /etc/nginx/nginx.conf
+
+# Åbn port 80 på containeren
+EXPOSE 80
