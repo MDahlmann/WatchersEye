@@ -1,27 +1,39 @@
 ﻿services:
-  # Navnet på servicen. Vi kalder den bare 'db'
   db:
-    # Vi bruger det officielle Postgres image, version 16 (Alpine er en ultra-lille linux version)
-    image: postgres:16-alpine
-    # Navnet containeren får i Docker, så den er nem at finde
-    container_name: poe-tracker-db
-    # Hvis containeren crasher eller du genstarter PC'en, så starter den selv igen
-    restart: always
-    # Environment variables (Her sætter vi passwordet)
+    image: postgres:18-alpine
+    container_name: poe-postgres
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
       POSTGRES_DB: ${DB_NAME}
-    # Ports mapping: "MinPC:Containeren"
-    # Vi åbner port 5432 på din PC og sender trafikken ind til port 5432 i containeren
     ports:
-      - "${EXTERNAL_DB_PORT}:5432"
-    # Volumes: Dette er VIGTIGT!
-    # Uden dette mister du al data, hvis du sletter containeren.
-    # Vi mapper en mappe inde i containeren ud til en "Docker Volume" på din PC.
+      - "5432:5432"
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - pgdata:/var/lib/postgresql/data
+  
+  api:
+    image: poetracker-api:latest
+    container_name: poe-api
+    environment:
+      - DB_HOST=db
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - ASPNETCORE_ENVIRONMENT=Development
+      - OriginApiUrl=http://localhost:5001
+    ports:
+      - "7123:8080"
+    depends_on:
+      - db
 
-# Her definerer vi, at 'postgres_data' er en volume, Docker skal passe på
+  client:
+    image: poetracker-client:latest
+    container_name: poe-client
+    ports:
+      - "5001:80"
+    depends_on:
+      - api
+
 volumes:
-  postgres_data:
+  pgdata:  
