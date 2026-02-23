@@ -48,6 +48,9 @@ namespace PoeLeagueTracker.Api
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
+            // Only needed because of API-controller 'proof-of'
+            builder.Services.AddControllers();
+
             builder.Services.AddOpenApi();
 
             var originApiUrl = builder.Configuration["OriginApiUrl"];
@@ -76,6 +79,10 @@ namespace PoeLeagueTracker.Api
             app.UseHttpsRedirection();
             app.UseCors("CustomPolicy");
 
+            // Only needed because of API-controller 'proof-of'
+            app.MapControllers();
+
+            // Minimal API implementation
             app.MapGet("/league/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
             {
                 var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
