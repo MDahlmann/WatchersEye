@@ -3,19 +3,25 @@ using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PoeLeagueTracker.Client;
 using Radzen;
 
-var builder = WebAssemblyHostBuilder.CreateDefault(args);
-builder.RootComponents.Add<App>("#app");
-builder.RootComponents.Add<HeadOutlet>("head::after");
-
-var apiUrl = builder.Configuration["BackendApiUrl"];
-
-builder.Services.AddHttpClient("PoeTrackerApi", client =>
+internal class Program
 {
-    client.BaseAddress = new Uri(apiUrl!);
-});
+    private static async Task Main(string[] args)
+    {
+        var builder = WebAssemblyHostBuilder.CreateDefault(args);
+        builder.RootComponents.Add<App>("#app");
+        builder.RootComponents.Add<HeadOutlet>("head::after");
 
-builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));
+        var apiUrl = builder.Configuration["BackendApiUrl"];
 
-builder.Services.AddRadzenComponents();
+        builder.Services.AddHttpClient("PoeTrackerApi", client =>
+        {
+            client.BaseAddress = new Uri(apiUrl!);
+        });
 
-await builder.Build().RunAsync();
+        builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));
+
+        builder.Services.AddRadzenComponents();
+
+        await builder.Build().RunAsync();
+    }
+}
