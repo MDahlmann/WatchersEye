@@ -1,0 +1,74 @@
+services:
+
+# PostgreSQL database
+  db:
+    image: postgres:18-alpine
+    container_name: poe-postgres
+    restart: always
+    environment:
+      POSTGRES_USER: ${DB_USER}
+      POSTGRES_PASSWORD: ${DB_PASS}
+      POSTGRES_DB: ${DB_NAME}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+
+# Backend API
+  api:
+    image: ghcr.io/mdahlmann/poetracker-api:latest
+    container_name: poe-api
+    restart: always
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USER=${DB_USER}
+      - DB_PASS=${DB_PASS}
+      - ASPNETCORE_ENVIRONMENT=Production
+      - OriginApiUrl=https://poe.dahlmann.dev
+    depends_on:
+      - db
+
+
+# Frontend project
+  client:
+    image: ghcr.io/mdahlmann/poetracker-client:latest
+    container_name: poe-client
+    restart: always
+    environment:
+      - BackendApiUrl=https://api.dahlmann.dev
+    depends_on:
+      - api
+
+
+# Fetches new images from GitHub Container Registry
+# and replaces running containers with them.
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    restart: always
+    environment:
+      - DOCKER_API_VERSION=1.44
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ~/.docker/config.json:/config.json:ro
+    command: --interval 60 --cleanup
+
+
+# Proxy manager (gatekeeper)
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - '80:80'      # Incoming HTTP
+      - '443:443'    # Incoming HTTPS
+      - '81:81'      # Controlpanel
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+
+volumes:
+  pgdata:
+  npm_data:
+  npm_letsencrypt:

@@ -2,6 +2,7 @@
   db:
     image: postgres:18-alpine
     container_name: poe-postgres
+    restart: always
     environment:
       POSTGRES_USER: ${DB_USER}
       POSTGRES_PASSWORD: ${DB_PASS}
@@ -9,31 +10,7 @@
     ports:
       - "5432:5432"
     volumes:
-      - pgdata:/var/lib/postgresql/data
-  
-  api:
-    image: poetracker-api:latest
-    container_name: poe-api
-    environment:
-      - DB_HOST=db
-      - DB_PORT=${DB_PORT}
-      - DB_NAME=${DB_NAME}
-      - DB_USER=${DB_USER}
-      - DB_PASS=${DB_PASS}
-      - ASPNETCORE_ENVIRONMENT=Development
-      - OriginApiUrl=http://localhost:5001
-    ports:
-      - "7123:8080"
-    depends_on:
-      - db
-
-  client:
-    image: poetracker-client:latest
-    container_name: poe-client
-    ports:
-      - "5001:80"
-    depends_on:
-      - api
+      - pgdata_local:/var/lib/postgresql/data
 
 volumes:
-  pgdata:  
+  pgdata_local:  
