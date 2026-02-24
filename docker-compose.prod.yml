@@ -35,8 +35,6 @@ services:
     image: ghcr.io/mdahlmann/poetracker-client:latest
     container_name: poe-client
     restart: always
-    environment:
-      - BackendApiUrl=https://api.dahlmann.dev
     depends_on:
       - api
 
