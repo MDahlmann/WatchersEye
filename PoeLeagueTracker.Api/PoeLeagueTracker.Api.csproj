@@ -24,4 +24,10 @@
     <ProjectReference Include="..\PoeLeagueTracker.Shared\PoeLeagueTracker.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Update="mockGggData.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
 </Project>

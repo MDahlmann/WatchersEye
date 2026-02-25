@@ -19,13 +19,20 @@ namespace PoeLeagueTracker.Api
             DotNetEnv.Env.TraversePath().Load();
 
             // Add services to the container.
-            builder.Services
-                .AddRefitClient<IGggApi>()
-                .ConfigureHttpClient(c =>
-                {
-                    c.BaseAddress = new Uri("https://api.pathofexile.com");
-                    c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
-                });
+            if (builder.Environment.IsDevelopment())
+            {
+                builder.Services.AddScoped<IGggApi, GggApiMock>();
+            }
+            else
+            {
+                builder.Services
+                    .AddRefitClient<IGggApi>()
+                    .ConfigureHttpClient(c =>
+                    {
+                        c.BaseAddress = new Uri("https://api.pathofexile.com");
+                        c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
+                    });
+            }
 
             var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
             var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
