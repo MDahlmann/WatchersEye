@@ -1,4 +1,5 @@
 ﻿using PoeLeagueTracker.Infrastructure.ApiModels;
+using PoeLeagueTracker.Infrastructure.RefitInterfaces;
 using System.Text.Json;
 
 namespace PoeLeagueTracker.Infrastructure
@@ -7,7 +8,7 @@ namespace PoeLeagueTracker.Infrastructure
     {
         public async Task<GggLadderResponse> GetGggResponseAsync(string leagueId)
         {
-            string fileName = "mockGggData.json";
+            string fileName = "GggApiMockData.json";
 
             using FileStream openStream = File.OpenRead(fileName);
 

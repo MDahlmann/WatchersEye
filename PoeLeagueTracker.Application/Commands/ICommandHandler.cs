@@ -1,4 +1,4 @@
-﻿namespace PoeLeagueTracker.Application.Interfaces
+﻿namespace PoeLeagueTracker.Application.Commands
 {
     public interface ICommandHandler<in TCommand>
         where TCommand : ICommand

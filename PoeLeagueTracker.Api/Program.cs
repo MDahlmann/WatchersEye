@@ -1,9 +1,15 @@
 using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Api.Workers;
-using PoeLeagueTracker.Application.Interfaces;
-using PoeLeagueTracker.Application.Leagues.GetLeague;
-using PoeLeagueTracker.Application.Leagues.SyncLeague;
+using PoeLeagueTracker.Application.Commands;
+using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
+using PoeLeagueTracker.Application.Queries;
+using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
+using PoeLeagueTracker.Application.RepositoryInterfaces;
+using PoeLeagueTracker.Application.ServiceInterfaces;
 using PoeLeagueTracker.Infrastructure;
+using PoeLeagueTracker.Infrastructure.RefitInterfaces;
+using PoeLeagueTracker.Infrastructure.Repositories;
+using PoeLeagueTracker.Infrastructure.Services;
 using PoeLeagueTracker.Shared.DTOs;
 using Refit;
 
@@ -34,6 +40,13 @@ namespace PoeLeagueTracker.Api
                     });
             }
 
+            builder.Services
+                .AddRefitClient<IDiscordApi>()
+                .ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri("https://discord.com/api/webhooks");
+                });
+
             var dbHost = Environment.GetEnvironmentVariable("DB_HOST");
             var dbPort = Environment.GetEnvironmentVariable("DB_PORT");
             var dbName = Environment.GetEnvironmentVariable("DB_NAME");
@@ -48,6 +61,7 @@ namespace PoeLeagueTracker.Api
             );
 
             builder.Services.AddScoped<IPoeLadderService, PoeLadderService>();
+            builder.Services.AddScoped<IDiscordService, DiscordService>();
             builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();

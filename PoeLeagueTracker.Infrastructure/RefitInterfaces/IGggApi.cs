@@ -1,7 +1,7 @@
 ﻿using PoeLeagueTracker.Infrastructure.ApiModels;
 using Refit;
 
-namespace PoeLeagueTracker.Infrastructure
+namespace PoeLeagueTracker.Infrastructure.RefitInterfaces
 {
     public interface IGggApi
     {

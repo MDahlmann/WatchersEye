@@ -1,7 +1,7 @@
 ﻿using PoeLeagueTracker.Domain.Leagues;
 using PoeLeagueTracker.Shared.DTOs;
 
-namespace PoeLeagueTracker.Application.Interfaces
+namespace PoeLeagueTracker.Application.RepositoryInterfaces
 {
     public interface ILeagueRepository
     {
