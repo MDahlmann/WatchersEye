@@ -13,7 +13,7 @@ namespace PoeLeagueTracker.Infrastructure
 
             var response = await JsonSerializer.DeserializeAsync<GggLadderResponse>(openStream);
 
-            return response;
+            return response!;
         }
     }
 }
