@@ -1,5 +1,4 @@
-﻿using PoeLeagueTracker.Shared.DTOs;
-using Refit;
+﻿using Refit;
 
 namespace PoeLeagueTracker.Infrastructure.RefitInterfaces
 {
@@ -7,6 +6,6 @@ namespace PoeLeagueTracker.Infrastructure.RefitInterfaces
     {
         [Headers("Content-Type: application/json;")]
         [Post("/1476302257090990263/ipuG56pRJBdQAvqbhcVZs5cgx9rRh6NjCDlRrekslyT2DKWvla_vWfs1WYtaSgf__FF4")]
-        Task RipNotification([Body] DiscordNotificationDto notification);
+        Task RipNotification([Body] object notification);
     }
 }
