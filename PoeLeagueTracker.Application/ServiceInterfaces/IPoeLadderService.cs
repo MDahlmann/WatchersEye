@@ -1,6 +1,6 @@
 ﻿using PoeLeagueTracker.Domain.Leagues;
 
-namespace PoeLeagueTracker.Application.Interfaces
+namespace PoeLeagueTracker.Application.ServiceInterfaces
 {
     public interface IPoeLadderService
     {

@@ -1,8 +1,8 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PoeLeagueTracker.Application.Interfaces;
+using PoeLeagueTracker.Application.RepositoryInterfaces;
 using PoeLeagueTracker.Domain.Accounts;
 
-namespace PoeLeagueTracker.Infrastructure
+namespace PoeLeagueTracker.Infrastructure.Repositories
 {
     public class AccountRepository : IAccountRepository
     {

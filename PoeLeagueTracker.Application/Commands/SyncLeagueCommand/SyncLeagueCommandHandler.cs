@@ -1,21 +1,24 @@
-﻿using PoeLeagueTracker.Application.Interfaces;
+﻿using PoeLeagueTracker.Application.RepositoryInterfaces;
+using PoeLeagueTracker.Application.ServiceInterfaces;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
 using PoeLeagueTracker.Domain.Leagues;
 
-namespace PoeLeagueTracker.Application.Leagues.SyncLeague
+namespace PoeLeagueTracker.Application.Commands.SyncLeagueCommand
 {
     public class SyncLeagueCommandHandler : ICommandHandler<SyncLeagueCommand>
     {
         private readonly ILeagueRepository _ladderRepo;
         private readonly IPoeLadderService _poeLadderService;
         private readonly IAccountRepository _accountRepository;
+        private readonly IDiscordService _discordService;
 
-        public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService, IAccountRepository accountRepository)
+        public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService, IAccountRepository accountRepository, IDiscordService discordService)
         {
             _ladderRepo = leagueRepo;
             _poeLadderService = poeLadderService;
             _accountRepository = accountRepository;
+            _discordService = discordService;
         }
 
         async Task ICommandHandler<SyncLeagueCommand>.HandleAsync(SyncLeagueCommand command)
@@ -68,6 +71,8 @@ namespace PoeLeagueTracker.Application.Leagues.SyncLeague
                 }
                 else
                 {
+                    if (dbCharacter.Dead == false && character.Dead == true) await _discordService.AnnounceRip(character);
+
                     dbCharacter.Update(
                         character.Name,
                         character.Level,

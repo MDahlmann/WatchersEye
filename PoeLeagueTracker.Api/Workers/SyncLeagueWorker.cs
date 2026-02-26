@@ -1,6 +1,6 @@
 ﻿
-using PoeLeagueTracker.Application.Interfaces;
-using PoeLeagueTracker.Application.Leagues.SyncLeague;
+using PoeLeagueTracker.Application.Commands;
+using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
 
 namespace PoeLeagueTracker.Api.Workers
 {
@@ -29,7 +29,7 @@ namespace PoeLeagueTracker.Api.Workers
                     await syncHandler.HandleAsync(new SyncLeagueCommand(_leagueToUpdate));
                 }
 
-                await Task.Delay(60000, stoppingToken);
+                await Task.Delay(10000, stoppingToken);
             }
         }
     }

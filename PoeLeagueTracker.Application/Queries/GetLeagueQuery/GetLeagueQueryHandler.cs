@@ -1,7 +1,7 @@
-﻿using PoeLeagueTracker.Application.Interfaces;
+﻿using PoeLeagueTracker.Application.RepositoryInterfaces;
 using PoeLeagueTracker.Shared.DTOs;
 
-namespace PoeLeagueTracker.Application.Leagues.GetLeague
+namespace PoeLeagueTracker.Application.Queries.GetLeagueQuery
 {
     public class GetLeagueQueryHandler : IQueryHandler<GetLeagueQuery, LeagueDto?>
     {

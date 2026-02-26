@@ -1,6 +1,6 @@
 ﻿using PoeLeagueTracker.Domain.Accounts;
 
-namespace PoeLeagueTracker.Application.Interfaces
+namespace PoeLeagueTracker.Application.RepositoryInterfaces
 {
     public interface IAccountRepository
     {

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using PoeLeagueTracker.Application.Interfaces;
-using PoeLeagueTracker.Application.Leagues.GetLeague;
+using PoeLeagueTracker.Application.Queries;
+using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
 using PoeLeagueTracker.Shared.DTOs;
 
 namespace PoeLeagueTracker.Api.Controllers

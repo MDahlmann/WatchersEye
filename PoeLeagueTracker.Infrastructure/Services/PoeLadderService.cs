@@ -1,10 +1,11 @@
-﻿using PoeLeagueTracker.Application.Interfaces;
+﻿using PoeLeagueTracker.Application.ServiceInterfaces;
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
 using PoeLeagueTracker.Domain.Leagues;
+using PoeLeagueTracker.Infrastructure.RefitInterfaces;
 using System.Net;
 
-namespace PoeLeagueTracker.Infrastructure
+namespace PoeLeagueTracker.Infrastructure.Services
 {
     public class PoeLadderService(IGggApi gggApi) : IPoeLadderService
     {
