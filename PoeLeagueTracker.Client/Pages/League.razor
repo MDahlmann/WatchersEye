@@ -24,7 +24,7 @@
 
             <div class="league-selector-container">
                 <div class="poe-select-wrapper">
-                <select value="@selectedLeague" class="poe-dropdown">
+                    <select class="poe-dropdown" value="@selectedLeague" @onchange="HandleSelectorChanged">
                     @foreach (var league in leagues!)
                     {
                         <option value="@league" selected="@(league == selectedLeague)">
@@ -56,7 +56,14 @@
         }
         else
         {
-            <Ladder></Ladder>
+            if (characters == null)
+            {
+                <h1>Loading characters..</h1>
+            }
+            else
+            {
+                <Ladder characters="characters"></Ladder>
+            }
         }
     </main>
 </div>
@@ -65,6 +72,7 @@
     public List<string>? leagues { get; set; } = [];
     public string selectedLeague { get; set; } = string.Empty;
     public LeagueDto? league { get; set; }
+    public List<CharacterDto>? characters { get; set; }
 
     [Parameter]
     public string tabName { get; set; } = "";
@@ -74,8 +82,6 @@
         await base.OnInitializedAsync();
 
         await FetchLeagueNames();
-
-        StateHasChanged();
 
         await FetchLeague();
 
@@ -94,6 +100,17 @@
     {
         var response = await PoeTrackerApi.GetAsync($"/league/{selectedLeague}");
 
-            league = await response.Content.ReadFromJsonAsync<LeagueDto>();
+        league = await response.Content.ReadFromJsonAsync<LeagueDto>();
+        characters = league!.Characters.ToList();
+    }
+
+    private async Task HandleSelectorChanged(ChangeEventArgs args)
+    {
+        selectedLeague = args.Value?.ToString() ?? string.Empty;
+
+        if (!string.IsNullOrEmpty(selectedLeague))
+        {
+            await FetchLeague();
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿<div class="ladder-container">
+﻿@using PoeLeagueTracker.Shared.DTOs
+<div class="ladder-container">
     <div class="corner top-left"></div>
     <div class="corner top-right"></div>
     <div class="corner bottom-left"></div>
@@ -16,14 +17,17 @@
                 </tr>
             </thead>
             <tbody>
+                @foreach (CharacterDto character in characters)
+                {
                 <tr class="ladder-row">
-                    <td class="col-rank"><span class="rank-first arpg-font">1</span></td>
-                    <td><span class="char-name">StevesSunderBoi</span></td>
-                    <td class="account-name">ExileSteve</td>
-                    <td><span class="class-badge">🛡️ Juggernaut</span></td>
-                    <td class="col-number level-text">95</td>
-                </tr>
-                <tr class="ladder-row dead-row">
+                    <td class="col-rank"><span class="rank-first arpg-font">@character.Rank</span></td>
+                    <td><span class="char-name">@character.Name</span></td>
+                    <td class="account-name">@character.AccountName</td>
+                    <td><span class="class-badge">@character.ClassName</span></td>
+                    <td class="col-number level-text">@character.Level</td>
+                </tr> 
+                }
+@*                 <tr class="ladder-row dead-row">
                     <td class="col-rank"><span class="rank-normal">2</span></td>
                     <td>
                         <div class="dead-char-wrapper">
@@ -34,8 +38,14 @@
                     <td class="account-name">ZanaFan99</td>
                     <td><span class="class-badge">🛡️ Deadeye</span></td>
                     <td class="col-number level-text">93</td>
-                </tr>
+                </tr> *@
             </tbody>
         </table>
     </div>
 </div>
+
+
+@code {
+    [Parameter, EditorRequired]
+    public required List<CharacterDto> characters { get; set; }
+}
