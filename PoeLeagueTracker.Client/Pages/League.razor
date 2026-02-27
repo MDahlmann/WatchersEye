@@ -1,0 +1,50 @@
+﻿@page "/"
+@page "/league"
+@page "/league/{tabName}"
+
+@using Microsoft.AspNetCore.Components.Sections
+@using PoeLeagueTracker.Client.Shared
+
+<div class="page-wrapper">
+    <header class="poe-header">
+
+        <div class="header-content">
+            <div class="title-section">
+                <a class="logo-circle" href="/">
+                    <span class="icon-placeholder">⚔️</span>
+                </a>
+                <div>
+                    <h1 class="page-title">Path of Salt</h1>
+                    <p class="page-subtitle">PoE Private League Tracker</p>
+                </div>
+            </div>
+        </div>
+
+        <nav class="poe-tabs-container">
+            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="league/ladder">
+                <span class="tab-icon">🏆</span> Ladder
+            </a>
+
+            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="league/stats">
+                <span class="tab-icon">📈</span> Stats
+            </a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        @if (tabName == "stats")
+        {
+            <Stats></Stats>
+        }
+        else
+        {
+            <Ladder></Ladder>
+        }
+    </main>
+</div>
+
+@code {
+
+    [Parameter]
+    public string tabName { get; set; } = "";
+}

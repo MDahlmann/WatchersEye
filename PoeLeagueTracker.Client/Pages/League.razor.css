@@ -1,0 +1,107 @@
+﻿.page-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.poe-header {
+    background-color: var(--bg-header);
+    border-bottom: 1px solid var(--border-highlight);
+    position: sticky;
+    top: 0;
+    z-index: 10;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}
+
+.header-content {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 1.5rem 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.title-section {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.logo-circle {
+    text-decoration: none;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: linear-gradient(to bottom right, #8a1c1c, #3a0a0a);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px solid var(--accent-gold);
+    box-shadow: 0 0 15px rgba(163,128,70,0.3);
+}
+
+.page-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to bottom, var(--text-bright), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
+}
+
+.page-subtitle {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.main-content {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+    width: 100%;
+}
+
+.poe-tabs-container {
+    max-width: 1152px;
+    margin: 0 auto;
+    padding: 0 1rem;
+    display: flex;
+    gap: 0.25rem;
+    margin-top: 0.5rem; /* mt-2 */
+}
+
+.poe-tab {
+    text-decoration: none;
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid transparent;
+    color: var(--text-muted);
+    font-family: 'Cinzel', serif; /* arpg-font */
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 0.75rem 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+}
+
+    .poe-tab:hover:not(.active) {
+        color: var(--text-main);
+        background-color: rgba(255, 255, 255, 0.05);
+    }
+
+    .poe-tab.active {
+        border-bottom-color: var(--accent-gold);
+        color: var(--text-bright);
+        /* The subtle gold gradient glowing up from the border */
+        background: linear-gradient(to top, rgba(163,128,70,0.1), transparent);
+    }

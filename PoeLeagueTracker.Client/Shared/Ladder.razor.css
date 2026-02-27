@@ -1,0 +1,142 @@
+﻿.ladder-container {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border-normal);
+    border-radius: 4px;
+    position: relative; /* Crucial for absolute corners */
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5); /* shadow-2xl equivalent */
+}
+
+/* Decorative Gold Corners */
+.corner {
+    position: absolute;
+    width: 8px;
+    height: 8px;
+    border-color: var(--accent-gold);
+    border-style: solid;
+    border-width: 0;
+}
+
+.top-left {
+    top: 0;
+    left: 0;
+    border-top-width: 1px;
+    border-left-width: 1px;
+}
+
+.top-right {
+    top: 0;
+    right: 0;
+    border-top-width: 1px;
+    border-right-width: 1px;
+}
+
+.bottom-left {
+    bottom: 0;
+    left: 0;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+}
+
+.bottom-right {
+    bottom: 0;
+    right: 0;
+    border-bottom-width: 1px;
+    border-right-width: 1px;
+}
+
+.table-scroll {
+    overflow-x: auto;
+}
+
+.ladder-table {
+    width: 100%;
+    text-align: left;
+    border-collapse: collapse;
+}
+
+    .ladder-table th {
+        background-color: var(--bg-header);
+        border-bottom: 1px solid var(--border-normal);
+        color: var(--accent-gold);
+        padding: 1rem;
+        font-weight: 600;
+    }
+
+.ladder-row {
+    border-bottom: 1px solid var(--border-dim);
+    transition: background-color 0.2s;
+    font-size: 0.875rem; /* text-sm */
+}
+
+    .ladder-row:hover {
+        background-color: var(--bg-hover);
+    }
+
+    .ladder-row td {
+        padding: 1rem;
+    }
+
+.col-rank {
+    text-align: center;
+    width: 4rem;
+}
+
+.col-number {
+    text-align: right;
+}
+
+.rank-first {
+    color: var(--text-unique);
+    font-weight: bold;
+    font-size: 1.125rem;
+}
+
+.rank-normal {
+    color: var(--text-muted);
+}
+
+.char-name {
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--text-bright);
+}
+
+.account-name {
+    color: var(--accent-gold);
+}
+
+.level-text {
+    font-weight: 600;
+    color: var(--text-bright);
+}
+
+/* Class Badge Styling */
+.class-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.25rem 0.625rem;
+    border-radius: 2px;
+    background-color: var(--border-normal);
+    color: var(--text-main);
+    font-size: 0.75rem;
+    font-weight: 500;
+    border: 1px solid var(--border-highlight);
+}
+
+/* Dead Character Styling */
+.dead-row {
+    opacity: 0.7;
+}
+
+.dead-char-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.dead-text {
+    color: rgba(220, 38, 38, 0.8); /* Red */
+    text-decoration: line-through;
+    text-decoration-color: rgba(127, 29, 29, 0.5);
+}
