@@ -7,12 +7,13 @@ namespace PoeLeagueTracker.Api.Workers
     public class SyncLeagueWorker : BackgroundService
     {
         private readonly IServiceScopeFactory _serviceScopeFactory;
-        private const string _leagueToUpdate = "FizzministersAndTheFlaming COCKS (PL75337)";
-        //private const string _leagueToUpdate = "Secrets Of The COCK (PL71449)";
+        //private const string _leagueToUpdate = "FizzministersAndTheFlaming COCKS (PL75337)";
+        private readonly IConfiguration _config;
 
-        public SyncLeagueWorker(IServiceScopeFactory serviceScopeFactory)
+        public SyncLeagueWorker(IServiceScopeFactory serviceScopeFactory, IConfiguration config)
         {
             _serviceScopeFactory = serviceScopeFactory;
+            _config = config;
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -26,7 +27,7 @@ namespace PoeLeagueTracker.Api.Workers
                 {
                     var syncHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<SyncLeagueCommand>>();
 
-                    await syncHandler.HandleAsync(new SyncLeagueCommand(_leagueToUpdate));
+                    await syncHandler.HandleAsync(new SyncLeagueCommand(_config["ActiveLeague"]!));
                 }
 
                 await Task.Delay(10000, stoppingToken);

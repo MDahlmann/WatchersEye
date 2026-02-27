@@ -105,3 +105,55 @@
         /* The subtle gold gradient glowing up from the border */
         background: linear-gradient(to top, rgba(163,128,70,0.1), transparent);
     }
+
+.league-picker-container {
+    display: flex;
+    align-items: center;
+}
+
+.poe-select-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.poe-dropdown {
+    /* Base Styles */
+    appearance: none;
+    background-color: #121215; /* bg-[#121215] */
+    border: 1px solid #3a2f1d; /* border-[#3a2f1d] */
+    color: #d4c4a8; /* text-[#d4c4a8] */
+    border-radius: 2px; /* rounded-sm */
+    cursor: pointer;
+    /* Spacing & Typography */
+    padding: 0.5rem 2.5rem 0.5rem 1rem; /* py-2 pl-4 pr-10 */
+    font-family: 'Cinzel', serif; /* arpg-font */
+    font-size: 0.875rem; /* text-sm */
+    text-transform: uppercase; /* uppercase */
+    letter-spacing: 0.025em; /* tracking-wide */
+    /* Transitions */
+    transition: background-color 0.2s, border-color 0.2s;
+}
+
+    .poe-dropdown:hover {
+        border-color: #a38046;
+        background-color: #1a1a1f;
+    }
+
+    .poe-dropdown:focus {
+        outline: none;
+        border-color: #a38046;
+    }
+
+.poe-select-arrow {
+    position: absolute;
+    right: 0.75rem; /* right-3 */
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none; /* pointer-events-none */
+    width: 16px; /* size={16} */
+    height: 16px;
+    /* Using a mask/background to replicate the Lucide ChevronDown icon in gold */
+    background-color: #a38046; /* text-[#a38046] */
+    mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center;
+    -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E") no-repeat center;
+}

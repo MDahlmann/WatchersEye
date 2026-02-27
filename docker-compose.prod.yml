@@ -26,6 +26,7 @@ services:
       - DB_PASS=${DB_PASS}
       - ASPNETCORE_ENVIRONMENT=Production
       - OriginApiUrl=https://poe.dahlmann.dev
+      - ActiveLeague=FizzministersAndTheFlaming COCKS (PL75337)
     depends_on:
       - db
 

@@ -3,7 +3,7 @@
 @page "/league/{tabName}"
 
 @using Microsoft.AspNetCore.Components.Sections
-@using PoeLeagueTracker.Client.Shared
+@using PoeLeagueTracker.Client.Components
 
 <div class="page-wrapper">
     <header class="poe-header">
@@ -14,10 +14,26 @@
                     <span class="icon-placeholder">⚔️</span>
                 </a>
                 <div>
-                    <h1 class="page-title">Path of Salt</h1>
+                    <h1 class="page-title">Fizz Leagues</h1>
                     <p class="page-subtitle">PoE Private League Tracker</p>
                 </div>
             </div>
+
+            <div class="league-selector-container">
+                <div class="poe-select-wrapper">
+                <select class="poe-dropdown">
+                    @foreach (var league in _leagues)
+                    {
+                        <option>@league</option>
+@*                         <option value="@league.Id" selected="@(league.Id == LeagueId)">
+                            @league.Name
+                        </option> *@
+                    }
+                </select>
+                <span class="poe-select-arrow"></span>
+                </div>
+            </div>
+
         </div>
 
         <nav class="poe-tabs-container">
@@ -44,7 +60,8 @@
 </div>
 
 @code {
-
+    public List<string> _leagues = ["FizzministersAndTheFlaming COCKS (PL75337)", "Secrets Of The COCK"];
     [Parameter]
+
     public string tabName { get; set; } = "";
 }

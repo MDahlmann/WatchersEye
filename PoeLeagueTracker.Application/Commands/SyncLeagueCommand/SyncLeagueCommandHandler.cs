@@ -8,14 +8,14 @@ namespace PoeLeagueTracker.Application.Commands.SyncLeagueCommand
 {
     public class SyncLeagueCommandHandler : ICommandHandler<SyncLeagueCommand>
     {
-        private readonly ILeagueRepository _ladderRepo;
+        private readonly ILeagueRepository _leagueRepo;
         private readonly IPoeLadderService _poeLadderService;
         private readonly IAccountRepository _accountRepository;
         private readonly IDiscordService _discordService;
 
         public SyncLeagueCommandHandler(ILeagueRepository leagueRepo, IPoeLadderService poeLadderService, IAccountRepository accountRepository, IDiscordService discordService)
         {
-            _ladderRepo = leagueRepo;
+            _leagueRepo = leagueRepo;
             _poeLadderService = poeLadderService;
             _accountRepository = accountRepository;
             _discordService = discordService;
@@ -30,14 +30,14 @@ namespace PoeLeagueTracker.Application.Commands.SyncLeagueCommand
                                                       .Distinct()
                                                       .ToList();
 
-            var dbLeague = await _ladderRepo.GetLeagueTrackedAsync(command.LeagueName);
+            var dbLeague = await _leagueRepo.GetLeagueTrackedAsync(command.LeagueName);
             var dbAccounts = await _accountRepository.GetAccountsByNameAsync(apiAccountNames);
             var dbAccDict = dbAccounts.ToDictionary(a => a.AccountName);
 
             if (dbLeague == null)
             {
                 dbLeague = League.CreateLeague(apiLeague.LeagueName);
-                await _ladderRepo.AddLeagueAsync(dbLeague);
+                await _leagueRepo.AddLeagueAsync(dbLeague);
             }
 
             var dbCharDict = dbLeague.Characters.ToDictionary(c => c.Id);
@@ -86,7 +86,7 @@ namespace PoeLeagueTracker.Application.Commands.SyncLeagueCommand
                 }
             }
 
-            await _ladderRepo.SaveChangesAsync();
+            await _leagueRepo.SaveChangesAsync();
         }
     }
 }
