@@ -4,6 +4,9 @@
 
 @using Microsoft.AspNetCore.Components.Sections
 @using PoeLeagueTracker.Client.Components
+@using PoeLeagueTracker.Shared.DTOs
+
+@inject HttpClient PoeTrackerApi;
 
 <div class="page-wrapper">
     <header class="poe-header">
@@ -21,13 +24,12 @@
 
             <div class="league-selector-container">
                 <div class="poe-select-wrapper">
-                <select class="poe-dropdown">
-                    @foreach (var league in _leagues)
+                <select value="@selectedLeague" class="poe-dropdown">
+                    @foreach (var league in leagues!)
                     {
-                        <option>@league</option>
-@*                         <option value="@league.Id" selected="@(league.Id == LeagueId)">
-                            @league.Name
-                        </option> *@
+                        <option value="@league" selected="@(league == selectedLeague)">
+                            @league
+                        </option>
                     }
                 </select>
                 <span class="poe-select-arrow"></span>
@@ -37,11 +39,11 @@
         </div>
 
         <nav class="poe-tabs-container">
-            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="league/ladder">
+            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/league/ladder">
                 <span class="tab-icon">🏆</span> Ladder
             </a>
 
-            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="league/stats">
+            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/league/stats">
                 <span class="tab-icon">📈</span> Stats
             </a>
         </nav>
@@ -60,8 +62,38 @@
 </div>
 
 @code {
-    public List<string> _leagues = ["FizzministersAndTheFlaming COCKS (PL75337)", "Secrets Of The COCK"];
-    [Parameter]
+    public List<string>? leagues { get; set; } = [];
+    public string selectedLeague { get; set; } = string.Empty;
+    public LeagueDto? league { get; set; }
 
+    [Parameter]
     public string tabName { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        await FetchLeagueNames();
+
+        StateHasChanged();
+
+        await FetchLeague();
+
+    }
+
+    private async Task FetchLeagueNames()
+    {
+        var response = await PoeTrackerApi.GetAsync("allLeagueNames");
+
+        leagues = await response.Content.ReadFromJsonAsync<List<string>>();
+
+        if (leagues?.Any() == true && string.IsNullOrEmpty(selectedLeague)) selectedLeague = leagues.First();
+    }
+
+    private async Task FetchLeague()
+    {
+        var response = await PoeTrackerApi.GetAsync($"/league/{selectedLeague}");
+
+            league = await response.Content.ReadFromJsonAsync<LeagueDto>();
+    }
 }

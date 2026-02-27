@@ -24,10 +24,4 @@
     <ProjectReference Include="..\PoeLeagueTracker.Shared\PoeLeagueTracker.Shared.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Content Update="GggApiMockData.json">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
 </Project>

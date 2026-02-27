@@ -8,6 +8,7 @@ namespace PoeLeagueTracker.Application.RepositoryInterfaces
         Task AddLeagueAsync(League league);
         Task<League?> GetLeagueTrackedAsync(string leagueName);
         Task<LeagueDto?> GetLeagueDtoAsync(string leagueName);
+        Task<List<string>?> GetLeagueNamesAsync();
         Task SaveChangesAsync();
     }
 }
