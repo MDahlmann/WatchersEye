@@ -95,12 +95,16 @@
     color: var(--text-muted);
 }
 
-.char-name {
+.char-name-alive {
     text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
     color: var(--text-bright);
 }
+
+    .char-name-alive:hover {
+        text-decoration: underline double
+    }
 
 .char-name-dead {
     text-decoration: none;
@@ -109,11 +113,31 @@
     color: var(--accent-red);
 }
 
+    .char-name-dead:hover {
+        text-decoration: underline double
+    }
+
+.char-name-retired {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: rgb(78, 78, 78);
+}
+
+    .char-name-retired:hover {
+        text-decoration: underline double
+    }
+
 .account-name {
     color: var(--accent-gold);
 }
 
 .level-text {
+    font-weight: 600;
+    color: var(--accent-gold);
+}
+
+.experience-text {
     font-weight: 600;
     color: var(--text-bright);
 }

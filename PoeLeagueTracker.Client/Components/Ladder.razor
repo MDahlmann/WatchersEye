@@ -1,4 +1,5 @@
-﻿@using PoeLeagueTracker.Shared.DTOs
+﻿@using PoeLeagueTracker.Shared
+@using PoeLeagueTracker.Shared.DTOs
 <div class="ladder-container">
     <div class="corner top-left"></div>
     <div class="corner top-right"></div>
@@ -14,31 +15,30 @@
                     <th>Account</th>
                     <th>Class</th>
                     <th class="col-number">Level</th>
+                    <th class="col-number">Experience</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach (CharacterDto character in characters)
                 {
-                <tr class="ladder-row">
+                    <tr class="ladder-row">
                     <td class="col-rank"><span class="rank-first" arpg-font">@character.Rank</span></td>
-                        <td><a href=@($"https://www.pathofexile.com/account/view-profile/{character.AccountName.Replace("#", "%23")}/characters?characterName={character.Name}") target="_blank" class=@(character.Dead ? "char-name-dead" : "char-name")>@character.Name</a></td>
-                    <td class="account-name">@character.AccountName</td>
+                        <td><a href="@CharacterUrl(character)" target="_blank" class="char-name-@character.Status.ToLower()">@character.Name @StatusText(character)</a></td>
+                        <td class="account-name">@character.AccountName</td>
                     <td><span class="class-badge">@character.ClassName</span></td>
                     <td class="col-number level-text">@character.Level</td>
+                        <td class="col-number experience-text">@if (character.Level == 100)
+                            {
+                                <span class="arpg-font" style="color: #cfb53b; font-size: 0.8rem;">MAX LEVEL</span>
+                            }
+                            else
+                            {
+                                <ExpBar Percentage="@Convert.ToInt32(PercentToLevel(character))" />
+                            }
+                        </td>
+                        @* <td class="col-number experience-text">@character.Experience.ToString("N0") | (@PercentToLevel(character)%)</td> *@
                 </tr> 
                 }
-@*                 <tr class="ladder-row dead-row">
-                    <td class="col-rank"><span class="rank-normal">2</span></td>
-                    <td>
-                        <div class="dead-char-wrapper">
-                            <span>💀</span>
-                            <span class="char-name dead-text">BowGoBrrr</span>
-                        </div>
-                    </td>
-                    <td class="account-name">ZanaFan99</td>
-                    <td><span class="class-badge">🛡️ Deadeye</span></td>
-                    <td class="col-number level-text">93</td>
-                </tr> *@
             </tbody>
         </table>
     </div>
@@ -48,4 +48,34 @@
 @code {
     [Parameter, EditorRequired]
     public required List<CharacterDto> characters { get; set; }
+
+    private string CharacterUrl(CharacterDto character)
+    {
+        return $"https://www.pathofexile.com/account/view-profile/{character.AccountName.Replace("#", "%23")}/characters?characterName={character.Name}";
+    }
+
+    private long PercentToLevel(CharacterDto character)
+    {
+        if (character.Level == 100) return 100;
+        var gainedExp = character.Experience - GameData.LevelExpReq[character.Level];
+        var totalLevelExp = GameData.LevelExpReq[character.Level + 1] - GameData.LevelExpReq[character.Level];
+
+        var percent = gainedExp / (totalLevelExp / 100);
+
+        return percent;
+    }
+
+    private string StatusText(CharacterDto character)
+    {
+        if (character.Dead || character.Retired)
+        {
+            return $"({character.Status})";
+        }
+        return "";
+    }
+
+    // private string StatusClass(CharacterDto character)
+    // {
+    //     if (character)
+    // }
 }

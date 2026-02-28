@@ -1,0 +1,13 @@
+﻿<div class="xp-container" title="@($"{Percentage}% Experience")">
+    <div class="xp-bar-outer">
+        <div class="xp-bar-inner" style="width: @(Percentage)%">
+            <div class="xp-bar-glare"></div>
+        </div>
+    </div>
+@*     <span class="xp-text">@Percentage%</span> *@
+</div>
+
+@code {
+    [Parameter]
+    public int Percentage { get; set; }
+}
