@@ -108,5 +108,19 @@ namespace PoeLeagueTracker.Shared
                 [99] = 3932818530,
                 [100] = 4250334444
             });
+
+        public static int AverageLevel(long avgExp)
+        {
+            int currentLevel = 1;
+
+            foreach (var level in GameData.LevelExpReq)
+            {
+                if (level.Value > avgExp)
+                    break;
+
+                currentLevel++;
+            }
+            return currentLevel;
+        }
     }
 }

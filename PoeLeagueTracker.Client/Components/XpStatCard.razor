@@ -1,0 +1,60 @@
+﻿@using PoeLeagueTracker.Shared
+@using PoeLeagueTracker.Shared.DTOs
+
+<div class="stats-grid animate-fade-in">
+<div class="stat-card">
+    <div class="stat-header">
+        <span class="stat-icon">📜</span>
+        <h2 class="stat-title">Highest Accumulated XP</h2>
+    </div>
+
+    <div class="stat-body">
+            @foreach (var (account, index) in _topAccounts.Select((a, i) => (a, i)))
+            {
+                <div class="stat-row">
+                    <div class="stat-info-left">
+                        <span class="stat-rank highlight-gold">#@(index + 1)</span>
+                        <div>
+                            <div class="stat-account highlight-gold">@account.accountName</div>
+                            <div class="stat-subtext">Characters: @account.totalCharacters</div>
+                        </div>
+                    </div>
+                    <div class="stat-info-right">
+                        <div class="stat-value">@account.totalExperience.ToString("N0")</div>
+                        <div class="stat-subtext">Average level: @GameData.AverageLevel(account.averageExp)</div>
+                    </div>
+            </div>  
+        }
+    </div>
+</div>
+</div>
+@code{
+    [Parameter, EditorRequired]
+    public required List<CharacterDto> characters { get; set; }
+
+    private List<AccountStats> _topAccounts = [];
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        CalcTopAccounts();
+    }
+
+    private void CalcTopAccounts()
+    {
+        _topAccounts = characters
+            .GroupBy(character => character.AccountName)
+            .Select(group => new AccountStats(
+                group.Key,
+                group.Sum(character => character.Experience),
+                group.Count(),
+                group.Sum(character => character.Experience) / group.Count()
+            ))
+            .OrderByDescending(account => account.totalExperience)
+            .Take(5)
+            .ToList();
+    }
+
+    private record AccountStats(string accountName, long totalExperience, int totalCharacters, long averageExp);
+}

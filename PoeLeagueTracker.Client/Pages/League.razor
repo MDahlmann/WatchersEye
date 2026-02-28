@@ -1,19 +1,20 @@
 ﻿@page "/"
-@page "/league"
-@page "/league/{tabName}"
+@page "/{selectedLeague}"
+@page "/{selectedLeague}/{tabName}"
 
 @using Microsoft.AspNetCore.Components.Sections
 @using PoeLeagueTracker.Client.Components
 @using PoeLeagueTracker.Shared.DTOs
 
 @inject HttpClient PoeTrackerApi;
+@inject NavigationManager Navigation;
 
 <div class="page-wrapper">
     <header class="poe-header">
 
         <div class="header-content">
             <div class="title-section">
-                <a class="logo-circle" href="/">
+                <a class="logo-circle" href="/@selectedLeague">
                     <span class="icon-placeholder">⚔️</span>
                 </a>
                 <div>
@@ -39,11 +40,11 @@
         </div>
 
         <nav class="poe-tabs-container">
-            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/league/ladder">
+            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/@selectedLeague/ladder">
                 <span class="tab-icon">🏆</span> Ladder
             </a>
 
-            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/league/stats">
+            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/@selectedLeague/stats">
                 <span class="tab-icon">📈</span> Stats
             </a>
         </nav>
@@ -52,7 +53,14 @@
     <main class="main-content">
         @if (tabName == "stats")
         {
-            <Stats></Stats>
+            if (characters == null)
+            {
+                <h1>Loading characters...</h1>                
+            }
+            else
+            {
+                <XpStatCard characters="characters"></XpStatCard>
+            }
         }
         else
         {
@@ -62,7 +70,7 @@
             }
             else
             {
-                <Ladder characters="characters"></Ladder>
+                <LadderCard characters="characters"></LadderCard>
             }
         }
     </main>
@@ -70,7 +78,10 @@
 
 @code {
     public List<string>? leagues { get; set; } = [];
+
+    [Parameter]
     public string selectedLeague { get; set; } = string.Empty;
+
     public LeagueDto? league { get; set; }
     public List<CharacterDto>? characters { get; set; }
 
@@ -84,7 +95,14 @@
         await FetchLeagueNames();
 
         await FetchLeague();
+    }
 
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(selectedLeague))
+        {
+            await FetchLeague();
+        }
     }
 
     private async Task FetchLeagueNames()
@@ -106,11 +124,12 @@
 
     private async Task HandleSelectorChanged(ChangeEventArgs args)
     {
-        selectedLeague = args.Value?.ToString() ?? string.Empty;
+        selectedLeague = args.Value?.ToString();
 
         if (!string.IsNullOrEmpty(selectedLeague))
         {
-            await FetchLeague();
+            string targetTab = string.IsNullOrEmpty(tabName) ? "ladder" : tabName;
+            Navigation.NavigateTo($"/{selectedLeague}/{targetTab}");
         }
     }
 }
