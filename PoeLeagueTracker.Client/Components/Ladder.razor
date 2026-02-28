@@ -20,8 +20,8 @@
                 @foreach (CharacterDto character in characters)
                 {
                 <tr class="ladder-row">
-                    <td class="col-rank"><span class="rank-first arpg-font">@character.Rank</span></td>
-                    <td><span class="char-name">@character.Name</span></td>
+                    <td class="col-rank"><span class="rank-first" arpg-font">@character.Rank</span></td>
+                        <td><a href=@($"https://www.pathofexile.com/account/view-profile/{character.AccountName.Replace("#", "%23")}/characters?characterName={character.Name}") target="_blank" class=@(character.Dead ? "char-name-dead" : "char-name")>@character.Name</a></td>
                     <td class="account-name">@character.AccountName</td>
                     <td><span class="class-badge">@character.ClassName</span></td>
                     <td class="col-number level-text">@character.Level</td>

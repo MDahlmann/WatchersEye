@@ -96,9 +96,17 @@
 }
 
 .char-name {
+    text-decoration: none;
     font-weight: 500;
     font-size: 1rem;
     color: var(--text-bright);
+}
+
+.char-name-dead {
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 1rem;
+    color: var(--accent-red);
 }
 
 .account-name {
@@ -122,21 +130,4 @@
     font-size: 0.75rem;
     font-weight: 500;
     border: 1px solid var(--border-highlight);
-}
-
-/* Dead Character Styling */
-.dead-row {
-    opacity: 0.7;
-}
-
-.dead-char-wrapper {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-}
-
-.dead-text {
-    color: rgba(220, 38, 38, 0.8); /* Red */
-    text-decoration: line-through;
-    text-decoration-color: rgba(127, 29, 29, 0.5);
 }
