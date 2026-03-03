@@ -1,10 +1,11 @@
-﻿@using PoeLeagueTracker.Shared
+﻿@using PoeLeagueTracker.Client.Components.Icons
+@using PoeLeagueTracker.Shared
 @using PoeLeagueTracker.Shared.DTOs
 
 <div class="stats-grid animate-fade-in">
 <div class="stat-card">
     <div class="stat-header">
-        <span class="stat-icon">📜</span>
+        <RerollIcon></RerollIcon>
         <h2 class="stat-title">The rerollers</h2>
     </div>
 
@@ -21,7 +22,7 @@
                     </div>
                     <div class="stat-info-right">
                         <div class="stat-value">@account.totalCharacters</div>
-                        <div class="stat-subtext">characters lvl 10+</div>
+                        <div class="stat-subtext">Characters lvl 10+</div>
                     </div>
             </div>  
         }

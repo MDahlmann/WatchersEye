@@ -1,11 +1,12 @@
-﻿@using PoeLeagueTracker.Shared
+﻿@using PoeLeagueTracker.Client.Components.Icons
+@using PoeLeagueTracker.Shared
 @using PoeLeagueTracker.Shared.DTOs
 
 <div class="stats-grid animate-fade-in">
 <div class="stat-card">
     <div class="stat-header">
-        <span class="stat-icon">📜</span>
-        <h2 class="stat-title">The graveyard</h2>
+        <GraveyardIcon></GraveyardIcon>
+        <h2 class="stat-title highlight-red">The graveyard</h2>
     </div>
 
     <div class="stat-body">
@@ -16,11 +17,12 @@
                         <span class="stat-rank highlight-red">#@(index + 1)</span>
                         <div>
                             <div class="stat-account highlight-red">@account.accountName</div>
+                            <div class="stat-subtext">Highest rip: lvl @account.highestDeath</div>
                         </div>
                     </div>
                     <div class="stat-info-right">
-                        <div class="stat-value">@account.totalDeaths</div>
-                            <div class="stat-subtext">Highest RIP: @* @account.highestDeath *@</div>
+                        <div class="stat-value highlight-red">@account.totalDeaths</div>
+                        <div class="stat-subtext">Ripped characters</div>
                     </div>
             </div>  
         }
@@ -46,13 +48,13 @@
             .GroupBy(character => character.AccountName)
             .Select(group => new AccountStats(
                 group.Key,
-                group.Count(c => c.Dead == true)
-                // group.Where(c => c.Dead == true).Max(c => c.Level)
+                group.Count(c => c.Dead == true),
+                group.Where(c => c.Dead == true).Select(c => c.Level).DefaultIfEmpty(0).Max()
         ))
             .OrderByDescending(account => account.totalDeaths)
             .Take(5)
             .ToList();
     }
 
-    private record AccountStats(string accountName, int totalDeaths/* , int highestDeath */);
+    private record AccountStats(string accountName, int? totalDeaths, int? highestDeath);
 }

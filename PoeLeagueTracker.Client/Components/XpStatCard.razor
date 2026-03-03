@@ -1,10 +1,11 @@
-﻿@using PoeLeagueTracker.Shared
+﻿@using PoeLeagueTracker.Client.Components.Icons
+@using PoeLeagueTracker.Shared
 @using PoeLeagueTracker.Shared.DTOs
 
 <div class="stats-grid animate-fade-in">
 <div class="stat-card">
     <div class="stat-header">
-        <span class="stat-icon">📜</span>
+        <GrinderIcon></GrinderIcon>
         <h2 class="stat-title">The grinders</h2>
     </div>
 
@@ -21,7 +22,7 @@
                     </div>
                     <div class="stat-info-right">
                         <div class="stat-value">@account.totalExperience.ToString("N0")</div>
-                        <div class="stat-subtext">xp across @account.totalCharacters chars</div>
+                        <div class="stat-subtext">Xp across @account.totalCharacters chars</div>
                     </div>
             </div>  
         }
