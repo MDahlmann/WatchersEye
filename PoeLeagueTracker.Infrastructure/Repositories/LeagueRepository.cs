@@ -54,6 +54,16 @@ namespace PoeLeagueTracker.Infrastructure.Repositories
             return league;
         }
 
+        async Task<List<string>?> ILeagueRepository.GetLeagueNamesAsync()
+        {
+            var leagues = await _db.Leagues
+                .AsNoTracking()
+                .Select(league => league.LeagueName)
+                .ToListAsync();
+
+            return leagues;
+        }
+
         async Task ILeagueRepository.SaveChangesAsync()
         {
             await _db.SaveChangesAsync();

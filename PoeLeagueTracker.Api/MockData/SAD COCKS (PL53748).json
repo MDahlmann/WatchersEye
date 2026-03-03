@@ -1,0 +1,32 @@
+{
+  "total": 1,
+  "entries": [
+    {
+      "rank": 1,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "506644cdb7c317dda12fd86893232c7fecfeeac2fde775839439eb1ebd",
+        "name": "Stupid__idea",
+        "level": 100,
+        "class": "Guardian",
+        "experience": 4250334444,
+        "depth": {
+          "default": 226,
+          "solo": 226
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    }
+  ]
+}

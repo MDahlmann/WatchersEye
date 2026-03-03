@@ -1,0 +1,1695 @@
+{
+  "total": 72,
+  "entries": [
+    {
+      "rank": 1,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "27d9bdbb4e2fbe49c9b4d14fb54ca3a4c3ac2c3568976c7f69d424309121fb2d",
+        "name": "CirclingBackAgain",
+        "level": 100,
+        "class": "Hierophant",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 2,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "c5a382c2a6908b816e15696dc4ba597d267fd2aa248da74e8534fc345950d885",
+        "name": "ItsNotMinesIPromise",
+        "level": 100,
+        "class": "Trickster",
+        "experience": 4250334444
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 3,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f8139b77177d314fa035bb1d3b49b99b236cdb1d3e2d7b26e519f5e3b8e86da3",
+        "name": "bleeding_bob_rip",
+        "level": 99,
+        "class": "Gladiator",
+        "experience": 4053902221,
+        "depth": {
+          "default": 212,
+          "solo": 212
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 4,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "c701eba5ef3e014f0ee8f492dbc05ede1a8f100ec54d13bb492b61d5a17031ee",
+        "name": "Bob_mfing_Shield",
+        "level": 98,
+        "class": "Necromancer",
+        "experience": 3704472292,
+        "depth": {
+          "default": 209,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 5,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "b612cc6a1e0ec070bbe3686a4e4203eaaa156df19752334a4f44367676a5f7dc",
+        "name": "MyllerKanIkkeSelv",
+        "level": 97,
+        "class": "Champion",
+        "experience": 3596661083
+      },
+      "account": {
+        "name": "squatz#0957",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 18,
+          "max": 40
+        }
+      }
+    },
+    {
+      "rank": 6,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "9ed1e98018d558e95985f86e155b724ee38a4542ae1bfd8ba63ee76bed2c2281",
+        "name": "BlockAndBleedz",
+        "level": 97,
+        "class": "Gladiator",
+        "experience": 3585267435,
+        "depth": {
+          "default": 161,
+          "solo": 161
+        }
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 7,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "85ff47cf9cce10210a3abfda5c9fde5d42b7118f77483dda2699689f911da2d4",
+        "name": "SorenHelpME",
+        "level": 97,
+        "class": "Hierophant",
+        "experience": 3493931641
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 8,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "cdd90b64924d9a959048e2e902b69cda85f27b09b1e89c1900e21126e1ed4f12",
+        "name": "MyllersPackageCantGetUp",
+        "level": 96,
+        "class": "Necromancer",
+        "experience": 3298799996
+      },
+      "account": {
+        "name": "squatz#0957",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 18,
+          "max": 40
+        }
+      }
+    },
+    {
+      "rank": 9,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "d380ed27dc798bfb286118425f450b50963013fceadcf5c62e91995e36741b3d",
+        "name": "PRINSPIKKEMAND",
+        "level": 96,
+        "class": "Chieftain",
+        "experience": 3291137855
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 10,
+      "dead": false,
+      "public": true,
+      "character": {
+        "id": "5320cf711663c685d3fcbfe35308884caac6a99c355709245b8c7045619ec678",
+        "name": "CockOnBoat",
+        "level": 96,
+        "class": "Slayer",
+        "experience": 3217565790
+      },
+      "account": {
+        "name": "lococc#6819",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "1lococc"
+        }
+      }
+    },
+    {
+      "rank": 11,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "9ae2724a85373232fb9b3651971420e754d4ccd47b1dba13045f4dacf1061751",
+        "name": "MetaMauler",
+        "level": 95,
+        "class": "Juggernaut",
+        "experience": 2906959128
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 12,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "9221c03c90c1828bee8ebd3412fc8cb554af44d6b47862e83df6df6bc55dfcc2",
+        "name": "KINGOFTHERIPS",
+        "level": 95,
+        "class": "Guardian",
+        "experience": 2906345871
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 13,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "1832aed3b72a1b4a097c93f5d38e88de7648adefc77dd4c35ef9c21f565c5169",
+        "name": "MayorKingsmarch",
+        "level": 95,
+        "class": "Gladiator",
+        "experience": 2895522129
+      },
+      "account": {
+        "name": "squatz#0957",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 18,
+          "max": 40
+        }
+      }
+    },
+    {
+      "rank": 14,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "e6ba1e7a88e16f583f6966ddf130a5b05f847da9e7aa908238141c3f1a609529",
+        "name": "Bob_idiot",
+        "level": 95,
+        "class": "Pathfinder",
+        "experience": 2880910351,
+        "depth": {
+          "default": 87,
+          "solo": 87
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 15,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f93f8c64fd895f198e886cb6e8566e42b0fe4ae94303398fa486eb411378f6f1",
+        "name": "Es_stacker_bob",
+        "level": 94,
+        "class": "Trickster",
+        "experience": 2843263581,
+        "depth": {
+          "default": 61,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 16,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "c4015b015acb940416762c6db179b7b9d824daeaadaec3291955d1749a606804",
+        "name": "theLastmyller",
+        "level": 94,
+        "class": "Necromancer",
+        "experience": 2833658965
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 17,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "72766a6205775f135483948a7edbebddf286799ccbafa7fcd9d685a9339a8dbb",
+        "name": "Kingcockblocker",
+        "level": 94,
+        "class": "Gladiator",
+        "experience": 2781334280
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 18,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "df61177f451bfff0baa9d1a2a515996a20703f98acf91a34ebb8b70f1d61cf1c",
+        "name": "LetsGOMyller",
+        "level": 94,
+        "class": "Slayer",
+        "experience": 2736491105
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 19,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f500a6a9d227d542662a764d6b69fdccff17b4d9ac354c586ca221b0eb7d8001",
+        "name": "BAMAMyller",
+        "level": 94,
+        "class": "Necromancer",
+        "experience": 2665728577
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 20,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "6bd5c313d41144b28620c347362c3c1918a27621accbb6978e8c390808f08206",
+        "name": "anotherBAMA",
+        "level": 93,
+        "class": "Necromancer",
+        "experience": 2653663743
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 21,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "2510afeca34aa6e97e8317402e6b890d3206290062e804f6cd477ed47e1944b2",
+        "name": "TipsandTricksters",
+        "level": 93,
+        "class": "Trickster",
+        "experience": 2591581415
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 22,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "e4a12d41fea488a8280635591a223869896fa20b2c986623c73b940d4b245b2a",
+        "name": "BatterAcht",
+        "level": 93,
+        "class": "Chieftain",
+        "experience": 2549112290,
+        "depth": {
+          "default": 47,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 23,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "a94b75140d27efc19c427aa8c96a80f2490eea13dad1ca8c4d945dbda755b6da",
+        "name": "Slammermedmindiller",
+        "level": 93,
+        "class": "Juggernaut",
+        "experience": 2528551978
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 24,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "49f42aa2d01de5e162dd2e3582cfa6cf2ab5a00945c2cc595ef3ee07e9d27f27",
+        "name": "MaximusCOCKS",
+        "level": 92,
+        "class": "Gladiator",
+        "experience": 2450879156
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 25,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f2eeceedf6d38d647e8d6f8e4dfee47eb511bb6818b063f3e03602867691648e",
+        "name": "Manakugler",
+        "level": 92,
+        "class": "Hierophant",
+        "experience": 2436401220
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 26,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "aee10a6700575f02a0b095a6d5e9b37a33c6915a8faba21f6c8b01a5365b0572",
+        "name": "LvlMedSQren",
+        "level": 91,
+        "class": "Trickster",
+        "experience": 2152142741
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 27,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "35a8a7268190925b523478bd413a0ecf1d98c81361bd7f6d048fdaf99b140ca5",
+        "name": "EXPLORETHEANUS",
+        "level": 91,
+        "class": "Slayer",
+        "experience": 2126087329
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 28,
+      "dead": false,
+      "public": true,
+      "character": {
+        "id": "15b9688f337cf063260c4632f3cdbf103c233825e07cf4ffc9ad236b667caecf",
+        "name": "Joooohnyidsco",
+        "level": 91,
+        "class": "Hierophant",
+        "experience": 2108007067
+      },
+      "account": {
+        "name": "Johnnydisco#7083",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 5,
+          "max": 40
+        },
+        "twitch": {
+          "name": "magra12"
+        }
+      }
+    },
+    {
+      "rank": 29,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "6950b23b59a052d3fc9cfa0abf2714943bd7bb255e5855527c0acec3b343b993",
+        "name": "Nummer_for_mange",
+        "level": 91,
+        "class": "Trickster",
+        "experience": 2096567179,
+        "depth": {
+          "default": 104,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 30,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "8fc78542e87fcd90864413bdd21f12cd2e0a8d58244d4f411f8b9065f88ad9bb",
+        "name": "Gotnuked",
+        "level": 90,
+        "class": "Slayer",
+        "experience": 2071103041
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 31,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "5113614d7c460fae93daeda274d961006787a59501e191e3fa2b0422130d3d7b",
+        "name": "SlammingCockSlayer",
+        "level": 90,
+        "class": "Slayer",
+        "experience": 2022268255
+      },
+      "account": {
+        "name": "lococc#6819",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "1lococc"
+        }
+      }
+    },
+    {
+      "rank": 32,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "432f57b2b0f2234462e1777bde452e471dc0ba5b75127741d019d6575ddf9662",
+        "name": "BatterFünf",
+        "level": 90,
+        "class": "Chieftain",
+        "experience": 1954166902
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 33,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "cb43ac666a26633ea23e8b123a636200acb9e152d49982d608582fa4f57a7c2e",
+        "name": "BatterZehn",
+        "level": 87,
+        "class": "Chieftain",
+        "experience": 1549443329,
+        "depth": {
+          "default": 41,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 34,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "128670401692226efc11694073348e2b8ac321d40d5a37fd178f7aa13e82a062",
+        "name": "Bob_deathOath",
+        "level": 86,
+        "class": "Occultist",
+        "experience": 1495202322
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 35,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "593e93380857c1e85fdad6c9280edc7003e060ba924892000b9c99646f48ddb4",
+        "name": "MyllerNeedsHelp",
+        "level": 86,
+        "class": "Hierophant",
+        "experience": 1426204811
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 36,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "c543678501affed3136fd043b2c148726d1bf20e3d0cbb722684078bf9b16081",
+        "name": "BIGANUZ",
+        "level": 85,
+        "class": "Hierophant",
+        "experience": 1380596191
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 37,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "8287f4a8d996849d119405d6d77943b990a2c1be0b8b393186f8607cc574cb94",
+        "name": "GAYLORD_SAILORD",
+        "level": 85,
+        "class": "Gladiator",
+        "experience": 1378165378
+      },
+      "account": {
+        "name": "Dahlmann#2592",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 14,
+          "max": 40
+        },
+        "twitch": {
+          "name": "doctorcockt0r"
+        }
+      }
+    },
+    {
+      "rank": 38,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "679014c8dd034e5294e6b9cbcc60f4172f07a0e612cc11a6ce07ac11f5d35822",
+        "name": "OneLastDeath",
+        "level": 84,
+        "class": "Slayer",
+        "experience": 1242352880
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 39,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "907dd543f4cfe6674da94b1e56bd7e5af720534af92f7c78d98955fc2df57035",
+        "name": "FindMitShield",
+        "level": 84,
+        "class": "Inquisitor",
+        "experience": 1214368655
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 40,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "283cbebeb3ba415e8d5d973fdbda5e9109561a3c134d275fc63999b4385aa71f",
+        "name": "ErDetHerENting",
+        "level": 82,
+        "class": "Inquisitor",
+        "experience": 1062537817
+      },
+      "account": {
+        "name": "Struds#2561",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "superstrudz"
+        }
+      }
+    },
+    {
+      "rank": 41,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "8a3e131fcd3b7f4098c2145944347e10de764662ccddbd9b8532a8959c8553e1",
+        "name": "mule_bobbbb",
+        "level": 82,
+        "class": "Hierophant",
+        "experience": 1048091356,
+        "depth": {
+          "default": 2,
+          "solo": 0
+        }
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 42,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "c8268e079790407b04c63445fcacfe2ff6b9c936b4b8632aef828f5ff31e7e80",
+        "name": "ManyBallsMan",
+        "level": 78,
+        "class": "Juggernaut",
+        "experience": 784093555
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 43,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "c74b2002e9b5d9b0d9c2b98d79663fce09e980d49aca614590e724cde74985c8",
+        "name": "THEDUMBANUS",
+        "level": 77,
+        "class": "Juggernaut",
+        "experience": 717052842
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 44,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "425112c7c54306ca604c914599a95d4acc2b227fb6b8004b84348984e0bb284d",
+        "name": "BatterSieben",
+        "level": 77,
+        "class": "Chieftain",
+        "experience": 695375972
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 45,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "833d3d2bc45d657f1d6fc8bc2423e9eabb0f521b41fd0b08d9e4f069147f3dc7",
+        "name": "puhaaaaaaa",
+        "level": 75,
+        "class": "Trickster",
+        "experience": 572598823
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 46,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "d7b121c5b6ecc94ce6afd9932d149d047990b961afe0dfe58b2bd54138241ba4",
+        "name": "DRPENISMAN",
+        "level": 71,
+        "class": "Chieftain",
+        "experience": 428197743
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 47,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "1aed51974eb9fc35a8dfb7820964fd8bd15c3fbfe740c5fbf9b64e424adf861f",
+        "name": "MyllerKanIkkeSelv",
+        "level": 68,
+        "class": "Champion",
+        "experience": 331420459
+      },
+      "account": {
+        "name": "squatz#0957",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 18,
+          "max": 40
+        }
+      }
+    },
+    {
+      "rank": 48,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "095316a96a7c5ae65eb76c5893d5e9e04731062a85832437a8ee58bde1083b6d",
+        "name": "BatterDrei",
+        "level": 67,
+        "class": "Chieftain",
+        "experience": 299604008
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 49,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f50678ab630c50d516370e7977261ff52885709db5010d92b9f339224394dbbd",
+        "name": "Trade_Stone_For_Sheep",
+        "level": 59,
+        "class": "Trickster",
+        "experience": 144042974
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 50,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "0b8fb43f652c3509b526004832e7a06e283c6a546f6f77bd98c1a81db4ce7d2b",
+        "name": "BatterNein",
+        "level": 56,
+        "class": "Gladiator",
+        "experience": 106537847
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 51,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "31302e94984e9219b9f3bdc7fc5b88601c88e1cb232335667b68fb67f9d7a6bf",
+        "name": "ALMOSTCOCKKING",
+        "level": 52,
+        "class": "Guardian",
+        "experience": 67622409
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 52,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "694fe37af83b99190295fa50757e39ee7467160ba685cdfb4a510e92ef6c6f72",
+        "name": "BatterVier",
+        "level": 42,
+        "class": "Chieftain",
+        "experience": 22832610
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 53,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "5d3c0372037476ee03c9708323859de8c3f75a1fbdf987d081324e9fbe06568f",
+        "name": "AFKMand",
+        "level": 40,
+        "class": "Marauder",
+        "experience": 18052977
+      },
+      "account": {
+        "name": "Boxxx#3918",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 40,
+          "max": 40
+        },
+        "twitch": {
+          "name": "onestargalore"
+        }
+      }
+    },
+    {
+      "rank": 54,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "41ec291bbe09008da8552dbcb0140f90ea5a436270cfeb9467bbf85988d627e8",
+        "name": "MaximusCOCKS",
+        "level": 39,
+        "class": "Gladiator",
+        "experience": 16049556
+      },
+      "account": {
+        "name": "HungryDonkey#4673",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 10,
+          "max": 40
+        },
+        "twitch": {
+          "name": "hamse83"
+        }
+      }
+    },
+    {
+      "rank": 55,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "f63a202bb43f322b81a5ed2b416ae110e3bb26c561ab8c999f1833ef5bf5c120",
+        "name": "Settler_of_Uranus",
+        "level": 38,
+        "class": "Shadow",
+        "experience": 14822507
+      },
+      "account": {
+        "name": "Dahlmann#2592",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 14,
+          "max": 40
+        },
+        "twitch": {
+          "name": "doctorcockt0r"
+        }
+      }
+    },
+    {
+      "rank": 56,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "b5b8d4bb1cf2f91ffcb4c65d2de4ae0d932818ffbb0ce01677fa29d92cbb74b5",
+        "name": "LOCUCKS",
+        "level": 35,
+        "class": "Shadow",
+        "experience": 10404116
+      },
+      "account": {
+        "name": "Dahlmann#2592",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 14,
+          "max": 40
+        },
+        "twitch": {
+          "name": "doctorcockt0r"
+        }
+      }
+    },
+    {
+      "rank": 57,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "3e7a805a5501ca618bf65dfea2da2bc442177e5c7309dd0a6c71d400f1c0ead2",
+        "name": "UNLIMITEDPOWEEEEEEEER",
+        "level": 32,
+        "class": "Templar",
+        "experience": 6702499
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 58,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "414a3e9fea439b812f57afd89039a24dd2912f185b02e7bb7e1b07d996b80c29",
+        "name": "MyllerDontLogOnMaven",
+        "level": 32,
+        "class": "Duelist",
+        "experience": 6436349
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 59,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "fd57d9f665e4069e6b06b52f283f30ea5288c77a34c54ac5248bb99db8da0201",
+        "name": "CockSlammingSlayer",
+        "level": 23,
+        "class": "Duelist",
+        "experience": 1699141
+      },
+      "account": {
+        "name": "lococc#6819",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "1lococc"
+        }
+      }
+    },
+    {
+      "rank": 60,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "79e5e1c5e82bc7c1293d47de0ed90991db51fd8407faf3207b9a5d2297e63bcb",
+        "name": "BatterEins",
+        "level": 21,
+        "class": "Marauder",
+        "experience": 1040577
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 61,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "a6c54e25cda089a427e284e038fd4081c9a89e2fcf3b7af2d60fa8718a479d8f",
+        "name": "WTT_Wood_For_Sheep",
+        "level": 19,
+        "class": "Shadow",
+        "experience": 722427
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 62,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "3c9dc7f6527f2de8e310ab5b1d0f251eac9ecfc4729ab41f77b0ee02e9dd7669",
+        "name": "jegerlort_bob",
+        "level": 14,
+        "class": "Shadow",
+        "experience": 213369
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 63,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "2a218c71f2f0d42b83f4443c1d1296af0a5fde8f92e0ce763f25cdb9b0cb2c26",
+        "name": "BatterSechs",
+        "level": 13,
+        "class": "Marauder",
+        "experience": 203817
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 64,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "1adb5bff0947f8b88f312ce1406ddda683bd587914e2fa43bebbbec938bca226",
+        "name": "GAYLORD_SAILORD",
+        "level": 11,
+        "class": "Duelist",
+        "experience": 104334
+      },
+      "account": {
+        "name": "Dahlmann#2592",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 14,
+          "max": 40
+        },
+        "twitch": {
+          "name": "doctorcockt0r"
+        }
+      }
+    },
+    {
+      "rank": 65,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "4360a9bc5c640f0582c54f84112c1f653191d800c77a9052c65d8e2e2588c53d",
+        "name": "TradingSheepForCock",
+        "level": 11,
+        "class": "Duelist",
+        "experience": 88457
+      },
+      "account": {
+        "name": "gazellen#7449",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 6,
+          "max": 40
+        },
+        "twitch": {
+          "name": "gazellefilet"
+        }
+      }
+    },
+    {
+      "rank": 66,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "30f23b85b5667a1f026125eb351f35e913712d14f5ee606fd43fa86ae2f4bcca",
+        "name": "barselsprojektet",
+        "level": 11,
+        "class": "Shadow",
+        "experience": 87764
+      },
+      "account": {
+        "name": "Struds#2561",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "superstrudz"
+        }
+      }
+    },
+    {
+      "rank": 67,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "5348d8114e8078178b21af232f1e78df6199e679ffc6ea6ce8d5004338649d95",
+        "name": "BatterZwei",
+        "level": 10,
+        "class": "Marauder",
+        "experience": 85498
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 68,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "fbf5189e5c56fc8156e2fe6ba50bce1c0b95a41b37ef0497c4028cc152ac2029",
+        "name": "battermuleone",
+        "level": 4,
+        "class": "Witch",
+        "experience": 6631
+      },
+      "account": {
+        "name": "Batman94#1072",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 7,
+          "max": 40
+        },
+        "twitch": {
+          "name": "batman9420"
+        }
+      }
+    },
+    {
+      "rank": 69,
+      "dead": false,
+      "retired": true,
+      "public": true,
+      "character": {
+        "id": "2221b4e6ff94d36b325162f10afca504fcd0afc8c2532b23630d635cd0d86e9a",
+        "name": "bob_ved_ikke",
+        "level": 4,
+        "class": "Marauder",
+        "experience": 6121
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    },
+    {
+      "rank": 70,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "1cc8d760e75c7aad23e310f2bf50839693ef9d61f431e3f5044dc33175db74ed",
+        "name": "lkmlkmlkmsdfsa",
+        "level": 2,
+        "class": "Ranger",
+        "experience": 525
+      },
+      "account": {
+        "name": "00myller00#6811",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 13,
+          "max": 40
+        },
+        "twitch": {
+          "name": "00myller00"
+        }
+      }
+    },
+    {
+      "rank": 71,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "d4e9000ce6fb87a6246b9dccfced322bff624ebdb488339f6276d0b0d17c0046",
+        "name": "PRINSPIKKEMAND",
+        "level": 1,
+        "class": "Marauder",
+        "experience": 44
+      },
+      "account": {
+        "name": "Ponyfar#3270",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 12,
+          "max": 40
+        },
+        "twitch": {
+          "name": "mgala"
+        }
+      }
+    },
+    {
+      "rank": 72,
+      "dead": true,
+      "public": true,
+      "character": {
+        "id": "1e1118596bca27bed58ae41aba573463176925de8f2a10781e07fab9e878ee16",
+        "name": "Teambigdicks_sucks",
+        "level": 1,
+        "class": "Scion",
+        "experience": 0
+      },
+      "account": {
+        "name": "gunpop1#6708",
+        "challenges": {
+          "set": "Chayula",
+          "completed": 23,
+          "max": 40
+        },
+        "twitch": {
+          "name": "sweatyb1"
+        }
+      }
+    }
+  ]
+}

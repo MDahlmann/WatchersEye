@@ -1,0 +1,140 @@
+﻿@page "/"
+@page "/{selectedLeague}"
+@page "/{selectedLeague}/{tabName}"
+
+@using Microsoft.AspNetCore.Components.Sections
+@using PoeLeagueTracker.Client.Components
+@using PoeLeagueTracker.Client.Components.Icons
+@using PoeLeagueTracker.Shared.DTOs
+
+@inject HttpClient PoeTrackerApi;
+@inject NavigationManager Navigation;
+
+<div class="page-wrapper">
+    <header class="poe-header">
+
+        <div class="header-content">
+            <div class="title-section">
+                <a class="logo-circle" href="/@selectedLeague">
+                    <TrackerIcon></TrackerIcon>
+                </a>
+                <div>
+                    <h1 class="page-title">Fizz Leagues</h1>
+                    <p class="page-subtitle">PoE Private League Tracker</p>
+                </div>
+            </div>
+
+            <div class="league-selector-container">
+                <div class="poe-select-wrapper">
+                    <select class="poe-dropdown" value="@selectedLeague" @onchange="HandleSelectorChanged">
+                    @foreach (var league in leagues!)
+                    {
+                        <option value="@league" selected="@(league == selectedLeague)">
+                            @league
+                        </option>
+                    }
+                </select>
+                <span class="poe-select-arrow"></span>
+                </div>
+            </div>
+
+        </div>
+
+        <nav class="poe-tabs-container">
+            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/@selectedLeague/ladder">
+                <LadderIcon fill=@(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "var(--text-bright)" : "var(--text-muted)")></LadderIcon> Ladder
+            </a>
+
+            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/@selectedLeague/stats">
+                <LeaderboardIcon fill=@(tabName == "stats" ? "var(--text-bright)" : "var(--text-muted)")></LeaderboardIcon> Leaderboards
+            </a>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        @if (tabName == "stats")
+        {
+            if (characters == null)
+            {
+                <h1>Loading characters...</h1>                
+            }
+            else
+            {
+                <div class="stats-grid">
+                <XpStatCard characters="characters"></XpStatCard>
+                <CharCountStatCard characters="characters"></CharCountStatCard>
+                <DeathStatCard characters="characters"></DeathStatCard>
+                </div>
+            }
+        }
+        else
+        {
+            if (characters == null)
+            {
+                <h1>Loading characters..</h1>
+            }
+            else
+            {
+                <LadderCard characters="characters"></LadderCard>
+            }
+        }
+    </main>
+</div>
+
+@code {
+    public List<string>? leagues { get; set; } = [];
+
+    [Parameter]
+    public string selectedLeague { get; set; } = string.Empty;
+
+    public LeagueDto? league { get; set; }
+    public List<CharacterDto>? characters { get; set; }
+
+    [Parameter]
+    public string tabName { get; set; } = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        await base.OnInitializedAsync();
+
+        await FetchLeagueNames();
+
+        await FetchLeague();
+    }
+
+    protected override async Task OnParametersSetAsync()
+    {
+        if (!string.IsNullOrEmpty(selectedLeague))
+        {
+            await FetchLeague();
+        }
+    }
+
+    private async Task FetchLeagueNames()
+    {
+        var response = await PoeTrackerApi.GetAsync("allLeagueNames");
+
+        leagues = await response.Content.ReadFromJsonAsync<List<string>>();
+
+        if (leagues?.Any() == true && string.IsNullOrEmpty(selectedLeague)) selectedLeague = leagues.First();
+    }
+
+    private async Task FetchLeague()
+    {
+        var response = await PoeTrackerApi.GetAsync($"/league/{selectedLeague}");
+
+        league = await response.Content.ReadFromJsonAsync<LeagueDto>();
+        characters = league!.Characters.ToList();
+    }
+
+    private async Task HandleSelectorChanged(ChangeEventArgs args)
+    {
+        selectedLeague = args.Value?.ToString();
+
+        if (!string.IsNullOrEmpty(selectedLeague))
+        {
+            string targetTab = string.IsNullOrEmpty(tabName) ? "ladder" : tabName;
+            Navigation.NavigateTo($"/{selectedLeague}/{targetTab}");
+        }
+    }
+}

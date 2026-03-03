@@ -3,6 +3,7 @@ using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Commands;
 using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
 using PoeLeagueTracker.Application.Queries;
+using PoeLeagueTracker.Application.Queries.GetLeagueNamesQuery;
 using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
 using PoeLeagueTracker.Application.RepositoryInterfaces;
 using PoeLeagueTracker.Application.ServiceInterfaces;
@@ -66,6 +67,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
+            builder.Services.AddScoped<IQueryHandler<GetLeagueNamesQuery, List<string>?>, GetLeagueNamesQueryHandler>();
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
@@ -114,6 +116,15 @@ namespace PoeLeagueTracker.Api
                 }
 
                 return Results.Ok(league);
+            });
+
+            app.MapGet("allLeagueNames", async (IQueryHandler<GetLeagueNamesQuery, List<string>?> queryHandler) =>
+            {
+                var leagues = await queryHandler.HandleAsync(new GetLeagueNamesQuery());
+
+                if (leagues is null) { return Results.NotFound(); }
+
+                return Results.Ok(leagues);
             });
 
             app.Run();
