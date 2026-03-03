@@ -30,7 +30,9 @@ namespace PoeLeagueTracker.Api.Workers
                     await syncHandler.HandleAsync(new SyncLeagueCommand(_config["ActiveLeague"]!));
                 }
 
-                await Task.Delay(10000, stoppingToken);
+                var interval = Convert.ToInt32(_config["SyncInterval"]);
+
+                await Task.Delay(interval, stoppingToken);
             }
         }
     }

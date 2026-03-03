@@ -27,6 +27,12 @@ services:
       - ASPNETCORE_ENVIRONMENT=Production
       - OriginApiUrl=https://poe.dahlmann.dev
       - ActiveLeague=FizzministersAndTheFlaming COCKS (PL75337)
+      - SyncInterval=30000
+      
+      # Test
+      - DiscordWebhook=1476302257090990263/ipuG56pRJBdQAvqbhcVZs5cgx9rRh6NjCDlRrekslyT2DKWvla_vWfs1WYtaSgf__FF4
+      # Path of Salt
+      #- DiscordWebhook=1478502900593590324/oWwf-Bva6ApK_F-aPzxT1_fg4w9O4a2pD5Vqj6jjaQpnjNKxQAF0hkz_mC82LF3InCIf
     depends_on:
       - db
 
