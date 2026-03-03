@@ -5,7 +5,7 @@
 <div class="stat-card">
     <div class="stat-header">
         <span class="stat-icon">📜</span>
-        <h2 class="stat-title">The grinders</h2>
+        <h2 class="stat-title">The graveyard</h2>
     </div>
 
     <div class="stat-body">
@@ -13,15 +13,14 @@
             {
                 <div class="stat-row">
                     <div class="stat-info-left">
-                        <span class="stat-rank highlight-gold">#@(index + 1)</span>
+                        <span class="stat-rank highlight-red">#@(index + 1)</span>
                         <div>
-                            <div class="stat-account highlight-gold">@account.accountName</div>
-                        <div class="stat-subtext">Average level: @GameData.AverageLevel(account.averageExp)</div>
+                            <div class="stat-account highlight-red">@account.accountName</div>
                         </div>
                     </div>
                     <div class="stat-info-right">
-                        <div class="stat-value">@account.totalExperience.ToString("N0")</div>
-                        <div class="stat-subtext">xp across @account.totalCharacters chars</div>
+                        <div class="stat-value">@account.totalDeaths</div>
+                            <div class="stat-subtext">Highest RIP: @* @account.highestDeath *@</div>
                     </div>
             </div>  
         }
@@ -47,14 +46,13 @@
             .GroupBy(character => character.AccountName)
             .Select(group => new AccountStats(
                 group.Key,
-                group.Sum(character => character.Experience),
-                group.Count(),
-                group.Sum(character => character.Experience) / group.Count()
-            ))
-            .OrderByDescending(account => account.totalExperience)
+                group.Count(c => c.Dead == true)
+                // group.Where(c => c.Dead == true).Max(c => c.Level)
+        ))
+            .OrderByDescending(account => account.totalDeaths)
             .Take(5)
             .ToList();
     }
 
-    private record AccountStats(string accountName, long totalExperience, int totalCharacters, long averageExp);
+    private record AccountStats(string accountName, int totalDeaths/* , int highestDeath */);
 }

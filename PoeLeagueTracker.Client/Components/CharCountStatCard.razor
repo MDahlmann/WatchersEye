@@ -5,7 +5,7 @@
 <div class="stat-card">
     <div class="stat-header">
         <span class="stat-icon">📜</span>
-        <h2 class="stat-title">The grinders</h2>
+        <h2 class="stat-title">The rerollers</h2>
     </div>
 
     <div class="stat-body">
@@ -16,12 +16,12 @@
                         <span class="stat-rank highlight-gold">#@(index + 1)</span>
                         <div>
                             <div class="stat-account highlight-gold">@account.accountName</div>
-                        <div class="stat-subtext">Average level: @GameData.AverageLevel(account.averageExp)</div>
+                            <div class="stat-subtext">Highest level: @account.highestLevel</div>
                         </div>
                     </div>
                     <div class="stat-info-right">
-                        <div class="stat-value">@account.totalExperience.ToString("N0")</div>
-                        <div class="stat-subtext">xp across @account.totalCharacters chars</div>
+                        <div class="stat-value">@account.totalCharacters</div>
+                        <div class="stat-subtext">characters lvl 10+</div>
                     </div>
             </div>  
         }
@@ -47,14 +47,13 @@
             .GroupBy(character => character.AccountName)
             .Select(group => new AccountStats(
                 group.Key,
-                group.Sum(character => character.Experience),
-                group.Count(),
-                group.Sum(character => character.Experience) / group.Count()
-            ))
-            .OrderByDescending(account => account.totalExperience)
+                group.Count(c => c.Level > 10),
+                group.Max(c => c.Level)
+        ))
+            .OrderByDescending(account => account.totalCharacters)
             .Take(5)
             .ToList();
     }
 
-    private record AccountStats(string accountName, long totalExperience, int totalCharacters, long averageExp);
+    private record AccountStats(string accountName, int totalCharacters, int highestLevel);
 }
