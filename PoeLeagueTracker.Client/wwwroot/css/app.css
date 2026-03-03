@@ -1,3 +1,46 @@
+/* wwwroot/css/app.css */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@400;500;600&display=swap');
+
+:root {
+    /* Color Palette */
+    --bg-dark: #060608;
+    --bg-card: #121215;
+    --bg-header: #0c0c10;
+    --bg-hover: #1a1a1f;
+    --border-dim: #1f1a14;
+    --border-normal: #2a241a;
+    --border-highlight: #3a2f1d;
+    --accent-gold: #a38046;
+    --accent-red: #8a1c1c;
+    --text-main: #d4c4a8;
+    --text-muted: #8a8a8e;
+    --text-bright: #f5e6c8;
+    --text-unique: #cfb53b; /* PoE Unique Item Color */
+}
+
+body {
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif; /* Default to the data font */
+    margin: 0;
+    min-height: 100vh;
+}
+
+/* Custom Text Selections */
+::selection {
+    background-color: #5c4a2e;
+    color: white;
+}
+
+/* Typography Classes */
+.arpg-font, h1, h2, h3, th {
+    font-family: 'Cinzel', serif;
+}
+
+.data-font {
+    font-family: 'Inter', sans-serif;
+}
+
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
 }

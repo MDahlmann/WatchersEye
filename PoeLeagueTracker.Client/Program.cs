@@ -1,7 +1,6 @@
 using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using PoeLeagueTracker.Client;
-using Radzen;
 
 internal class Program
 {
@@ -19,8 +18,6 @@ internal class Program
         });
 
         builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));
-
-        builder.Services.AddRadzenComponents();
 
         await builder.Build().RunAsync();
     }
