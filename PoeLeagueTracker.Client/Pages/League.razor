@@ -4,6 +4,7 @@
 
 @using Microsoft.AspNetCore.Components.Sections
 @using PoeLeagueTracker.Client.Components
+@using PoeLeagueTracker.Client.Components.Icons
 @using PoeLeagueTracker.Shared.DTOs
 
 @inject HttpClient PoeTrackerApi;
@@ -41,11 +42,11 @@
 
         <nav class="poe-tabs-container">
             <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/@selectedLeague/ladder">
-                <span class="tab-icon">🏆</span> Ladder
+                <LadderIcon fill=@(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "var(--text-bright)" : "var(--text-muted)")></LadderIcon> Ladder
             </a>
 
             <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/@selectedLeague/stats">
-                <span class="tab-icon">📈</span> Stats
+                <LeaderboardIcon fill=@(tabName == "stats" ? "var(--text-bright)" : "var(--text-muted)")></LeaderboardIcon> Leaderboards
             </a>
         </nav>
     </header>
