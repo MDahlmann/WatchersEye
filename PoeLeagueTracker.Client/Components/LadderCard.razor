@@ -22,7 +22,7 @@
                 @foreach (CharacterDto character in characters)
                 {
                     <tr class="ladder-row">
-                    <td class="col-rank"><span class="rank-first" arpg-font">@character.Rank</span></td>
+                    <td class="col-rank"><span class="rank-first arpg-font">@character.Rank</span></td>
                         <td><a href="@CharacterUrl(character)" target="_blank" class="char-name-@character.Status.ToLower()">@character.Name @StatusText(character)</a></td>
                         <td class="account-name">@character.AccountName</td>
                     <td><span class="class-badge">@character.ClassName</span></td>
