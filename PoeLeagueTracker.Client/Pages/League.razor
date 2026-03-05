@@ -6,6 +6,7 @@
 @using PoeLeagueTracker.Client.Components
 @using PoeLeagueTracker.Client.Components.Icons
 @using PoeLeagueTracker.Shared.DTOs
+@using System.Web
 
 @inject HttpClient PoeTrackerApi;
 @inject NavigationManager Navigation;
@@ -16,7 +17,7 @@
 
         <div class="header-content">
             <div class="title-section">
-                <a class="logo-circle" href="/@Config["ActiveLeague"]">
+                <a class="logo-circle" href="/@HttpUtility.UrlEncode(Config["ActiveLeague"])">
                     <TrackerIcon></TrackerIcon>
                 </a>
                 <div>
@@ -47,11 +48,11 @@
         </div>
 
         <nav class="poe-tabs-container">
-            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/@selectedLeague/ladder">
+            <a class="poe-tab @(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "active" : "")" href="/@HttpUtility.UrlEncode(selectedLeague)/ladder">
                 <LadderIcon fill=@(tabName == "ladder" || string.IsNullOrEmpty(tabName) ? "var(--text-bright)" : "var(--text-muted)")></LadderIcon> Ladder
             </a>
 
-            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/@selectedLeague/stats">
+            <a class="poe-tab @(tabName == "stats" ? "active" : "")" href="/@HttpUtility.UrlEncode(selectedLeague)/stats">
                 <LeaderboardIcon fill=@(tabName == "stats" ? "var(--text-bright)" : "var(--text-muted)")></LeaderboardIcon> Leaderboards
             </a>
         </nav>
@@ -118,6 +119,7 @@
     {
         if (!string.IsNullOrEmpty(selectedLeague))
         {
+            selectedLeague = HttpUtility.UrlDecode(selectedLeague);
             await FetchLeague();
         }
     }
@@ -146,7 +148,7 @@
         if (!string.IsNullOrEmpty(selectedLeague))
         {
             string targetTab = string.IsNullOrEmpty(tabName) ? "ladder" : tabName;
-            Navigation.NavigateTo($"/{selectedLeague}/{targetTab}");
+            Navigation.NavigateTo($"/{HttpUtility.UrlEncode(selectedLeague)}/{targetTab}");
         }
     }
 }
