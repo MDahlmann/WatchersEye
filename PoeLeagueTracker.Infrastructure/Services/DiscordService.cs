@@ -2,7 +2,6 @@
 using PoeLeagueTracker.Application.ServiceInterfaces;
 using PoeLeagueTracker.Domain.Characters;
 using PoeLeagueTracker.Infrastructure.RefitInterfaces;
-using PoeLeagueTracker.Shared.DTOs;
 
 namespace PoeLeagueTracker.Infrastructure.Services
 {
@@ -19,46 +18,24 @@ namespace PoeLeagueTracker.Infrastructure.Services
 
         async Task IDiscordService.AnnounceRip(Character rippedChar)
         {
-            var notification = new DiscordWebhookPayload(
-                content: null,
-                embeds: new List<DiscordEmbed>
-                {
-                    new DiscordEmbed(
-                        title: $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
-                        color: 16711763,
-                        author: new DiscordAuthor(
-                            name: rippedChar.AccountName,
-                            url: $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName.Replace("#", "%23")}/characters?characterName={rippedChar.Name}"),
-                        fields: new List<Object>(),
-                        thumbnail: new DiscordThumbnail(
-                            url: ""),
-                        url: $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName.Replace("#", "%23")}/characters?characterName={rippedChar.Name}")
-                },
-                components: new List<Object>());
-
-            //var payload = new
-            //{
-            //    embeds = new[] {
-            //        new {
-            //            title = $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
-            //            color = 16711763,
-            //            author = new {
-            //                name = rippedChar.AccountName,
-            //                url = $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName.Replace("#", "%23")}"
-            //            },
-            //            fields = Array.Empty<object>(),
-            //            thumbnail = new { url = "" },
-            //            url = "..."
-            //        }
-            //    },
-            //    components = Array.Empty<object>()
-            //};
-
-            //var notification = JsonSerializer.Serialize(payload);
+            var notification = new
+            {
+                embeds = new[] {
+        new {
+        author = new {
+            name = string.IsNullOrWhiteSpace(rippedChar.LeagueName) ? "Unknown League" : rippedChar.LeagueName,
+            url = $"https://poe.dahlmann.dev/{rippedChar.LeagueName.Replace(" ", "%20")}/"},
+        title = $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
+        color = 16711682,
+        description = rippedChar.AccountName ?? "Unknown Account",
+        url = $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName!.Replace("#", "%23")}/characters?characterName={rippedChar.Name}"
+        }}
+            };
 
             var path = _config["DiscordWebhook"];
 
             await _discordApi.RipNotification(path, notification);
+
         }
     }
 }

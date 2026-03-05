@@ -9,13 +9,14 @@
 
 @inject HttpClient PoeTrackerApi;
 @inject NavigationManager Navigation;
+@inject IConfiguration Config;
 
 <div class="page-wrapper">
     <header class="poe-header">
 
         <div class="header-content">
             <div class="title-section">
-                <a class="logo-circle" href="/@selectedLeague">
+                <a class="logo-circle" href="/@Config["ActiveLeague"]">
                     <TrackerIcon></TrackerIcon>
                 </a>
                 <div>
@@ -27,13 +28,18 @@
             <div class="league-selector-container">
                 <div class="poe-select-wrapper">
                     <select class="poe-dropdown" value="@selectedLeague" @onchange="HandleSelectorChanged">
-                    @foreach (var league in leagues!)
-                    {
-                        <option value="@league" selected="@(league == selectedLeague)">
-                            @league
-                        </option>
-                    }
-                </select>
+                        <optgroup label="Active League">
+                            <option value="@Config["ActiveLeague"]">@Config["ActiveLeague"]</option>
+                        </optgroup>
+
+                        <optgroup label="Past leagues">
+                            @foreach (var league in leagues!.Where(league => league != Config["ActiveLeague"]))
+                            {
+                                <option value="@league">@league</option>
+                            }
+                        </optgroup>
+                    </select>
+
                 <span class="poe-select-arrow"></span>
                 </div>
             </div>
@@ -63,7 +69,10 @@
                 <div class="stats-grid">
                 <XpStatCard characters="characters"></XpStatCard>
                 <CharCountStatCard characters="characters"></CharCountStatCard>
-                @* <ChallengesCard characters="characters"></ChallengesCard> *@
+                @if (selectedLeague == Config["ActiveLeague"])
+                    {
+                        <ChallengesCard characters="characters"></ChallengesCard>
+                    }
                 <DeathStatCard characters="characters"></DeathStatCard>
                 </div>
             }
@@ -97,6 +106,8 @@
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
+
+        selectedLeague = Config["ActiveLeague"]!;
 
         await FetchLeagueNames();
 
