@@ -122,3 +122,13 @@
 .highlight-red {
     color: #ef4444; /* Tailwind red-500 equivalent */
 }
+
+@media (max-width: 768px) {
+    .stat-account, .stat-value {
+        font-size: 0.8rem;
+    }
+
+    .stat-subtext {
+        font-size: 0.7rem;
+    }
+}
