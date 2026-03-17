@@ -82,7 +82,7 @@
 }
 
 .col-number {
-    text-align: right;
+    text-align: center;
 }
 
 .rank-first {
@@ -155,3 +155,32 @@
     font-weight: 500;
     border: 1px solid var(--border-highlight);
 }
+
+/*@media (max-width: 768px) {
+    .ladder-table {
+        font-size: 0.80rem;*/ /* Shrinks all text in the table */
+    /*}
+
+        .ladder-table th,
+        .ladder-row td {
+            padding: 0.5rem 0.25rem;*/ /* Tightens spacing */
+        /*}*/
+
+            /* Hide the 'Account' (3rd) and 'Experience' (6th) columns */
+            /*.ladder-table th:nth-child(3),
+            .ladder-row td:nth-child(3),
+            .ladder-table th:nth-child(4),
+            .ladder-row td:nth-child(4),
+            .ladder-table th:nth-child(6),
+            .ladder-row td:nth-child(6) {
+                display: none;
+            }
+
+    .col-rank {
+        width: 2rem;
+    }
+
+    .rank-first, .char-name-alive, .char-name-dead, .char-name-retired {
+        font-size: 0.85rem;
+    }
+}*/
