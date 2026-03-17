@@ -28,17 +28,35 @@
 }
 
 .logo-circle {
-    text-decoration: none;
-    width: 2.5rem;
-    height: 2.5rem;
-    border-radius: 50%;
-    background: linear-gradient(to bottom right, #8a1c1c, #3a0a0a);
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 2px solid var(--accent-gold);
-    box-shadow: 0 0 15px rgba(163,128,70,0.3);
+    width: 5rem;
+    height: 5rem;
+    border-radius: 100%;
+    /* Keep the border if you want the "frame" look, 
+       or remove it if you only want the inner object to glow */
 }
+
+.poe-logo-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 100%;
+    object-fit: contain;
+    /* --- THE GLOW EFFECT --- */
+    /* This creates a gold glow around the actual pixels of the PNG */
+    filter: drop-shadow(0 0 6px rgba(163, 128, 70, 0.8));
+    transition: filter 0.4s ease, transform 0.3s ease;
+}
+
+    .poe-logo-img:hover {
+        /* Intensify the glow on hover */
+        filter: drop-shadow(0 0 8px darkred);
+        transform: scale(1.02);
+    }
 
 .page-title {
     font-size: 1.5rem;
@@ -95,8 +113,10 @@
 }
 
     .poe-tab:hover:not(.active) {
-        color: var(--text-main);
-        background-color: rgba(255, 255, 255, 0.05);
+        border-bottom-color: var(--accent-gold);
+        color: var(--text-bright);
+        /* The subtle gold gradient glowing up from the border */
+        background: linear-gradient(to top, rgba(163,128,70,0.1), transparent);
     }
 
     .poe-tab.active {

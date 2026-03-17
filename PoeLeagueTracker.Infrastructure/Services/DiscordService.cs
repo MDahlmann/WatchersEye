@@ -21,15 +21,15 @@ namespace PoeLeagueTracker.Infrastructure.Services
             var notification = new
             {
                 embeds = new[] {
-        new {
-        author = new {
-            name = string.IsNullOrWhiteSpace(rippedChar.LeagueName) ? "Unknown League" : rippedChar.LeagueName,
-            url = $"https://poe.dahlmann.dev/{rippedChar.LeagueName.Replace(" ", "+")}/"},
-        title = $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
-        color = 16711682,
-        description = rippedChar.AccountName ?? "Unknown Account",
-        url = $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName!.Replace("#", "%23")}/characters?characterName={rippedChar.Name}"
-        }}
+                new {
+                    author = new {
+                        name = string.IsNullOrWhiteSpace(rippedChar.LeagueName) ? "Unknown League" : rippedChar.LeagueName,
+                        url = $"https://poe.dahlmann.dev/{rippedChar.LeagueName.Replace(" ", "+")}/"},
+                    title = $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
+                    color = 16711682,
+                    description = rippedChar.AccountName ?? "Unknown Account",
+                    url = $"https://www.pathofexile.com/account/view-profile/{rippedChar.AccountName!.Replace("#", "%23")}/characters?characterName={rippedChar.Name}"
+                }}
             };
 
             var path = _config["DiscordWebhook"];
