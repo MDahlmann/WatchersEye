@@ -3,7 +3,7 @@
   "entries": [
     {
       "rank": 1,
-      "dead": false,
+      "dead": true,
       "retired": true,
       "public": true,
       "character": {

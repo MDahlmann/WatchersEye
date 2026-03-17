@@ -28,10 +28,9 @@ services:
       - DB_PASS=${DB_PASS}
       - ASPNETCORE_ENVIRONMENT=Production
       - OriginApiUrl=https://poe.dahlmann.dev
-      - ActiveLeague=A Mirage of COCKS (PL79034)
+      - ActiveLeague=${ACTIVE_LEAGUE}
       - SyncInterval=30000
-      # Path of Salt
-      - DiscordWebhook=1478502900593590324/oWwf-Bva6ApK_F-aPzxT1_fg4w9O4a2pD5Vqj6jjaQpnjNKxQAF0hkz_mC82LF3InCIf
+      - DiscordWebhook=${DISCORD_WEBHOOK}
     depends_on:
       - db
 
