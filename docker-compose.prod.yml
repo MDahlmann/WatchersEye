@@ -1,3 +1,5 @@
+# Docker compose used for production setup
+
 services:
 
 # PostgreSQL database

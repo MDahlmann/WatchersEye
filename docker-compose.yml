@@ -1,4 +1,7 @@
-﻿services:
+﻿# Docker compose used for local testing/hosting
+# Only spins up a database container, API and Client runs through IDE
+
+services:
   db:
     image: postgres:18-alpine
     container_name: poe-postgres

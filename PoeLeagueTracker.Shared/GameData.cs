@@ -111,7 +111,7 @@ namespace PoeLeagueTracker.Shared
 
         public static int AverageLevel(long avgExp)
         {
-            int currentLevel = 1;
+            int currentLevel = 0;
 
             foreach (var level in GameData.LevelExpReq)
             {
