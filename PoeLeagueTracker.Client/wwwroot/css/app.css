@@ -113,10 +113,11 @@ a, .btn-link {
 .loading-progress {
     position: absolute;
     display: block;
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     inset: 20vh 0 auto 0;
     margin: 0 auto 0 auto;
+    filter: drop-shadow(0 0 30px rgba(163, 128, 70, 0.8));
 }
 
     .loading-progress circle {
@@ -137,12 +138,15 @@ a, .btn-link {
     position: absolute;
     text-align: center;
     font-weight: bold;
-    inset: calc(20vh + 3.25rem) 0 auto 0.2rem;
+    font-size: 20px;
+    inset: calc(20vh + 3.25rem + 65px) 0 auto 0.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    background: linear-gradient(to bottom, var(--text-bright), var(--accent-gold));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 0;
 }
-
-    .loading-progress-text:after {
-        content: var(--blazor-load-percentage-text, "Loading");
-    }
 
 code {
     color: #c02d76;

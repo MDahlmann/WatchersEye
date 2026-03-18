@@ -1,0 +1,30 @@
+/* Ensure the main container takes up at least the full screen height */
+main {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* This pushes the footer down by taking up all available space */
+.content-area {
+    flex: 1;
+}
+
+.third-party-notice {
+    text-align: center;
+    padding: 0.5rem;
+    font-size: 0.6rem;
+    /* "Slightly greyed out" */
+    color: #6c757d;
+    opacity: 0.8;
+    /* Optional: subtle top border to separate it from content */
+    border-top: 1px solid var(--border-highlight);
+    background-color: var(--bg-header);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.8);
+}

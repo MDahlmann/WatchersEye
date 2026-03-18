@@ -182,7 +182,7 @@
     display: grid;
     gap: 1.5rem;
     /* This automatically handles responsiveness without media queries! */
-    grid-template-columns: repeat(auto-fit, minmax(400px));
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
 }
 
 @media (max-width: 768px) {
@@ -203,5 +203,9 @@
 
     .page-title {
         font-size: 1.25rem;
+    }
+
+    .stats-grid {
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
     }
 }
