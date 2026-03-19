@@ -13,9 +13,8 @@ internal class Program
         var apiUrl = builder.Configuration["BackendApiUrl"];
 
         builder.Services.AddHttpClient("PoeTrackerApi", client =>
-        {
-            client.BaseAddress = new Uri(apiUrl!);
-        });
+            client.BaseAddress = new Uri(apiUrl!))
+            .AddStandardResilienceHandler();
 
         builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));
 

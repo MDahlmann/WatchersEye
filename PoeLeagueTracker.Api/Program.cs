@@ -38,7 +38,8 @@ namespace PoeLeagueTracker.Api
                     {
                         c.BaseAddress = new Uri("https://api.pathofexile.com");
                         c.DefaultRequestHeaders.Add("User-Agent", "OAuth PoeLeagueTracker/1.0 (contact: dahlmann.mikkel@gmail.com)");
-                    });
+                    })
+                    .AddStandardResilienceHandler();
             }
 
             builder.Services
@@ -71,6 +72,8 @@ namespace PoeLeagueTracker.Api
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
+            builder.Services.AddExceptionHandler<GlobalExceptionHandler>();
+
             // Only needed because of API-controller 'proof-of'
             builder.Services.AddControllers();
 
@@ -92,6 +95,7 @@ namespace PoeLeagueTracker.Api
                 var dbContext = scope.ServiceProvider.GetRequiredService<PoeTrackerDbContext>();
                 dbContext.Database.Migrate();
             }
+
 
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
