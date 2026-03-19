@@ -28,7 +28,8 @@
         Hierophant,
         Guardian,
         Scion,
-        Ascendant
+        Ascendant,
+        Reliquarian
     }
 
     public static class EnumExtensions

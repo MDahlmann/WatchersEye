@@ -3,14 +3,14 @@
   "entries": [
     {
       "rank": 1,
-      "dead": true,
+      "dead": false,
       "retired": true,
       "public": true,
       "character": {
         "id": "0c1f7284ca53e66762bce2833a6fe20b3c6f6a36d3b437fac0c2b189eb0",
         "name": "DahlmannNeverHundred",
         "level": 98,
-        "class": "Juggernaut",
+        "class": "Reliquarian",
         "experience": 3679181843
       },
       "account": {
