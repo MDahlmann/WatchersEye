@@ -2,6 +2,5 @@
 {
     public record GetLeagueNamesQuery : IQuery<List<string>?>
     {
-
     }
 }

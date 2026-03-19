@@ -2,6 +2,5 @@
 {
     public record SyncLeagueCommand(string LeagueName) : ICommand
     {
-
     }
 }

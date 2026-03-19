@@ -21,7 +21,7 @@ namespace PoeLeagueTracker.Application.Commands.SyncLeagueCommand
             _discordService = discordService;
         }
 
-        async Task ICommandHandler<SyncLeagueCommand>.HandleAsync(SyncLeagueCommand command)
+        public async Task HandleAsync(SyncLeagueCommand command)
         {
             var apiLeague = await _poeLadderService.GetLeagueAsync(command.LeagueName)
                 ?? throw new ArgumentException($"{command.LeagueName} doesn't exist.");

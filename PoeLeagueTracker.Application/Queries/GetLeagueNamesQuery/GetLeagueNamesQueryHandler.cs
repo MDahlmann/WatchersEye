@@ -11,7 +11,7 @@ namespace PoeLeagueTracker.Application.Queries.GetLeagueNamesQuery
             _repository = repository;
         }
 
-        async Task<List<string>?> IQueryHandler<GetLeagueNamesQuery, List<string>?>.HandleAsync(GetLeagueNamesQuery query)
+        public async Task<List<string>?> HandleAsync(GetLeagueNamesQuery query)
         {
             return await _repository.GetLeagueNamesAsync();
         }
