@@ -19,6 +19,8 @@ services:
 
 # Backend API
   api:
+    labels:
+      - "com.centurylinklabs.watchtower.scope=prod"
     image: ghcr.io/mdahlmann/poetracker-api:latest
     container_name: poe-api
     restart: always
@@ -43,6 +45,8 @@ services:
 
 # Frontend project
   client:
+    labels:
+      - "com.centurylinklabs.watchtower.scope=prod"
     image: ghcr.io/mdahlmann/poetracker-client:latest
     container_name: poe-client
     restart: always
@@ -61,6 +65,7 @@ services:
     restart: always
     environment:
       - DOCKER_API_VERSION=1.44
+      - WATCHTOWER_SCOPE=prod
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - ~/.docker/config.json:/config.json:ro
