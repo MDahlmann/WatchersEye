@@ -23,8 +23,8 @@ ___
 * **Discord Integrations:**  
   Dispatches webhooks based on Domain Events (e.g., when a character levels up or dies in Hardcore).
   
-* **Mocked Environments:**  
-  Fully mocked GGG API for local development and testing of event scenarios without waiting for live game data.
+* **Dual-Environment Strategy:**  
+  Production and Demo environments run as separate Docker Compose projects with isolated virtual networks and databases, allowing true-to-production testing and the ability to trigger edge-case scenarios via a dedicated mocked GGG API in the demo environment.
 ___
 ## Architecture
 The project follows _Clean Architecture/Domain Driven Design_ principles to ensure that business logic is entirely independent of UI, databases, and external APIs.
@@ -40,12 +40,14 @@ ___
 ## Tech Stack
 __Backend & Frontend__
 * `C# / .NET 10`
+* `Minimal APIs`
 * `Entity Framework Core`
 * `PostgreSQL`
 * `Blazor WebAssembly`
 
 __DevOps & Infrastructure__
 * `Docker`
+* `Docker Compose`
 * `GitHub Actions`
 * `GitHub Container Registry`
 * `Watchtower`
@@ -60,8 +62,10 @@ Code is pushed to the `master` branch.
 2. **Build & Publish:**  
 A GitHub Actions workflow (`docker-publish.yml`) triggers, building the Client and API Docker images and pushing them to the GitHub Container Registry.
 
-3. **Automated Rollout:**  
-Watchtower, running on the VPS, detects the new images in GHCR, pulls them, and restarts the containers.
+3. **Scoped Automated Rollout:**  
+Two independent instances of Watchtower monitor the GitHub Container Registry. Using Docker Scopes, they ensure that updates are deployed independently:
+   - `Demo Watchtower`: Immediate updates for rapid testing of new features.
+   - `Live Watchtower`: Controlled updates for the production environment.
 ___
 
 ###### This product isn't affiliated with or endorsed by Grinding Gear Games in any way.
