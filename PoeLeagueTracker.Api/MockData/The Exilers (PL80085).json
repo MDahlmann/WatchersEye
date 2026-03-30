@@ -81,7 +81,7 @@
       "public": true,
       "character": {
         "id": "c701eba5ef3e014f0ee8f492dbc05ede1a8f100ec54d13bb492b61d5a17031ee",
-        "name": "Bob_mfing_Shield",
+        "name": "Bob_mighty_Shield",
         "level": 98,
         "class": "Necromancer",
         "experience": 3704472292,
@@ -178,7 +178,7 @@
       "public": true,
       "character": {
         "id": "cdd90b64924d9a959048e2e902b69cda85f27b09b1e89c1900e21126e1ed4f12",
-        "name": "MyllersPackageCantGetUp",
+        "name": "MyllersParcelGotLost",
         "level": 96,
         "class": "Necromancer",
         "experience": 3298799996
@@ -198,7 +198,7 @@
       "public": true,
       "character": {
         "id": "d380ed27dc798bfb286118425f450b50963013fceadcf5c62e91995e36741b3d",
-        "name": "PRINSPIKKEMAND",
+        "name": "PRINCESWORDMAN",
         "level": 96,
         "class": "Chieftain",
         "experience": 3291137855
@@ -221,7 +221,7 @@
       "public": true,
       "character": {
         "id": "5320cf711663c685d3fcbfe35308884caac6a99c355709245b8c7045619ec678",
-        "name": "CockOnBoat",
+        "name": "BirdOnBoat",
         "level": 96,
         "class": "Slayer",
         "experience": 3217565790
@@ -313,7 +313,7 @@
       "public": true,
       "character": {
         "id": "e6ba1e7a88e16f583f6966ddf130a5b05f847da9e7aa908238141c3f1a609529",
-        "name": "Bob_idiot",
+        "name": "Bob_silly",
         "level": 95,
         "class": "Pathfinder",
         "experience": 2880910351,
@@ -390,7 +390,7 @@
       "public": true,
       "character": {
         "id": "72766a6205775f135483948a7edbebddf286799ccbafa7fcd9d685a9339a8dbb",
-        "name": "Kingcockblocker",
+        "name": "KingBlocker",
         "level": 94,
         "class": "Gladiator",
         "experience": 2781334280
@@ -532,7 +532,7 @@
       "public": true,
       "character": {
         "id": "a94b75140d27efc19c427aa8c96a80f2490eea13dad1ca8c4d945dbda755b6da",
-        "name": "Slammermedmindiller",
+        "name": "Slammermedminhammer",
         "level": 93,
         "class": "Juggernaut",
         "experience": 2528551978
@@ -555,7 +555,7 @@
       "public": true,
       "character": {
         "id": "49f42aa2d01de5e162dd2e3582cfa6cf2ab5a00945c2cc595ef3ee07e9d27f27",
-        "name": "MaximusCOCKS",
+        "name": "MaximusSOCKS",
         "level": 92,
         "class": "Gladiator",
         "experience": 2450879156
@@ -578,7 +578,7 @@
       "public": true,
       "character": {
         "id": "f2eeceedf6d38d647e8d6f8e4dfee47eb511bb6818b063f3e03602867691648e",
-        "name": "Manakugler",
+        "name": "ManaOrbs",
         "level": 92,
         "class": "Hierophant",
         "experience": 2436401220
@@ -624,7 +624,7 @@
       "public": true,
       "character": {
         "id": "35a8a7268190925b523478bd413a0ecf1d98c81361bd7f6d048fdaf99b140ca5",
-        "name": "EXPLORETHEANUS",
+        "name": "EXPLORETHEABYSS",
         "level": 91,
         "class": "Slayer",
         "experience": 2126087329
@@ -720,7 +720,7 @@
       "public": true,
       "character": {
         "id": "5113614d7c460fae93daeda274d961006787a59501e191e3fa2b0422130d3d7b",
-        "name": "SlammingCockSlayer",
+        "name": "SlammingRockSlayer",
         "level": 90,
         "class": "Slayer",
         "experience": 2022268255
@@ -839,7 +839,7 @@
       "public": true,
       "character": {
         "id": "c543678501affed3136fd043b2c148726d1bf20e3d0cbb722684078bf9b16081",
-        "name": "BIGANUZ",
+        "name": "BIGABYSS",
         "level": 85,
         "class": "Hierophant",
         "experience": 1380596191
@@ -862,7 +862,7 @@
       "public": true,
       "character": {
         "id": "8287f4a8d996849d119405d6d77943b990a2c1be0b8b393186f8607cc574cb94",
-        "name": "GAYLORD_SAILORD",
+        "name": "SAILOR_BAILOR",
         "level": 85,
         "class": "Gladiator",
         "experience": 1378165378
@@ -983,7 +983,7 @@
       "public": true,
       "character": {
         "id": "c8268e079790407b04c63445fcacfe2ff6b9c936b4b8632aef828f5ff31e7e80",
-        "name": "ManyBallsMan",
+        "name": "ManyOrbsMan",
         "level": 78,
         "class": "Juggernaut",
         "experience": 784093555
@@ -1006,7 +1006,7 @@
       "public": true,
       "character": {
         "id": "c74b2002e9b5d9b0d9c2b98d79663fce09e980d49aca614590e724cde74985c8",
-        "name": "THEDUMBANUS",
+        "name": "THEDUMBGENIUS",
         "level": 77,
         "class": "Juggernaut",
         "experience": 717052842
@@ -1075,7 +1075,7 @@
       "public": true,
       "character": {
         "id": "d7b121c5b6ecc94ce6afd9932d149d047990b961afe0dfe58b2bd54138241ba4",
-        "name": "DRPENISMAN",
+        "name": "DRHEALERMAN",
         "level": 71,
         "class": "Chieftain",
         "experience": 428197743
@@ -1188,7 +1188,7 @@
       "public": true,
       "character": {
         "id": "31302e94984e9219b9f3bdc7fc5b88601c88e1cb232335667b68fb67f9d7a6bf",
-        "name": "ALMOSTCOCKKING",
+        "name": "ALMOSTCLOCKKING",
         "level": 52,
         "class": "Guardian",
         "experience": 67622409
@@ -1258,7 +1258,7 @@
       "public": true,
       "character": {
         "id": "41ec291bbe09008da8552dbcb0140f90ea5a436270cfeb9467bbf85988d627e8",
-        "name": "MaximusCOCKS",
+        "name": "MaximusBLOCKS",
         "level": 39,
         "class": "Gladiator",
         "experience": 16049556
@@ -1281,7 +1281,7 @@
       "public": true,
       "character": {
         "id": "f63a202bb43f322b81a5ed2b416ae110e3bb26c561ab8c999f1833ef5bf5c120",
-        "name": "Settler_of_Uranus",
+        "name": "Settler_of_Wraeclast",
         "level": 38,
         "class": "Shadow",
         "experience": 14822507
@@ -1304,7 +1304,7 @@
       "public": true,
       "character": {
         "id": "b5b8d4bb1cf2f91ffcb4c65d2de4ae0d932818ffbb0ce01677fa29d92cbb74b5",
-        "name": "LOCUCKS",
+        "name": "LODUCKS",
         "level": 35,
         "class": "Shadow",
         "experience": 10404116
@@ -1373,7 +1373,7 @@
       "public": true,
       "character": {
         "id": "fd57d9f665e4069e6b06b52f283f30ea5288c77a34c54ac5248bb99db8da0201",
-        "name": "CockSlammingSlayer",
+        "name": "RockSlammingSlayer",
         "level": 23,
         "class": "Duelist",
         "experience": 1699141
@@ -1419,7 +1419,7 @@
       "public": true,
       "character": {
         "id": "a6c54e25cda089a427e284e038fd4081c9a89e2fcf3b7af2d60fa8718a479d8f",
-        "name": "WTT_Wood_For_Sheep",
+        "name": "WTT_Ore_For_Sheep",
         "level": 19,
         "class": "Shadow",
         "experience": 722427
@@ -1442,7 +1442,7 @@
       "public": true,
       "character": {
         "id": "3c9dc7f6527f2de8e310ab5b1d0f251eac9ecfc4729ab41f77b0ee02e9dd7669",
-        "name": "jegerlort_bob",
+        "name": "jegerdaarlig_bob",
         "level": 14,
         "class": "Shadow",
         "experience": 213369
@@ -1488,7 +1488,7 @@
       "public": true,
       "character": {
         "id": "1adb5bff0947f8b88f312ce1406ddda683bd587914e2fa43bebbbec938bca226",
-        "name": "GAYLORD_SAILORD",
+        "name": "GRANDLORD",
         "level": 11,
         "class": "Duelist",
         "experience": 104334
@@ -1511,7 +1511,7 @@
       "public": true,
       "character": {
         "id": "4360a9bc5c640f0582c54f84112c1f653191d800c77a9052c65d8e2e2588c53d",
-        "name": "TradingSheepForCock",
+        "name": "TradingSheepForOre",
         "level": 11,
         "class": "Duelist",
         "experience": 88457
@@ -1651,7 +1651,7 @@
       "public": true,
       "character": {
         "id": "d4e9000ce6fb87a6246b9dccfced322bff624ebdb488339f6276d0b0d17c0046",
-        "name": "PRINSPIKKEMAND",
+        "name": "PRINCESHIELDMAN",
         "level": 1,
         "class": "Marauder",
         "experience": 44
@@ -1674,7 +1674,7 @@
       "public": true,
       "character": {
         "id": "1e1118596bca27bed58ae41aba573463176925de8f2a10781e07fab9e878ee16",
-        "name": "Teambigdicks_sucks",
+        "name": "Teambigbricks_stinks",
         "level": 1,
         "class": "Scion",
         "experience": 0

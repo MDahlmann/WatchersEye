@@ -72,7 +72,7 @@
       "public": true,
       "character": {
         "id": "ee1f678046dbfe94ec2bc6a5ad6a5286e529c96038600875b086c2719e5113d7",
-        "name": "GraftedCocks",
+        "name": "GraftedClocks",
         "level": 98,
         "class": "Gladiator",
         "experience": 3705410777
@@ -93,7 +93,7 @@
       "public": true,
       "character": {
         "id": "2d8fb580f7ebf08930a901bcd2d896809a3df5f56aa3004a1d51c218e5d2a7c8",
-        "name": "THEBIGONESHURT",
+        "name": "THEBIGSPELLSHURT",
         "level": 96,
         "class": "Elementalist",
         "experience": 3353954771
@@ -157,7 +157,7 @@
       "public": true,
       "character": {
         "id": "2898c9a643b265235445132e4edc28e0af5df3ea2feebfa35de199826d2c2040",
-        "name": "HeavyDoomBlastingJuggs",
+        "name": "HeavyDoomBlastingMugs",
         "level": 95,
         "class": "Elementalist",
         "experience": 3020410688,
@@ -203,7 +203,7 @@
       "public": true,
       "character": {
         "id": "d2edd41fcf5bc8dd665f043b7968438e4574be4f357283ca7d8612adeaf14d30",
-        "name": "BunchOfCracklingDildos",
+        "name": "BunchOfCracklingWands",
         "level": 95,
         "class": "Necromancer",
         "experience": 2985171828
@@ -245,7 +245,7 @@
       "public": true,
       "character": {
         "id": "7e4cb6d61a6e7c45da17bc2bb3c565f488f5ae2c7ae9c1357cddd2db83b9629a",
-        "name": "bob_Burningchildren",
+        "name": "bob_BurningEmbers",
         "level": 95,
         "class": "Chieftain",
         "experience": 2887093381,
@@ -270,7 +270,7 @@
       "public": true,
       "character": {
         "id": "2b6b1470bba864a7f46633b9fd851aca6504d5722034530004cf91464280be42",
-        "name": "ArmyOfSmallCOCKS",
+        "name": "ArmyOfSmallCLOCKS",
         "level": 94,
         "class": "Necromancer",
         "experience": 2821057097
@@ -291,7 +291,7 @@
       "public": true,
       "character": {
         "id": "51713d33504cef7ad3030fecd0be0f0fbac6e9462419c444794efcfafcdb8247",
-        "name": "DIRTYCOCK",
+        "name": "DIRTYCLOCK",
         "level": 94,
         "class": "Necromancer",
         "experience": 2791182194
@@ -312,7 +312,7 @@
       "public": true,
       "character": {
         "id": "562a671336c7e694efdced88d776cdf695956b52d43dd9b7c9e71a44316651b3",
-        "name": "SaetterIldTilLortet",
+        "name": "SaetterIldTilDetHele",
         "level": 94,
         "class": "Elementalist",
         "experience": 2720859211
@@ -443,7 +443,7 @@
       "public": true,
       "character": {
         "id": "88e295ec741c6b1d38a39079e99d920bfebd02ed9304225b00bd98f48e9dbf9c",
-        "name": "Gazzelles_slave",
+        "name": "Gazzelles_sidekick",
         "level": 90,
         "class": "Elementalist",
         "experience": 2047356943
@@ -464,7 +464,7 @@
       "public": true,
       "character": {
         "id": "9dd066517343a162a4fb7da4e8099b7a1e80413fa89190b1e9145b735ed865a9",
-        "name": "Mrbigdickspikes",
+        "name": "MrBigBrickSpikes",
         "level": 90,
         "class": "Berserker",
         "experience": 1966802599
@@ -632,7 +632,7 @@
       "public": true,
       "character": {
         "id": "86cc2ebafc0063fb522c3c20b99aa40833138216e27f8551495c072f9a876582",
-        "name": "MyStickyBalls",
+        "name": "MyStickyOrbs",
         "level": 83,
         "class": "Elementalist",
         "experience": 1157454498
@@ -653,7 +653,7 @@
       "public": true,
       "character": {
         "id": "8b2471ec43bc50e06bc170359d6f023c2c44de521c2f75d1d58170f949510826",
-        "name": "BadetiBlod",
+        "name": "BadetiGuld",
         "level": 83,
         "class": "Slayer",
         "experience": 1112851478
@@ -674,7 +674,7 @@
       "public": true,
       "character": {
         "id": "a3cfef837d223aa061854aea008cde69535fa09b7866a9788298154d266a5b93",
-        "name": "JOOOHNCOCK",
+        "name": "JOOOHNROCK",
         "level": 72,
         "class": "Elementalist",
         "experience": 449536537
@@ -716,7 +716,7 @@
       "public": true,
       "character": {
         "id": "8bd70fb7beef34ad133f69e43b1a8d517f7a821a327536f39313347874bdce6d",
-        "name": "WandIsADildoForTheBrave",
+        "name": "WandIsAWeaponForTheBrave",
         "level": 67,
         "class": "Necromancer",
         "experience": 297539253
@@ -820,7 +820,7 @@
       "public": true,
       "character": {
         "id": "d41a4d5c10e3d0c71b0a425ea1ba6462988cecc027cab4e96ab4f714d878c239",
-        "name": "MyExplodingsBalls",
+        "name": "MyExplodingOrbs",
         "level": 7,
         "class": "Witch",
         "experience": 19773
@@ -883,7 +883,7 @@
       "public": true,
       "character": {
         "id": "8b388d630e9bfdec6779e9d753836d9732b95e2bfd8fadced6334ddc737037ff",
-        "name": "HeavyJuggs",
+        "name": "HeavyArmour",
         "level": 3,
         "class": "Witch",
         "experience": 3237
