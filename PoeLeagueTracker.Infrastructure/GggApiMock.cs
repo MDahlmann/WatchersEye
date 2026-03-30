@@ -10,7 +10,7 @@ namespace PoeLeagueTracker.Infrastructure
         public async Task<GggLadderResponse> GetGggResponseAsync(string leagueId)
         {
             string cleanLeagueId = WebUtility.UrlDecode(leagueId);
-            string fileName = $"MockData\\{cleanLeagueId}.json";
+            string fileName = Path.Combine("MockData", $"{cleanLeagueId}.json");
 
             using FileStream openStream = File.OpenRead(fileName);
 
