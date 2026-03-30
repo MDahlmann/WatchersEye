@@ -9,7 +9,7 @@
 ![Static Badge](https://img.shields.io/badge/Nginx%20Proxy%20Manager-%23F15833?logo=nginxproxymanager&logoColor=white)
 ![Discord](https://img.shields.io/badge/Discord_Webhook-5865F2?style=flat&logo=discord&logoColor=white)
 
-**Live Demo:** [https://poe.dahlmann.dev](https://poe.dahlmann.dev)
+**Live Demo:** [https://poe.dahlmann.dev](https://watcher.dahlmann.dev)
 ___
 ## Project Overview
 Watcher's Eye is a full-stack web application designed to track and sync character progression, deaths and ladder rankings in the game Path of Exile.
