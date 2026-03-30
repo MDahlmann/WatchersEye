@@ -10,10 +10,21 @@ internal class Program
         builder.RootComponents.Add<App>("#app");
         builder.RootComponents.Add<HeadOutlet>("head::after");
 
-        var apiUrl = builder.Configuration["BackendApiUrl"];
+        var backendApiUrl = builder.Configuration["BackendApiUrl"];
+
+        Uri apiBaseAddress;
+
+        if (!string.IsNullOrEmpty(backendApiUrl))
+        {
+            apiBaseAddress = new Uri(backendApiUrl);
+        }
+        else
+        {
+            apiBaseAddress = new Uri(new Uri(builder.HostEnvironment.BaseAddress), "api/");
+        }
 
         builder.Services.AddHttpClient("PoeTrackerApi", client =>
-            client.BaseAddress = new Uri(apiUrl!))
+            client.BaseAddress = apiBaseAddress)
             .AddStandardResilienceHandler();
 
         builder.Services.AddScoped(sp => sp.GetRequiredService<IHttpClientFactory>().CreateClient("PoeTrackerApi"));

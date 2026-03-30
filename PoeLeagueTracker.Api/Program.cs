@@ -3,6 +3,7 @@ using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Commands;
 using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
 using PoeLeagueTracker.Application.Queries;
+using PoeLeagueTracker.Application.Queries.GetActiveLeagueQuery;
 using PoeLeagueTracker.Application.Queries.GetLeagueNamesQuery;
 using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
 using PoeLeagueTracker.Application.RepositoryInterfaces;
@@ -25,8 +26,10 @@ namespace PoeLeagueTracker.Api
             // DotNetEnv-libary allows .NET to read the local .env file
             DotNetEnv.Env.TraversePath().Load();
 
+            var useMockData = builder.Configuration.GetValue<bool>("UseMockData");
+
             // Add services to the container.
-            if (builder.Environment.IsDevelopment())
+            if (builder.Environment.IsDevelopment() || useMockData)
             {
                 builder.Services.AddScoped<IGggApi, GggApiMock>();
             }
@@ -69,6 +72,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueNamesQuery, List<string>?>, GetLeagueNamesQueryHandler>();
+            builder.Services.AddScoped<IQueryHandler<GetActiveLeagueQuery, string?>, GetActiveLeagueQueryHandler>();
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
@@ -129,6 +133,15 @@ namespace PoeLeagueTracker.Api
                 if (leagues is null) { return Results.NotFound(); }
 
                 return Results.Ok(leagues);
+            });
+
+            app.MapGet("activeLeague", async (IQueryHandler<GetActiveLeagueQuery, string?> queryHandler) =>
+            {
+                var activeLeague = await queryHandler.HandleAsync(new GetActiveLeagueQuery());
+
+                if (activeLeague is null) { return Results.NotFound(); }
+
+                return Results.Ok(activeLeague);
             });
 
             app.Run();

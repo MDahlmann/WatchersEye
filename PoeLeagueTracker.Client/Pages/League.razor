@@ -16,7 +16,7 @@
     <header class="poe-header">
         <div class="header-content">
             <div class="title-section">
-                <a href="/@HttpUtility.UrlEncode(Config["ActiveLeague"])">
+                <a href="/@HttpUtility.UrlEncode(activeLeague)">
                     <img src="WatchersEyeLogo.png" class="poe-logo-img"/>
                 </a>
                 <div>
@@ -29,11 +29,11 @@
                 <div class="poe-select-wrapper">
                     <select class="poe-dropdown" value="@selectedLeague" @onchange="HandleSelectorChanged">
                         <optgroup label="Active League">
-                            <option value="@Config["ActiveLeague"]">@Config["ActiveLeague"]</option>
+                            <option value="@activeLeague">@activeLeague</option>
                         </optgroup>
 
                         <optgroup label="Past leagues">
-                            @foreach (var league in leagues!.Where(league => league != Config["ActiveLeague"]))
+                            @foreach (var league in leagues!.Where(league => league != activeLeague))
                             {
                                 <option value="@league">@league</option>
                             }
@@ -69,7 +69,7 @@
                 <div class="stats-grid">
                 <XpStatCard characters="characters"></XpStatCard>
                 <CharCountStatCard characters="characters"></CharCountStatCard>
-                @if (selectedLeague == Config["ActiveLeague"])
+                @if (selectedLeague == activeLeague)
                     {
                         <ChallengesCard characters="characters"></ChallengesCard>
                     }
@@ -99,6 +99,7 @@
 
     public LeagueDto? league { get; set; }
     public List<CharacterDto>? characters { get; set; }
+    public string? activeLeague { get; set; }
 
     [Parameter]
     public string tabName { get; set; } = "";
@@ -107,7 +108,9 @@
     {
         await base.OnInitializedAsync();
 
-        selectedLeague = Config["ActiveLeague"]!;
+        await FetchActiveLeagueName();
+
+        selectedLeague = activeLeague!;
 
         await FetchLeagueNames();
 
@@ -121,6 +124,13 @@
             selectedLeague = HttpUtility.UrlDecode(selectedLeague);
             await FetchLeague();
         }
+    }
+
+    private async Task FetchActiveLeagueName()
+    {
+        var response = await PoeTrackerApi.GetAsync("activeLeague");
+
+        activeLeague = await response.Content.ReadFromJsonAsync<string>();
     }
 
     private async Task FetchLeagueNames()
