@@ -1,6 +1,8 @@
 ﻿# Docker compose used for local testing/hosting
 # Only spins up a database container, API and Client runs through IDE
 
+name: watchers-dev
+
 services:
   db:
     image: postgres:18-alpine

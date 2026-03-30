@@ -1,5 +1,7 @@
 # Docker compose used for setting up Nginx Proxy Manager
 
+name: watchers-proxy
+
 services:
 
 # Proxy manager (gatekeeper)

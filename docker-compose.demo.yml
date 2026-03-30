@@ -1,5 +1,7 @@
 # Docker compose used for demo setup
 
+name: watchers-demo
+
 services:
 
 # PostgreSQL database

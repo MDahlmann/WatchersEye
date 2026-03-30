@@ -1,5 +1,7 @@
 # Docker compose used for production setup
 
+name: watchers-prod
+
 services:
 
 # PostgreSQL database
