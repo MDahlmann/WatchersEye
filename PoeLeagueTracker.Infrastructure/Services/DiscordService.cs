@@ -24,7 +24,7 @@ namespace PoeLeagueTracker.Infrastructure.Services
                 new {
                     author = new {
                         name = string.IsNullOrWhiteSpace(rippedChar.LeagueName) ? "Unknown League" : rippedChar.LeagueName,
-                        url = $"https://poe.dahlmann.dev/{rippedChar.LeagueName.Replace(" ", "+")}/"},
+                        url = $"{_config["OriginApiUrl"]}/{rippedChar.LeagueName.Replace(" ", "+")}/"},
                     title = $"{rippedChar.Name} (lvl {rippedChar.Level}) died at rank {rippedChar.Rank}",
                     color = 16711682,
                     description = rippedChar.AccountName ?? "Unknown Account",
