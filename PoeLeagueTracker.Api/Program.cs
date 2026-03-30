@@ -109,12 +109,13 @@ namespace PoeLeagueTracker.Api
 
             app.UseHttpsRedirection();
             app.UseCors("CustomPolicy");
+            app.UsePathBase("/api");
 
             // Only needed because of API-controller 'proof-of'
             app.MapControllers();
 
             // Minimal API implementation
-            app.MapGet("/league/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
+            app.MapGet("league/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
             {
                 var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
 

@@ -144,7 +144,7 @@
 
     private async Task FetchLeague()
     {
-        var response = await PoeTrackerApi.GetAsync($"/league/{selectedLeague}");
+        var response = await PoeTrackerApi.GetAsync($"league/{selectedLeague}");
 
         league = await response.Content.ReadFromJsonAsync<LeagueDto>();
         characters = league!.Characters.ToList();

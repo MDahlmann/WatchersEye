@@ -1,0 +1,26 @@
+# Docker compose used for setting up Nginx Proxy Manager
+
+services:
+
+# Proxy manager (gatekeeper)
+  npm:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginx-proxy-manager
+    restart: always
+    ports:
+      - '80:80'      # Incoming HTTP
+      - '443:443'    # Incoming HTTPS
+      - '81:81'      # Controlpanel
+    volumes:
+      - npm_data:/data
+      - npm_letsencrypt:/etc/letsencrypt
+    networks:
+      - watchers-net
+
+volumes:
+  npm_data:
+  npm_letsencrypt:
+  
+networks:
+  watchers-net:
+    name: watchers-net

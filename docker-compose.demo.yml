@@ -1,11 +1,11 @@
-# Docker compose used for production setup
+# Docker compose used for demo setup
 
 services:
 
 # PostgreSQL database
   db:
     image: postgres:18-alpine
-    container_name: poe-postgres
+    container_name: demo-poe-postgres
     restart: always
     environment:
       POSTGRES_USER: ${DB_USER}
@@ -18,7 +18,7 @@ services:
 # Backend API
   api:
     image: ghcr.io/mdahlmann/poetracker-api:latest
-    container_name: poe-api
+    container_name: demo-poe-api
     restart: always
     environment:
       - DB_HOST=${DB_HOST}
@@ -27,11 +27,11 @@ services:
       - DB_USER=${DB_USER}
       - DB_PASS=${DB_PASS}
       - ASPNETCORE_ENVIRONMENT=Production
-      - OriginApiUrl=${ORIGIN_API_URL}
-      - ActiveLeague=${ACTIVE_LEAGUE}
+      - OriginApiUrl=${DEMO_ORIGIN_API_URL}
+      - ActiveLeague=${DEMO_ACTIVE_LEAGUE}
       - SyncInterval=30000
-      - DiscordWebhook=${DISCORD_WEBHOOK}
-      - UseMockData=false
+      - DiscordWebhook=${DEMO_DISCORD_WEBHOOK}
+      - UseMockData=true
     depends_on:
       - db
     networks:
@@ -42,7 +42,7 @@ services:
 # Frontend project
   client:
     image: ghcr.io/mdahlmann/poetracker-client:latest
-    container_name: poe-client
+    container_name: demo-poe-client
     restart: always
     depends_on:
       - api
@@ -50,22 +50,9 @@ services:
       - default
       - watchers-net
 
-
-# Fetches new images from GitHub Container Registry
-# and replaces running containers with them.
-  watchtower:
-    image: containrrr/watchtower
-    container_name: watchtower
-    restart: always
-    environment:
-      - DOCKER_API_VERSION=1.44
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ~/.docker/config.json:/config.json:ro
-    command: --interval 60 --cleanup
-
 volumes:
   pgdata:
+    name: demo_db_data
 
 networks:
   watchers-net:
