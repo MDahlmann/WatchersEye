@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Commands;
 using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
+using PoeLeagueTracker.Application.DispatcherInterfaces;
 using PoeLeagueTracker.Application.Queries;
 using PoeLeagueTracker.Application.Queries.GetActiveLeagueQuery;
 using PoeLeagueTracker.Application.Queries.GetLeagueNamesQuery;
@@ -9,6 +10,7 @@ using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
 using PoeLeagueTracker.Application.RepositoryInterfaces;
 using PoeLeagueTracker.Application.ServiceInterfaces;
 using PoeLeagueTracker.Infrastructure;
+using PoeLeagueTracker.Infrastructure.Dispatchers;
 using PoeLeagueTracker.Infrastructure.RefitInterfaces;
 using PoeLeagueTracker.Infrastructure.Repositories;
 using PoeLeagueTracker.Infrastructure.Services;
@@ -73,6 +75,8 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueNamesQuery, List<string>?>, GetLeagueNamesQueryHandler>();
             builder.Services.AddScoped<IQueryHandler<GetActiveLeagueQuery, string?>, GetActiveLeagueQueryHandler>();
+            builder.Services.AddScoped<ICommandDispatcher, CommandDispatcher>();
+            builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
@@ -115,9 +119,9 @@ namespace PoeLeagueTracker.Api
             app.MapControllers();
 
             // Minimal API implementation
-            app.MapGet("league/{leagueId}", async (IQueryHandler<GetLeagueQuery, LeagueDto?> queryHandler, string leagueId) =>
+            app.MapGet("league/{leagueId}", async (IQueryDispatcher queryDispatcher, string leagueId) =>
             {
-                var league = await queryHandler.HandleAsync(new GetLeagueQuery(leagueId));
+                var league = await queryDispatcher.DispatchAsync<GetLeagueQuery, LeagueDto?>(new GetLeagueQuery(leagueId));
 
                 if (league is null)
                 {
@@ -127,18 +131,18 @@ namespace PoeLeagueTracker.Api
                 return Results.Ok(league);
             });
 
-            app.MapGet("allLeagueNames", async (IQueryHandler<GetLeagueNamesQuery, List<string>?> queryHandler) =>
+            app.MapGet("allLeagueNames", async (IQueryDispatcher queryDispatcher) =>
             {
-                var leagues = await queryHandler.HandleAsync(new GetLeagueNamesQuery());
+                var leagues = await queryDispatcher.DispatchAsync<GetLeagueNamesQuery, List<string>?>(new GetLeagueNamesQuery());
 
                 if (leagues is null) { return Results.NotFound(); }
 
                 return Results.Ok(leagues);
             });
 
-            app.MapGet("activeLeague", async (IQueryHandler<GetActiveLeagueQuery, string?> queryHandler) =>
+            app.MapGet("activeLeague", async (IQueryDispatcher queryDispatcher) =>
             {
-                var activeLeague = await queryHandler.HandleAsync(new GetActiveLeagueQuery());
+                var activeLeague = await queryDispatcher.DispatchAsync<GetActiveLeagueQuery, string?>(new GetActiveLeagueQuery());
 
                 if (activeLeague is null) { return Results.NotFound(); }
 

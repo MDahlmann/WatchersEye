@@ -1,6 +1,5 @@
-﻿
-using PoeLeagueTracker.Application.Commands;
-using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
+﻿using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
+using PoeLeagueTracker.Application.DispatcherInterfaces;
 
 namespace PoeLeagueTracker.Api.Workers
 {
@@ -24,9 +23,9 @@ namespace PoeLeagueTracker.Api.Workers
                 // the entire application runtime.
                 await using (var scope = _serviceScopeFactory.CreateAsyncScope())
                 {
-                    var syncHandler = scope.ServiceProvider.GetRequiredService<ICommandHandler<SyncLeagueCommand>>();
+                    var dispatcher = scope.ServiceProvider.GetRequiredService<ICommandDispatcher>();
 
-                    await syncHandler.HandleAsync(new SyncLeagueCommand(_config["ActiveLeague"]!));
+                    await dispatcher.DispatchAsync(new SyncLeagueCommand(_config["ActiveLeague"]!));
                 }
 
                 var interval = Convert.ToInt32(_config["SyncInterval"]);
