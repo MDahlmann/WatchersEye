@@ -6,4 +6,8 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\PoeLeagueTracker.Shared\PoeLeagueTracker.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

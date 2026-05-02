@@ -9,6 +9,7 @@ using PoeLeagueTracker.Application.Queries.GetLeagueNamesQuery;
 using PoeLeagueTracker.Application.Queries.GetLeagueQuery;
 using PoeLeagueTracker.Application.RepositoryInterfaces;
 using PoeLeagueTracker.Application.ServiceInterfaces;
+using PoeLeagueTracker.Domain.Users;
 using PoeLeagueTracker.Infrastructure;
 using PoeLeagueTracker.Infrastructure.Dispatchers;
 using PoeLeagueTracker.Infrastructure.RefitInterfaces;
@@ -77,6 +78,8 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IQueryHandler<GetActiveLeagueQuery, string?>, GetActiveLeagueQueryHandler>();
             builder.Services.AddScoped<ICommandDispatcher, CommandDispatcher>();
             builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
+            builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
