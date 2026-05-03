@@ -72,6 +72,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IDiscordService, DiscordService>();
             builder.Services.AddScoped<ILeagueRepository, LeagueRepository>();
             builder.Services.AddScoped<IAccountRepository, AccountRepository>();
+            builder.Services.AddScoped<IUserRepository, UserRepository>();
             builder.Services.AddScoped<ICommandHandler<SyncLeagueCommand>, SyncLeagueCommandHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueQuery, LeagueDto?>, GetLeagueQueryHandler>();
             builder.Services.AddScoped<IQueryHandler<GetLeagueNamesQuery, List<string>?>, GetLeagueNamesQueryHandler>();
