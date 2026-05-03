@@ -13,23 +13,24 @@ namespace PoeLeagueTracker.Domain.Users
 
         public User Create(string username, string password, UserRole role)
         {
-            if (UserGuardClauses(username, password))
+            if (string.IsNullOrWhiteSpace(username))
             {
-                var hashedPassword = _passwordHasher.HashPassword(password);
-
-                return User.CreateUser(username, hashedPassword, role);
+                throw new ArgumentException("Username cannot be empty.", nameof(username));
             }
-            else
+
+            if (username.Length > 20)
             {
-                throw new Exception("Username or password did not adhere to requirements.");
+                throw new ArgumentException("Username cannot be longer than 20 characters.", nameof(username));
             }
-        }
 
-        private bool UserGuardClauses(string username, string password)
-        {
-            if (username == null || username == "" || username.Length > 20) return false;
-            if (password == null || password == "" || password.Length < 8) return false;
-            return true;
+            if (string.IsNullOrWhiteSpace(password) || password.Length < 8)
+            {
+                throw new ArgumentException("Password must be atleast 8 characters long.", nameof(password));
+            }
+
+            var hashedPassword = _passwordHasher.HashPassword(password);
+
+            return User.CreateUser(username, hashedPassword, role);
         }
     }
 }

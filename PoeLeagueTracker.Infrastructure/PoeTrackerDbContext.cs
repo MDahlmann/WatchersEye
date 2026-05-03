@@ -2,6 +2,7 @@
 using PoeLeagueTracker.Domain.Accounts;
 using PoeLeagueTracker.Domain.Characters;
 using PoeLeagueTracker.Domain.Leagues;
+using PoeLeagueTracker.Domain.Users;
 
 namespace PoeLeagueTracker.Infrastructure
 {
@@ -10,6 +11,7 @@ namespace PoeLeagueTracker.Infrastructure
         public DbSet<Account> Accounts { get; set; }
         public DbSet<Character> Characters { get; set; }
         public DbSet<League> Leagues { get; set; }
+        public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,6 +35,22 @@ namespace PoeLeagueTracker.Infrastructure
                 .HasOne(c => c.League)
                 .WithMany(l => l.Characters)
                 .HasForeignKey(c => c.LeagueName);
+
+            modelBuilder.Entity<User>(user =>
+            {
+                user.HasKey(u => u.Id);
+
+                user.HasIndex(u => u.Username)
+                    .IsUnique();
+
+                user.OwnsOne(u => u.HashedPassword);
+
+                user.Property(u => u.Id)
+                    .ValueGeneratedNever();
+
+                user.Property(u => u.Role)
+                    .HasConversion<string>();
+            });
         }
     }
 }

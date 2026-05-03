@@ -79,6 +79,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<ICommandDispatcher, CommandDispatcher>();
             builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
+            builder.Services.AddScoped<UserFactory>();
 
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
