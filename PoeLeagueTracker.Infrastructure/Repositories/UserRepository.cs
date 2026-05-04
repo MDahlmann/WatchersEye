@@ -25,5 +25,14 @@ namespace PoeLeagueTracker.Infrastructure.Repositories
         {
             await _db.SaveChangesAsync();
         }
+
+        async Task<User?> IUserRepository.GetUserByNameAsync(string username)
+        {
+            var user = await _db.Users
+                .AsNoTracking()
+                .FirstOrDefaultAsync(u => u.Username == username);
+
+            return user;
+        }
     }
 }

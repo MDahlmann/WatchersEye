@@ -1,4 +1,6 @@
+using DotNetEnv;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.IdentityModel.JsonWebTokens;
 using PoeLeagueTracker.Api.Workers;
 using PoeLeagueTracker.Application.Commands;
 using PoeLeagueTracker.Application.Commands.SyncLeagueCommand;
@@ -27,7 +29,10 @@ namespace PoeLeagueTracker.Api
             var builder = WebApplication.CreateBuilder(args);
 
             // DotNetEnv-libary allows .NET to read the local .env file
-            DotNetEnv.Env.TraversePath().Load();
+            Env.TraversePath().Load();
+
+            builder.Services.Configure<JwtSettings>(
+                builder.Configuration.GetSection(JwtSettings.SectionName));
 
             var useMockData = builder.Configuration.GetValue<bool>("UseMockData");
 
@@ -81,7 +86,7 @@ namespace PoeLeagueTracker.Api
             builder.Services.AddScoped<IQueryDispatcher, QueryDispatcher>();
             builder.Services.AddScoped<IPasswordHasher, PasswordHasher>();
             builder.Services.AddScoped<UserFactory>();
-
+            builder.Services.AddSingleton<JsonWebTokenHandler>();
 
             builder.Services.AddHostedService<SyncLeagueWorker>();
 
